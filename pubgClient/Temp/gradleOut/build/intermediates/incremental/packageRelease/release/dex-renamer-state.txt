@@ -1,0 +1,4 @@
+#Tue Jul 02 17:39:32 CST 2019
+base.0=D\:\\svn\\pubg\\client\\pubgClient\\pubgClient\\Temp\\gradleOut\\build\\intermediates\\transforms\\dex\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex

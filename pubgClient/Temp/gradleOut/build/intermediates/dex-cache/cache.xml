@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\svn\pubg\client\pubgClient\pubgClient\Temp\gradleOut\libs\unity-classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="29.0.0"
+        sha1="5c4815b5a933ab87734d00229f003364424342a4">
+        <dex dex="D:\svn\pubg\client\pubgClient\pubgClient\Temp\gradleOut\build\intermediates\transforms\preDex\release\1.jar" />
+    </item>
+
+</items>

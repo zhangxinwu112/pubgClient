@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace commad
+namespace command
 {
-    public enum Command
+    public enum CommandName
     {
         ECHO,
-        UpdatePosition
+        UpdatePosition,
+        Post
 
 
     }

@@ -12,7 +12,7 @@ using UnityEngine;
 public sealed class PubgSocket  {
 
 
-    public  readonly string IP = "39.106.190.144";
+    //public  readonly string IP = "39.106.190.144";
 
     private EasyClient client = null;
     /// <summary>
@@ -65,7 +65,8 @@ public sealed class PubgSocket  {
 
         //   client.NewPackageReceived += Client_NewPackageReceived;
 
-        var connected = await client.ConnectAsync(new IPEndPoint(IPAddress.Parse(IP), 9000));
+        string IP = Config.parse("ServerIP");
+         var connected = await client.ConnectAsync(new IPEndPoint(IPAddress.Parse(IP), 9000));
 
         if (connected)
         {
@@ -76,6 +77,13 @@ public sealed class PubgSocket  {
         }
     }
 
+    public void Send(string sendContent)
+    {
+        if(client!=null)
+        {
+            client.Send(Encoding.ASCII.GetBytes(sendContent));
+        }
+    }
 
     private void Timer()
     {

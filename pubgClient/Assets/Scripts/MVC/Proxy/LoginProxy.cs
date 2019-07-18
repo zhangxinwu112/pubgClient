@@ -14,7 +14,10 @@ public class LoginProxy : Proxy
 
     public void ToLogin(string username,string password)
     {
-        string serverPath = Config.parse("ServerPath");
+        SocketService.instance.PostData("Login.CheckLogin", new string[] { username, password }, (result) => {
+
+
+        });
     }
 
 }

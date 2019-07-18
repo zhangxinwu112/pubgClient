@@ -7,7 +7,7 @@ public class InitScripts : MonoBehaviour {
     public void Initialized()
     {
        gameObject.AddComponent<SceneTools>();
-       gameObject.AddComponent<SockeService>();
+       gameObject.AddComponent<SocketService>();
        gameObject.AddComponent<NetWorkCheck>();
     }
 }

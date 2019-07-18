@@ -14,6 +14,8 @@ public sealed class PubgSocket  {
 
     //public  readonly string IP = "39.106.190.144";
 
+    private int port = 2020;
+
     private EasyClient client = null;
     /// <summary>
     /// 心跳检查定时器
@@ -66,7 +68,7 @@ public sealed class PubgSocket  {
         //   client.NewPackageReceived += Client_NewPackageReceived;
 
         string IP = Config.parse("ServerIP");
-         var connected = await client.ConnectAsync(new IPEndPoint(IPAddress.Parse(IP), 9000));
+         var connected = await client.ConnectAsync(new IPEndPoint(IPAddress.Parse(IP), port));
 
         if (connected)
         {
@@ -79,19 +81,35 @@ public sealed class PubgSocket  {
 
     public void Send(string sendContent)
     {
-        if(client!=null)
+       
+        if (client!=null)
         {
-            client.Send(Encoding.ASCII.GetBytes(sendContent));
+            sendContent = sendContent + Environment.NewLine;
+            var sbMessage = new StringBuilder();
+            //sbMessage.AppendFormat(string.Format("heartbeat #{0}#\r\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")));
+            sbMessage.AppendFormat(string.Format("heartbeat #{0}#\r\n", "心跳数据包:ok"));
+            string aa = "Post!hello\r\n";
+            Debug.Log(aa);
+            var data = Encoding.UTF8.GetBytes(aa.ToString());
+
+
+           // var data = Encoding.ASCII.GetBytes(sendContent);
+            client.Send(new ArraySegment<byte>(data, 0, data.Length));
+            //client.Send(Encoding.ASCII.GetBytes(sendContent+ Environment.NewLine));
         }
     }
 
     private void Timer()
     {
-        tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
-        tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
-        getPositionTimer = new System.Threading.Timer(GetPostionTimer, null, mgetPositionInterval, mgetPositionInterval);
+       // tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
+      //  tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
+        //getPositionTimer = new System.Threading.Timer(GetPostionTimer, null, mgetPositionInterval, mgetPositionInterval);
     }
 
+    /// <summary>
+    /// 获取位置
+    /// </summary>
+    /// <param name="state"></param>
     private void GetPostionTimer(object state)
     {
 

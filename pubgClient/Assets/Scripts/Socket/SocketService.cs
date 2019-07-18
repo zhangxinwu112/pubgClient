@@ -33,16 +33,20 @@ public class SocketService : MonoBehaviour {
 
     void Start () {
         instance = this;
+        Init();
         sm = new SyncManager(processCallback);
         pubgSocket = new PubgSocket();
         pubgSocket.callBack = ReceiveData;
         pubgSocket.Init();
         pubgSocket.InitTimer(sm);
         postEngine = new PostEngine();
+       
     }
 
     public void ReceiveData(string key, string body, string[] paraters)
     {
+        Debug.Log(key + "," + body);
+       // NGUIDebug.Log(key + ","+ body);
         commandsUtils.Exec(key, body, paraters);
     }
 	

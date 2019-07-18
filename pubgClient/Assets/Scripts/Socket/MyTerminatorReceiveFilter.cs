@@ -32,7 +32,7 @@ namespace AppClient
             string body = string.Empty;
             string[] parameters = null;
             cmdFullText = bufferStream.ReadString((int)bufferStream.Length, Encoding.UTF8);
-            key = Regex.Split(cmdFullText, "\u0020")[0];
+            key = Regex.Split(cmdFullText, "\u0020")[0].Split('!')[0];
             body = string.Join("!", cmdFullText.ToArray().Skip(key.ToArray().Length + 1).ToList());
             return new StringPackageInfo(key, body, parameters);
         }

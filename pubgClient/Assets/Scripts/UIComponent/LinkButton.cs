@@ -64,7 +64,7 @@ public class LinkButton : Button
         rt.anchorMin = Vector2.zero;
         underline.text = "_";
         float perlineWidth = underline.preferredWidth;      //单个下划线宽度  
-        Debug.Log(perlineWidth);
+        //Debug.Log(perlineWidth);
         float width = text.preferredWidth;
         int lineCount = (int)Mathf.Round(width / perlineWidth);
         for (int i = 1; i < lineCount; i++)

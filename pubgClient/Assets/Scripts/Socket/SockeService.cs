@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SocketInit : MonoBehaviour {
+public class SockeService : MonoBehaviour {
 
     private PubgSocket pubgSocket;
     // Use this for initialization
@@ -15,8 +15,6 @@ public class SocketInit : MonoBehaviour {
         a();
        
     };
-
-
 
     void Start () {
         sm = new SyncManager(processCallback);
@@ -29,9 +27,7 @@ public class SocketInit : MonoBehaviour {
     public void ReceiveData(string key, string body, string[] paraters)
     {
         NGUIDebug.Log(body);
-
     }
-	
 	
     private void OnDestroy()
     {

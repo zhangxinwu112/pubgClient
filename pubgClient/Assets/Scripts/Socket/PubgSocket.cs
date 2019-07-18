@@ -26,6 +26,10 @@ public sealed class PubgSocket  {
     private int mHeartBeatInterval = 1000 * 10;
     private int mReConnectionInterval = 1000 * 10;
 
+    //得到
+    private System.Threading.Timer getPositionTimer = null;
+    private int mgetPositionInterval = 1000 * 3;
+
 
     private ISyncManager syncManager;
     public System.Action<string,string,string[]> callBack;
@@ -77,8 +81,13 @@ public sealed class PubgSocket  {
     {
         tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
         tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
+        getPositionTimer = new System.Threading.Timer(GetPostionTimer, null, mgetPositionInterval, mgetPositionInterval);
     }
 
+    private void GetPostionTimer(object state)
+    {
+
+    }
     private void HeartBeatCallBack(object state)
     {
         try

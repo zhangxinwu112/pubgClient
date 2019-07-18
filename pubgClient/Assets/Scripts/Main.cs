@@ -8,7 +8,7 @@ public class Main : MonoBehaviour {
  
     void Start () {
 
-        gameObject.AddComponent<SocketInit>();
+        gameObject.AddComponent<SockeService>();
 
     }
 	

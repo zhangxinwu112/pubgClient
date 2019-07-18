@@ -8,4 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 443a152b78f6dcd4a965783d25766483
+  - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: b1a0e8c8a3f4d3c4297947e7119f7349
+  - enabled: 1
+    path: Assets/Scenes/MachineCode.unity
+    guid: 562968b4ae490b44fb5f465ee5bdb2a3
+  - enabled: 1
+    path: Assets/Scenes/ForgetPassword.unity
+    guid: 7460c11fc3d71b9449869bc58e06a626
+  - enabled: 1
+    path: Assets/Scenes/Register.unity
+    guid: bbb0d9d42fa4f4c4ba17ec9879792dcb
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 5a18dc3f72c2ecd419abebc221692663
   m_configObjects: {}

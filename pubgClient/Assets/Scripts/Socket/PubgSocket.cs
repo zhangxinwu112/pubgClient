@@ -14,7 +14,7 @@ public sealed class PubgSocket  {
 
     //public  readonly string IP = "39.106.190.144";
 
-    private int port = 2020;
+    private int port = 9999;
 
     private EasyClient client = null;
     /// <summary>
@@ -84,18 +84,10 @@ public sealed class PubgSocket  {
        
         if (client!=null)
         {
-            sendContent = sendContent + Environment.NewLine;
-            var sbMessage = new StringBuilder();
-            //sbMessage.AppendFormat(string.Format("heartbeat #{0}#\r\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")));
-            sbMessage.AppendFormat(string.Format("heartbeat #{0}#\r\n", "心跳数据包:ok"));
-            string aa = "Post!hello\r\n";
-            Debug.Log(aa);
-            var data = Encoding.UTF8.GetBytes(aa.ToString());
-
-
-           // var data = Encoding.ASCII.GetBytes(sendContent);
+            sendContent +=  Environment.NewLine;
+           
+            var data = Encoding.UTF8.GetBytes(sendContent.ToString());
             client.Send(new ArraySegment<byte>(data, 0, data.Length));
-            //client.Send(Encoding.ASCII.GetBytes(sendContent+ Environment.NewLine));
         }
     }
 

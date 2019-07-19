@@ -14,7 +14,7 @@ public class LoginProxy : Proxy
 
     public void ToLogin(string username,string password)
     {
-        SocketService.instance.PostData("Login.CheckLogin", new string[] { username, password }, (result) => {
+        SocketService.instance.PostData("server.Login@CheckLogin", new string[] { username, password }, (result) => {
 
 
         });

@@ -19,7 +19,7 @@ public class ECHOCommand : ICommand
     public object ExecuteCommand(string body, string[] parameter)
     {
 
-        Debug.Log(body);
+        //Debug.Log(body);
         return null;
     }
 }

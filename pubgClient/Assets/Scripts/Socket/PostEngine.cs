@@ -12,11 +12,15 @@ public class PostEngine  {
         if (!dic.ContainsKey(method))
         {
             dic.Add(method, callBack);
-
-            string parametors = FormatUtil.ConnetString(new List<string>(parameter), Constant.SPIT_CHAR);
-            string sendData = CommandName.Post.ToString() + ":" + method + "," + parametors;
-            Debug.Log(sendData);
-            SocketService.instance.SendData(sendData);
         }
+        else
+        {
+            dic[method] = callBack;
+        }
+
+        string parametors = FormatUtil.ConnetString(new List<string>(parameter), Constant.SPIT_CHAR);
+        string sendData = CommandName.Post.ToString() + ":" + method + "," + parametors;
+       //Debug.Log(sendData);
+        SocketService.instance.SendData(sendData);
     }
 }

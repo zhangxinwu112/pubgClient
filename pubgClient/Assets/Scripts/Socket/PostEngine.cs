@@ -2,25 +2,53 @@
 using command;
 using System.Collections;
 using System.Collections.Generic;
+using Tool;
 using UnityEngine;
 
-public class PostEngine  {
+namespace server
+{
+    public class PostEngine: IEventListener
+    { 
 
-    public Dictionary<string, System.Action<string>> dic = new Dictionary<string, System.Action<string>>();
-    public void PostData(string method, string[] parameter, System.Action<string> callBack)
-    {
-        if (!dic.ContainsKey(method))
+        public void RegisterEvent()
         {
-            dic.Add(method, callBack);
+            EventMgr.Instance.AddListener(this, EventName.POST_CALLBACK);
         }
-        else
+        public Dictionary<string, System.Action<string>> dic = new Dictionary<string, System.Action<string>>();
+
+        public bool HandleEvent(string eventName, IDictionary<string, object> dictionary)
         {
-            dic[method] = callBack;
+            //throw new System.NotImplementedException();
+            string methodName = dictionary["methodName"].ToString();
+            string data = dictionary["data"].ToString();
+            ProcessCallBack(methodName, data);
+            return true;
         }
 
-        string parametors = FormatUtil.ConnetString(new List<string>(parameter), Constant.SPIT_CHAR);
-        string sendData = CommandName.Post.ToString() + ":" + method + "," + parametors;
-       //Debug.Log(sendData);
-        SocketService.instance.SendData(sendData);
+        public void PostData(string method, string[] parameter, System.Action<string> callBack)
+        {
+            if (!dic.ContainsKey(method))
+            {
+                dic.Add(method, callBack);
+            }
+            else
+            {
+                dic[method] = callBack;
+            }
+
+            string parametors = FormatUtil.ConnetString(new List<string>(parameter), Constant.END_SPLIT);
+            string sendData = CommandName.Post.ToString() + Constant.START_SPLIT + method + Constant.END_SPLIT + parametors;
+            SocketService.instance.SendData(sendData);
+        }
+
+        public void ProcessCallBack(string methodName, string data)
+        {
+            if (dic.ContainsKey(methodName))
+            {
+                dic[methodName].Invoke(data);
+                dic.Remove(methodName);
+            }
+        }
     }
 }
+

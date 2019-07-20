@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Tool;
 
 namespace AppClient
 {
@@ -34,7 +35,7 @@ namespace AppClient
             cmdFullText = bufferStream.ReadString((int)bufferStream.Length, Encoding.UTF8);
             cmdFullText = Regex.Split(cmdFullText, "\r\n")[0];
 
-            int pos = cmdFullText.IndexOf(':');
+            int pos = cmdFullText.IndexOf(Constant.START_SPLIT);
             if (pos <= 0)
                 return null;
 

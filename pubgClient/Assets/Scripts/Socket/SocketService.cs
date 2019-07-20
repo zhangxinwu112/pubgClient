@@ -1,5 +1,6 @@
 ﻿using Br.Core.Server;
 using Core.Server.Command;
+using server;
 using server.Utils;
 using System;
 using System.Collections;
@@ -40,7 +41,7 @@ public class SocketService : MonoBehaviour {
         pubgSocket.Init();
         pubgSocket.InitTimer(sm);
         postEngine = new PostEngine();
-       
+        postEngine.RegisterEvent();
     }
 
     public void ReceiveData(string key, string body, string[] paraters)

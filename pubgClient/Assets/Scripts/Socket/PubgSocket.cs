@@ -81,7 +81,6 @@ public sealed class PubgSocket  {
 
     public void Send(string sendContent)
     {
-       
         if (client!=null)
         {
             sendContent +=  Environment.NewLine;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,16 +34,38 @@ public class RegisterView : MonoBehaviour {
     [SerializeField]
     public Button submit;
 
-
+    [SerializeField]
     public Text message;
+    [SerializeField]
+    public GameObject register;
+    [SerializeField]
+    public GameObject success;
 
     private void Start()
     {
         RegisterFade.GetInstance().StartUp(gameObject);
+        register.transform.localScale = Vector3.one;
+        success.transform.localScale = Vector3.zero;
+        message.text = "";
     }
    
     public void  Register(UnityAction action)
     {
         submit.onClick.AddListener(action);
+    }
+
+    public void ShowError(string error)
+    {
+        message.text = error;
+
+        DOVirtual.DelayedCall(4.0f, () => {
+            message.text = "";
+        });
+    }
+
+    public void SetSuccessView()
+    {
+        register.transform.localScale = Vector3.zero;
+        success.transform.localScale = Vector3.one;
     }
 }

@@ -15,13 +15,13 @@ public class RegisterProxy : Proxy
 
     }
 
-    public void Register(string telephone,string password,string nick,string icon)
+    public void Register(string telephone,string password,string nick,string icon,string checkCode)
     {
     
         string method = "server.Register" + Constant.METHOD_SPLIT + "RegisterUser";
 
         SocketService.instance.PostData(method, new string[] { telephone,
-            password, nick, icon}, (result) => {
+            password, nick, icon,checkCode}, (result) => {
 
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             if (dataResult.result == 0)

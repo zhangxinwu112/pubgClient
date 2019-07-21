@@ -14,9 +14,12 @@ public class RegisterCommand : SimpleCommand
         string password = dic["password"].ToString();
         string nick = dic["nickName"].ToString();
         string icon = dic["icon"].ToString();
+        string checkCode = dic["checkCode"].ToString();
 
-        RegisterProxy levelProxy = (RegisterProxy)LoginFade.GetInstance().RetrieveProxy(RegisterProxy.NAME);
+        
 
-        levelProxy.Register(telephone, password, nick, icon);
+        RegisterProxy registerProxy = (RegisterProxy)LoginFade.GetInstance().RetrieveProxy(RegisterProxy.NAME);
+
+        registerProxy.Register(telephone, password, nick, icon, checkCode);
     }
 }

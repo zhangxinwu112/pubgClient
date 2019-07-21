@@ -7,12 +7,12 @@ using UnityEngine;
 public class RegisterFade : Facade, IFacade
 {
 
-    private static LoginFade instance = null;
+    private static RegisterFade instance = null;
 
-    public static LoginFade GetInstance()
+    public static RegisterFade GetInstance()
     {
         if (instance == null)
-            instance = new LoginFade();
+            instance = new RegisterFade();
         return instance;
     }
 

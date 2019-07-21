@@ -20,10 +20,11 @@ public class MachineCodeProxy : Proxy
         //string serverPath = Config.parse("ServerPath");
 
         string deviceUniqueIdentifier = SystemInfo.deviceUniqueIdentifier;
-        string type = SystemInfo.deviceType.ToString();
+        string flat = SystemInfo.deviceType.ToString();
         string method = "server.Code" + Constant.METHOD_SPLIT + "CheckCode";
 
-        SocketService.instance.PostData(method, new string[] { activeCode, deviceUniqueIdentifier, type }, (result) => {
+        SocketService.instance.PostData(method, new string[] { activeCode,
+            deviceUniqueIdentifier, flat, SystemInfo.operatingSystem}, (result) => {
 
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             if (dataResult.result == 0)

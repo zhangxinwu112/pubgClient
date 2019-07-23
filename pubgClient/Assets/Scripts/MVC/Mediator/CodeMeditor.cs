@@ -16,6 +16,8 @@ public class CodeMeditor : Mediator
 
         root.GetComponent<CodeView>().OnClickCheckButton(Check);
 
+        AutoCheck();
+
     } 
 
     private void Check()
@@ -61,9 +63,15 @@ public class CodeMeditor : Mediator
         }
     }
 
-
-
-
+    private void AutoCheck()
+    {
+        string code = PlayerPrefs.GetString("code");
+        if(!string.IsNullOrEmpty(code))
+        {
+            SendNotification(LoginNotifications.CODE_LOGIN, code);
+        }
+        
+    }
 
 
  }

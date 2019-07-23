@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using DG.Tweening;
+using server.Model;
+
 public class LoginMediator : Mediator
 {
     public new const string NAME = "LoginMediator";
@@ -19,9 +21,7 @@ public class LoginMediator : Mediator
 
         //注册按钮的方法
         root.GetComponent<LoginView>().OnClickLoginButton(StartLogin);
-        DOVirtual.DelayedCall(1.0f, () => {
-            SendNotification(LoginNotifications.SEARCH_USER_NAME);
-        });
+        SetCookieUserName();
     }
 
 
@@ -62,7 +62,10 @@ public class LoginMediator : Mediator
             //登录成成功
             case LoginNotifications.QUERY_LOGIN_SUCCESS:
 
+               
+               
                 SceneTools.instance.LoadScene("MachineCode");
+
                
                 break;
 
@@ -73,18 +76,22 @@ public class LoginMediator : Mediator
                 root.GetComponent<LoginView>().ShowLoginError(errorMessage);
                 break;
 
-           
-            //查询账号
-            case LoginNotifications.SEARCH_USER_NAME_SUCCESS:
-
-                string userName = notification.Body as string;
-                root.GetComponent<LoginView>().ShowUserName(userName);
-                break;
- 
+        
             
             default:
                 break;
         }
+    }
+
+    private void SetCookieUserName()
+    {
+
+        string userName = PlayerPrefs.GetString("telephone");
+        if(!string.IsNullOrEmpty(userName))
+        {
+            root.GetComponent<LoginView>().ShowUserName(userName);
+        }
+
     }
 
 }

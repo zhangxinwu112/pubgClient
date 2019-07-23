@@ -67,11 +67,16 @@ public class LinkButton : Button
         //Debug.Log(perlineWidth);
         float width = text.preferredWidth;
         int lineCount = (int)Mathf.Round(width / perlineWidth);
+        underline.text = "";
         for (int i = 1; i < lineCount; i++)
         {
             underline.text += "_";
         }
 
+        if (text.GetComponent<Text>().fontSize>45)
+        {
+            underline.GetComponent<Text>().fontSize = text.GetComponent<Text>().fontSize - 15;
+        }
     }
 
     private void DestroyText()

@@ -29,6 +29,7 @@ public class MachineCodeProxy : Proxy
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             if (dataResult.result == 0)
             {
+                PlayerPrefs.SetString("code", activeCode);
                 SendNotification(LoginNotifications.QUERY_CODE_LOGIN_SUCCESS);
             }
             else

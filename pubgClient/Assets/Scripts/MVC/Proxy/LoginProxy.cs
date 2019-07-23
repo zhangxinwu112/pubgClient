@@ -1,5 +1,6 @@
 ﻿using Model;
 using PureMVC.Patterns;
+using server.Model;
 using System.Collections;
 using System.Collections.Generic;
 using Tool;
@@ -20,7 +21,13 @@ public class LoginProxy : Proxy
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             if(dataResult.result==0)
             {
-                SendNotification(LoginNotifications.QUERY_LOGIN_SUCCESS);
+                string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
+                UserName _user = Utils.CollectionsConvert.ToObject<UserName>(json);
+                if (_user != null)
+                {
+                    PlayerPrefs.SetString("telephone", _user.telephone);
+                }
+                SendNotification(LoginNotifications.QUERY_LOGIN_SUCCESS, dataResult.data);
             }
             else
             {

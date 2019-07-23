@@ -77,6 +77,8 @@ public sealed class PubgSocket  {
             // Send data to the server
             //client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));
            // Send("ADD*1#2");
+
+
         }
     }
 

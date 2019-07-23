@@ -71,7 +71,7 @@ public class RegisterMeditor : Mediator
         {
             root.GetComponent<RegisterView>().nickName.text = "";
             root.GetComponent<RegisterView>().nickName.ActivateInputField();
-            root.GetComponent<RegisterView>().ShowError("名称输入不能为空");
+            root.GetComponent<RegisterView>().ShowError("昵称输入不能为空");
             return;
         }
 
@@ -79,9 +79,9 @@ public class RegisterMeditor : Mediator
 
         dic.Add("telephone", telephone);
         dic.Add("password", password);
-        dic.Add("checkCode", "checkCode");
+        dic.Add("checkCode", "123456");
         dic.Add("nickName", nickName);
-        dic.Add("icon", "icon");
+        dic.Add("icon", "image1");
 
 
         SendNotification(RegisterNotifications.REGISTER, dic);
@@ -126,8 +126,7 @@ public class RegisterMeditor : Mediator
 
                 root.GetComponent<RegisterView>().SetSuccessView();
                 DOVirtual.DelayedCall(3.0f, () => {
-                    SceneTools.instance. LoadScene("Login");
-
+                    SceneTools.instance.LoadScene("Login");
                 });
                 break;
 

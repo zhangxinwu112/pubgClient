@@ -14,7 +14,7 @@ public sealed class PubgSocket  {
 
     //public  readonly string IP = "39.106.190.144";
 
-    private int port = 9999;
+    private int port = 9000;
 
     private EasyClient client = null;
     /// <summary>
@@ -56,7 +56,7 @@ public sealed class PubgSocket  {
 
         client.Error += (s, e) =>
         {
-            
+            NGUIDebug.Log(e.Exception.Message);
         };
 
         client.Closed += (s, e) => {
@@ -73,20 +73,22 @@ public sealed class PubgSocket  {
         if (connected)
         {
             NGUIDebug.Log("connet success");
-            Debug.Log("connet success");
+            //Debug.Log("connet success");
             // Send data to the server
-           // client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));
+            //client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));
+           // Send("ADD*1#2");
         }
     }
 
     public void Send(string sendContent)
     {
+        
         if (client!=null)
         {
-            sendContent +=  Environment.NewLine;
-           
+            sendContent += "\r\n";
             var data = Encoding.UTF8.GetBytes(sendContent.ToString());
             client.Send(new ArraySegment<byte>(data, 0, data.Length));
+           // client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));
         }
     }
 

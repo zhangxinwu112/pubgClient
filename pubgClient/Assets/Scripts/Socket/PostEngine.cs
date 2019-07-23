@@ -35,9 +35,9 @@ namespace server
             {
                 dic[method] = callBack;
             }
-
             string parametors = FormatUtil.ConnetString(new List<string>(parameter), Constant.END_SPLIT);
             string sendData = CommandName.Post.ToString() + Constant.START_SPLIT + method + Constant.END_SPLIT + parametors;
+           // NGUIDebug.Log("sendData="+ sendData);
             SocketService.instance.SendData(sendData);
         }
 

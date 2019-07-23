@@ -44,6 +44,8 @@ public class RegisterView : MonoBehaviour {
     private void Start()
     {
         RegisterFade.GetInstance().StartUp(gameObject);
+        success.gameObject.SetActive(true);
+        register.gameObject.SetActive(true);
         register.transform.localScale = Vector3.one;
         success.transform.localScale = Vector3.zero;
         message.text = "";

@@ -17,7 +17,6 @@ public class LoginProxy : Proxy
     public void ToLogin(string username,string password)
     {
         SocketService.instance.PostData("server.Login"+ Constant.METHOD_SPLIT+ "CheckLogin", new string[] { username, password }, (result) => {
-
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             if(dataResult.result==0)
             {

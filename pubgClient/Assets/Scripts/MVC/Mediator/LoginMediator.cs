@@ -63,6 +63,7 @@ public class LoginMediator : Mediator
             case LoginNotifications.QUERY_LOGIN_SUCCESS:
 
                 SceneTools.instance.LoadScene("MachineCode");
+               
                 break;
 
             //登录失败

@@ -14,6 +14,7 @@ public class LoginNotifications
     public const string CODE_LOGIN = "code_login";
     //机器码登录
     public const string QUERY_CODE_LOGIN_SUCCESS = "Query_code_login_success";
+
     public const string QUERY_CODE_LOGIN_ERROR = "Query_code_login_error";
 
     public const string SAVE_PLAYER_TIME = "Save_player_Time";

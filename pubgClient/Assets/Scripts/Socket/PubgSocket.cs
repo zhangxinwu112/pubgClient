@@ -30,7 +30,7 @@ public sealed class PubgSocket  {
 
     //得到
     private System.Threading.Timer getPositionTimer = null;
-    private int mgetPositionInterval = 1000 * 3;
+    private int mgetPositionInterval = 1000 * 10;
 
 
     private ISyncManager syncManager;
@@ -72,8 +72,8 @@ public sealed class PubgSocket  {
 
         if (connected)
         {
-            NGUIDebug.Log("connet success");
-            //Debug.Log("connet success");
+           // NGUIDebug.Log("connet success");
+             Debug.Log("connet success");
             // Send data to the server
             //client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));
            // Send("ADD*1#2");
@@ -97,18 +97,29 @@ public sealed class PubgSocket  {
     private void Timer()
     {
        // tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
-      //  tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
-        //getPositionTimer = new System.Threading.Timer(GetPostionTimer, null, mgetPositionInterval, mgetPositionInterval);
+        tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
+       // getPositionTimer = new System.Threading.Timer(GetPostionTimer, null, mgetPositionInterval, mgetPositionInterval);
     }
 
     /// <summary>
     /// 获取位置
     /// </summary>
     /// <param name="state"></param>
-    private void GetPostionTimer(object state)
-    {
-
-    }
+    //private void GetPostionTimer(object state)
+    //{
+    //    if(Input.location.isEnabledByUser)
+    //    {
+    //        float lat = Input.location.lastData.latitude;
+    //        float lon = Input.location.lastData.longitude;
+    //       double[] datas =   GPSTools.gps84_To_Gcj02(lat, lon);
+    //       double _lat = datas[0];
+    //       double _lon = datas[1];
+    //        if(ShowMapPoint.instacne!=null)
+    //        {
+    //            ShowMapPoint.instacne.Show(_lon, _lat);
+    //        }
+    //    }
+    //}
     private void HeartBeatCallBack(object state)
     {
         try

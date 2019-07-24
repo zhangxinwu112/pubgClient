@@ -60,7 +60,7 @@ public class RegisterMeditor : Mediator
 
         if(!repasword.Equals(password))
         {
-            root.GetComponent<RegisterView>().ShowError("两次密码不能为空");
+            root.GetComponent<RegisterView>().ShowError("密码输出不一致");
             return;
         }
 

@@ -12,5 +12,7 @@ public class GPSItem  {
 
     public double lat;
 
+    public string telephone;
+
 
 }

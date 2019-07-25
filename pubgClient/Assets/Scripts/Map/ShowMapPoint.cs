@@ -26,6 +26,7 @@ public class ShowMapPoint : MonoBehaviour {
     public void Show(string json)
     {
 
+        //Debug.Log(json);
         string functionName = "addMarker" + "(" + json + ")";
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
 
@@ -54,6 +55,7 @@ public class ShowMapPoint : MonoBehaviour {
             double _lat = datas[0];
             double _lon = datas[1];
             GPSItem gpsItem = new GPSItem();
+            gpsItem.telephone = LoginInfo.Userinfo.telephone;
             gpsItem.userName = LoginInfo.Userinfo.nick;
             gpsItem.lat = _lat;
             gpsItem.lon = _lon;
@@ -63,14 +65,15 @@ public class ShowMapPoint : MonoBehaviour {
         }
     }
 
-    //private void TestData()
-    //{
-    //    GPSItem gpsItem = new GPSItem();
-    //    gpsItem.userName = LoginInfo.Userinfo.nick;
-    //    gpsItem.lat = UnityEngine.Random.Range(0, 10000);
-    //    gpsItem.lon = UnityEngine.Random.Range(0, 10000);
-    //    string json = Utils.CollectionsConvert.ToJSON(gpsItem);
-    //    string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
-    //    SocketService.instance.SendData(sendData);
-    //}
+    private void TestData()
+    {
+        GPSItem gpsItem = new GPSItem();
+        gpsItem.userName = LoginInfo.Userinfo.nick;
+        gpsItem.lat = UnityEngine.Random.Range(0, 10000);
+        gpsItem.lon = UnityEngine.Random.Range(0, 10000);
+        gpsItem.telephone = LoginInfo.Userinfo.telephone;
+        string json = Utils.CollectionsConvert.ToJSON(gpsItem);
+        string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
+        SocketService.instance.SendData(sendData);
+    }
 }

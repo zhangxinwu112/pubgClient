@@ -22,10 +22,11 @@ public class LoginProxy : Proxy
             if(dataResult.result==0)
             {
                 string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
-                UserName _user = Utils.CollectionsConvert.ToObject<UserName>(json);
+                UserItem _user = Utils.CollectionsConvert.ToObject<UserItem>(json);
                 if (_user != null)
                 {
                     PlayerPrefs.SetString("telephone", _user.telephone);
+                    LoginInfo.Userinfo = _user;
                 }
                 SendNotification(LoginNotifications.QUERY_LOGIN_SUCCESS, dataResult.data);
             }

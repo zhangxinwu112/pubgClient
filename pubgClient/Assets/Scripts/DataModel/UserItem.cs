@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace server.Model
 {
-    public class UserName
+    public class UserItem
     {
         public int id;
 

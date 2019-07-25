@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading;
+using Tool;
 using UnityEngine;
 
 public sealed class PubgSocket  {
@@ -25,14 +26,10 @@ public sealed class PubgSocket  {
     /// 断线重连定时器
     /// </summary>
     private System.Threading.Timer tmrReConnection = null;
-    private int mHeartBeatInterval = 1000 * 10;
-    private int mReConnectionInterval = 1000 * 10;
+    private int mHeartBeatInterval = 1000 * 5;
+    private int mReConnectionInterval = 1000 * 5;
 
-    //得到
-    private System.Threading.Timer getPositionTimer = null;
-    private int mgetPositionInterval = 1000 * 10;
-
-
+   
     private ISyncManager syncManager;
     public System.Action<string,string,string[]> callBack;
     public void InitTimer(ISyncManager sm)
@@ -96,30 +93,11 @@ public sealed class PubgSocket  {
 
     private void Timer()
     {
-       // tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
-        tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
-       // getPositionTimer = new System.Threading.Timer(GetPostionTimer, null, mgetPositionInterval, mgetPositionInterval);
+       tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
+       tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
     }
 
-    /// <summary>
-    /// 获取位置
-    /// </summary>
-    /// <param name="state"></param>
-    //private void GetPostionTimer(object state)
-    //{
-    //    if(Input.location.isEnabledByUser)
-    //    {
-    //        float lat = Input.location.lastData.latitude;
-    //        float lon = Input.location.lastData.longitude;
-    //       double[] datas =   GPSTools.gps84_To_Gcj02(lat, lon);
-    //       double _lat = datas[0];
-    //       double _lon = datas[1];
-    //        if(ShowMapPoint.instacne!=null)
-    //        {
-    //            ShowMapPoint.instacne.Show(_lon, _lat);
-    //        }
-    //    }
-    //}
+   
     private void HeartBeatCallBack(object state)
     {
         try
@@ -127,11 +105,8 @@ public sealed class PubgSocket  {
             tmrHeartBeat.Change(Timeout.Infinite, Timeout.Infinite);
             if (client != null && client.IsConnected)
             {
-                var sbMessage = new StringBuilder();
-                //sbMessage.AppendFormat(string.Format("heartbeat #{0}#\r\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")));
-                sbMessage.AppendFormat(string.Format("heartbeat #{0}#\r\n", "心跳数据包:ok"));
-                var data = Encoding.UTF8.GetBytes(sbMessage.ToString());
-                client.Send(new ArraySegment<byte>(data, 0, data.Length));
+                string sendData = "HeartBeat" + Constant.START_SPLIT;
+                Send(sendData);
             }
         }
         finally
@@ -162,11 +137,27 @@ public sealed class PubgSocket  {
         if(client!=null)
         {
             client.Close();
+            StopTimer();
         }
     }
 
     ~PubgSocket() // 析构函数
     {
         Close();
+        StopTimer();
+    }
+
+    private void StopTimer()
+
+    {
+        if(tmrHeartBeat!=null)
+        {
+            tmrHeartBeat.Dispose();
+        }
+
+        if(tmrReConnection != null)
+        {
+            tmrReConnection.Dispose();
+        }
     }
 }

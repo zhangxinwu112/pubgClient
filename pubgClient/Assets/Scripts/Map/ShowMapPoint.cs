@@ -20,7 +20,8 @@ public class ShowMapPoint : MonoBehaviour {
         string mapUrl = Config.parse("Map2dAddress");
         OpenWebPage(mapUrl);
         StartCoroutine(UpdatePostion());
-       
+        UIUtility.LockScreen(8.0f);
+
     }
 
     private UniWebView uniWebView;

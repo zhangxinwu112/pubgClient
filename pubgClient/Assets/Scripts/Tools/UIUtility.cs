@@ -196,13 +196,13 @@ public static class UIUtility
 
     }
 
-    public static  void LockScreen()
+    public static  void LockScreen(float time = 4.0f)
     {
         EventSystem es = GameObject.FindObjectOfType<EventSystem>();
         if (es != null)
         {
             es.enabled = false;
-            DOVirtual.DelayedCall(4.0f, () => { es.enabled = true; });
+            DOVirtual.DelayedCall(time, () => { es.enabled = true; });
         }
     }
 

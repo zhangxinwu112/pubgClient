@@ -8,7 +8,7 @@ public class InitScripts : MonoBehaviour {
     {
        gameObject.AddComponent<SceneTools>();
        gameObject.AddComponent<SocketService>();
-       gameObject.AddComponent<NetWorkCheck>();
+       gameObject.AddComponent<DeviceCheck>();
         gameObject.AddComponent<GPSInit>();
     }
 }

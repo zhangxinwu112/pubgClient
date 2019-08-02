@@ -73,6 +73,8 @@ public class ShowMapPoint : MonoBehaviour {
     }
     public void Show(string json)
     {
+        //MessageShow.instance.ShowMesage(TimeUtils.GetCurrentTimestamp()+"："+ json);
+
         string functionName = "CreateMarker" + "(" + json + ")";
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
     }
@@ -89,8 +91,10 @@ public class ShowMapPoint : MonoBehaviour {
     private void SendData()
     {
         //  TestData();
-        if (Input.location.isEnabledByUser)
+      //  MessageShow.instance.ShowMesage("isEnabledByUser="+ Input.location.isEnabledByUser+":"+ Application.internetReachability);
+        if (Input.location.isEnabledByUser && Application.internetReachability != NetworkReachability.NotReachable)
         {
+            
             float lat = Input.location.lastData.latitude;
             float lon = Input.location.lastData.longitude;
             double[] datas = GPSTools.gps84_To_Gcj02(lat, lon);

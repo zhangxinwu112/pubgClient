@@ -53,7 +53,7 @@ public sealed class PubgSocket  {
 
         client.Error += (s, e) =>
         {
-            NGUIDebug.Log(e.Exception.Message);
+          //  NGUIDebug.Log(e.Exception.Message);
         };
 
         client.Closed += (s, e) => {
@@ -82,7 +82,7 @@ public sealed class PubgSocket  {
     public void Send(string sendContent)
     {
         
-        if (client!=null)
+        if (client!=null&& client.IsConnected)
         {
             sendContent += "\r\n";
             var data = Encoding.UTF8.GetBytes(sendContent.ToString());

@@ -23,7 +23,7 @@ public class ShowPositionCommand : ICommand
 
         if(gpsItems==null || gpsItems.Count==0)
         {
-            MessageShow.instance.ShowMesage("发送数据为空");
+           // MessageShow.instance.ShowMesage("发送数据为空");
             return null;
         }
         GPSItem first = null;

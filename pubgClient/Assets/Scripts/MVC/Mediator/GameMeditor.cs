@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-using DG.Tweening;
 using UnityEngine.EventSystems;
 
 public class GameMeditor : Mediator
@@ -43,7 +42,6 @@ public class GameMeditor : Mediator
 
     private void OnClick3dMap(int _currentIndex, string textTitle)
     {
-
         if (currentIndex == _currentIndex)
         {
             return;
@@ -66,9 +64,7 @@ public class GameMeditor : Mediator
         }
 
         SetValue(_currentIndex, textTitle);
-
     }
-
 
     private void OnClickSetButton(int _currentIndex, string textTitle)
     {
@@ -78,7 +74,6 @@ public class GameMeditor : Mediator
         }
 
         SetValue(_currentIndex, textTitle);
-
     }
 
     private void SetValue(int _currentIndex, string textTitle)

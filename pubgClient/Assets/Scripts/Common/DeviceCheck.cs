@@ -7,9 +7,13 @@ using UnityEngine;
 /// </summary>
 public class DeviceCheck : MonoBehaviour {
 
-	
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+       // Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+    }
+    // Update is called once per frame
+    void Update () {
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
 

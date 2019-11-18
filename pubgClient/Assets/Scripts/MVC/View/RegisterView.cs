@@ -41,6 +41,10 @@ public class RegisterView : MonoBehaviour {
     [SerializeField]
     public GameObject success;
 
+
+    [SerializeField]
+    public Dropdown usertype;
+
     private void Start()
     {
         RegisterFade.GetInstance().StartUp(gameObject);

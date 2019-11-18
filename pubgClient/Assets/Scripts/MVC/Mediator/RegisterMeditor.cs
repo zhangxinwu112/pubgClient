@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class RegisterMeditor : Mediator
 {
@@ -139,6 +140,11 @@ public class RegisterMeditor : Mediator
             default:
                 break;
         }
+    }
+
+    private void GetUserTypeIndex(Dropdown Dropdown)
+    {
+        string text = 
     }
 
 

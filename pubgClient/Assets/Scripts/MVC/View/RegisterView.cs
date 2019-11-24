@@ -98,7 +98,7 @@ public class RegisterView : MonoBehaviour {
         usertype.value = -1;
     }
 
-    public int GetSelectIndex() { 
+    public int GetSelectUserTypeIndex() { 
    
         return usertype.value;
     }

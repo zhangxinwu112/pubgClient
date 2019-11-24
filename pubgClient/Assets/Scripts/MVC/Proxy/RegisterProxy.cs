@@ -15,13 +15,13 @@ public class RegisterProxy : Proxy
 
     }
 
-    public void Register(string telephone,string password,string nick,string icon,string checkCode)
+    public void Register(string telephone,string password,string nick,string icon,string checkCode,string userType)
     {
     
-        string method = "server.Register" + Constant.METHOD_SPLIT + "RegisterUser";
+        string method = "server.DAO.RegisterDao" + Constant.METHOD_SPLIT + "RegisterUser";
 
         SocketService.instance.PostData(method, new string[] { telephone,
-            password, nick, icon,checkCode}, (result) => {
+            password, nick, icon,checkCode,userType}, (result) => {
 
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             if (dataResult.result == 0)

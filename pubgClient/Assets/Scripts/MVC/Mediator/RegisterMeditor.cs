@@ -83,6 +83,7 @@ public class RegisterMeditor : Mediator
         dic.Add("checkCode", "123456");
         dic.Add("nickName", nickName);
         dic.Add("icon", "image1");
+        dic.Add("userType", root.GetComponent<RegisterView>().GetSelectUserTypeIndex().ToString());
 
 
         SendNotification(RegisterNotifications.REGISTER, dic);
@@ -142,17 +143,9 @@ public class RegisterMeditor : Mediator
         }
     }
 
-    private void GetUserTypeIndex(Dropdown Dropdown)
-    {
-       // string text = Dropdown.
-    }
+    
 
-   
-
-
-
-
-
+  
 
  }
 

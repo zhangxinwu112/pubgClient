@@ -8,6 +8,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DataModel;
+using server.Model;
 
 public class CreateRoomMeditor : Mediator
 {
@@ -21,6 +22,8 @@ public class CreateRoomMeditor : Mediator
 
         root.GetComponent<RootRoomView>().ClickHandleEvent(CreateRoom);
         root.GetComponent<RootRoomView>().SearchSingleRoomAction(SearchSingleRoom);
+        root.GetComponent<RootRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
+        
         SendNotification(RoomNotifications.ALL_ROOM);
     }
 
@@ -36,9 +39,15 @@ public class CreateRoomMeditor : Mediator
     /// 通过房间查询队
     /// </summary>
     /// <param name="roomid"></param>
-    private void SearchSingleRoom(string roomid)
+    private void SearchSingleRoom(string roomId)
     {
-        SendNotification(RoomNotifications.SINGLE_ROOM, roomid);
+        SendNotification(RoomNotifications.SINGLE_ROOM, roomId);
+    }
+
+
+    private void SearchSingleGrounp(string grounpId)
+    {
+        SendNotification(RoomNotifications.SINGLE_GROUNP, grounpId);
     }
     public override IList<string> ListNotificationInterests()
     {
@@ -58,18 +67,20 @@ public class CreateRoomMeditor : Mediator
             case RoomNotifications.ALL_ROOM_SUCCESS:
 
                 List<Room> rooms = notification.Body as List<Room>;
-                root.GetComponent<RootRoomView>().roomListView.CreateRoomList(rooms);
+                root.GetComponent<RootRoomView>().roomListView.CreateList(rooms,0);
 
                 break;
             //通过room查询gourp
             case RoomNotifications.SINGLE_ROOM_SUCCESS:
 
-                
+                List<Grounp> grounps = notification.Body as List<Grounp>;
+                root.GetComponent<RootRoomView>().roomListView.CreateList(grounps,1);
                 break;
             //通过grounp查询userList
             case RoomNotifications.SINGLE_GROUNP_SUCCESS:
 
-
+                List<UserItem> UserItems = notification.Body as List<UserItem>;
+                root.GetComponent<RootRoomView>().roomListView.CreateList(UserItems, 2);
                 break;
             default:
                 break;

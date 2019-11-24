@@ -7,9 +7,7 @@ public class ListMsg : MonoBehaviour {
 
 
     public Transform item;
-	void Start () {
-		
-	}
+
 	
     public  void Create(string id,string name,bool isSelected =false)
     {
@@ -26,7 +24,6 @@ public class ListMsg : MonoBehaviour {
     private readonly string ItemName = "item";
     public void Clear()
     {
-
         foreach(Transform child in item.transform.parent)
         {
             if(!child.name.Equals(ItemName))
@@ -37,6 +34,10 @@ public class ListMsg : MonoBehaviour {
     }
 
   
+    /// <summary>
+    /// 选择房间
+    /// </summary>
+    /// <param name="toggle"></param>
     public void RoomToggleChange(Toggle toggle)
     {
         if(toggle.isOn)
@@ -50,8 +51,19 @@ public class ListMsg : MonoBehaviour {
        
     }
 
+    /// <summary>
+    /// 选择队
+    /// </summary>
+    /// <param name="toggle"></param>
     public void GrounpToggleChange(Toggle toggle)
     {
+        if (toggle.isOn)
+        {
+            string id = toggle.name;
 
+            GetComponentInParent<RootRoomView>().CallSearchSingleGrounpAction(id);
+
+
+        }
     }
 }

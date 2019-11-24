@@ -10,5 +10,6 @@ public class SearchGrounpCommand : SimpleCommand
     {
 
         RoomProxy roomProxy = (RoomProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomProxy.NAME);
+        roomProxy.SearchSingleGrounp(notification.Body.ToString());
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DataModel;
 using Model;
 using PureMVC.Patterns;
+using server.Model;
 using System.Collections;
 using System.Collections.Generic;
 using Tool;
@@ -22,10 +23,9 @@ public class RoomProxy : Proxy
             
              string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
              List<Room> rooms = Utils.CollectionsConvert.ToObject<List<Room>>(json);
-            if(rooms!=null && rooms.Count>0)
-            {
-                SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, rooms);
-            }
+            
+             SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, rooms);
+           
              
             // Debug.Log("回调成功："+ rooms.Count);
         });
@@ -33,17 +33,27 @@ public class RoomProxy : Proxy
 
     public void SearchSingleRoom(string roomid)
     {
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchAllRoom", new string[] { LoginInfo.Userinfo.id.ToString() }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleRoom", new string[] { roomid }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
 
             string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
-            List<Room> rooms = Utils.CollectionsConvert.ToObject<List<Room>>(json);
-            if (rooms != null && rooms.Count > 0)
-            {
-                SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, rooms);
-            }
+            List<Grounp> Grounps = Utils.CollectionsConvert.ToObject<List<Grounp>>(json);
+           
+           SendNotification(RoomNotifications.SINGLE_ROOM_SUCCESS, Grounps);
+          
+        });
+    }
 
-            // Debug.Log("回调成功："+ rooms.Count);
+    public void SearchSingleGrounp(string grounpId)
+    {
+        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleGrounp", new string[] { grounpId }, (result) => {
+            DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+
+            string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
+            List<UserItem> Grounps = Utils.CollectionsConvert.ToObject<List<UserItem>>(json);
+
+            SendNotification(RoomNotifications.SINGLE_GROUNP_SUCCESS, Grounps);
+
         });
     }
 

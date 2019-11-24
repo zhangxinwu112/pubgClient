@@ -102,7 +102,7 @@ public class ShowMapPoint : MonoBehaviour {
             double _lon = datas[1];
             GPSItem gpsItem = new GPSItem();
             gpsItem.telephone = LoginInfo.Userinfo.telephone;
-            gpsItem.userName = LoginInfo.Userinfo.nick;
+            gpsItem.userName = LoginInfo.Userinfo.name;
             gpsItem.lat = _lat;
             gpsItem.lon = _lon;
             string json = Utils.CollectionsConvert.ToJSON(gpsItem);
@@ -122,7 +122,7 @@ public class ShowMapPoint : MonoBehaviour {
       
         dic.Add("lat", datas[0]);
         dic.Add("lon", datas[1]);
-        dic.Add("userName", LoginInfo.Userinfo.nick);
+        dic.Add("userName", LoginInfo.Userinfo.name);
         list.Add(dic);
         Show(Utils.CollectionsConvert.ToJSON(list));
     }

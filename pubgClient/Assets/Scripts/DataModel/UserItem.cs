@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace server.Model
 {
-    public class UserItem
+    public class UserItem: ModelBase
     {
-        public int id;
 
         public string telephone;
-
-        public string nick;
-
         public string image;
-
         // 0 超级管理员
         //1 普通管理员
         // 2 道具

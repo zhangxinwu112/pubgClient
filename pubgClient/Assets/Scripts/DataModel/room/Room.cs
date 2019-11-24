@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-   public class Room
+   public class Room: ModelBase
     {
-        public int id;
-
-        public string name;
-
         //地区
         public string area;
 

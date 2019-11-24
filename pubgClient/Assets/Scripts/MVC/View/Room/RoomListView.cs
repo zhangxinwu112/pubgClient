@@ -17,12 +17,33 @@ public class RoomListView : MonoBehaviour {
     /// 创建房间列表
     /// </summary>
     /// <param name="rooms"></param>
-    public void CreateRoomList(List<Room> rooms)
+    public void CreateList<T>(List<T> datas, int type=0) where T : ModelBase
     {
-        ListMsg listMsg = room.GetComponentInChildren<ListMsg>();
+        ListMsg listMsg = null;
+        //room列表
+        if(type==0)
+        {
+            listMsg = room.GetComponentInChildren<ListMsg>();
+            ClearUserData();
+        }
+        //grounp列表
+        else if(type == 1)
+        {
+            listMsg = grounp.GetComponentInChildren<ListMsg>();
+        }
+        //userlist
+        else if(type == 2)
+        {
+            listMsg = userList.GetComponentInChildren<ListMsg>();
+            ClearUserData();
+        }
         listMsg.Clear();
+        if(datas==null || datas.Count==0)
+        {
+            return;
+        }
         int i = 0;
-        rooms.ForEach((item) => {
+        datas.ForEach((item) => {
 
             if(i==0)
             {
@@ -37,5 +58,14 @@ public class RoomListView : MonoBehaviour {
         });
     }
 
-   
+    private void ClearUserData()
+    {
+        ListMsg listMsg = userList.GetComponentInChildren<ListMsg>();
+        if(listMsg!=null)
+        {
+            listMsg.Clear();
+        }
+    }
+ 
+
 }

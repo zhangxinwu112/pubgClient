@@ -147,22 +147,7 @@ public class RegisterMeditor : Mediator
        // string text = Dropdown.
     }
 
-    private void InitTypeData()
-    {
-        root.GetComponent<RegisterView>().usertype.options.Clear();
-        DropDownDataItem optiondata = new DropDownDataItem();
-        optiondata.id = "";
-        optiondata.text = "请选择";
-        GetComponent<Dropdown>().options.Add(optiondata);
-        foreach (DropDownItem item in dropDownList)
-        {
-            optiondata = new DropDownDataItem();
-            optiondata.id = item.id;
-            optiondata.text = item.name;
-            GetComponent<Dropdown>().options.Add(optiondata);
-        }
-        dropDownList.Insert(0, null);
-    }
+   
 
 
 
@@ -173,5 +158,5 @@ public class RegisterMeditor : Mediator
 
 public class DropDownDataItem : Dropdown.OptionData
 {
-    public string id;
+    public int id;
 }

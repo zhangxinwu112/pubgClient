@@ -19,17 +19,18 @@ public class CreateRoomFade : Facade, IFacade
     protected override void InitializeController()
     {
         base.InitializeController();
-       
+
+        RegisterCommand(RoomNotifications.ALL_ROOM, typeof(SearchAllRoomCommand));
+        RegisterCommand(RoomNotifications.SINGLE_ROOM, typeof(SearchSinlgeRoomCommand));
+        RegisterCommand(RoomNotifications.SINGLE_GROUNP, typeof(SearchGrounpCommand));
+
     }
 
    
     protected override void InitializeModel()
     {
         base.InitializeModel();
-
-        
-        
-
+        RegisterProxy(new RoomProxy());
     }
 
     public void StartUp(GameObject root)

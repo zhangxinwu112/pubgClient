@@ -7,6 +7,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DataModel;
 
 public class CreateRoomMeditor : Mediator
 {
@@ -18,8 +19,63 @@ public class CreateRoomMeditor : Mediator
     {
         this.root = _root;
 
-        
+        root.GetComponent<RootRoomView>().ClickHandleEvent(CreateRoom);
+        root.GetComponent<RootRoomView>().SearchSingleRoomAction(SearchSingleRoom);
+        SendNotification(RoomNotifications.ALL_ROOM);
     }
 
-   
- }
+    /// <summary>
+    /// 创建房间
+    /// </summary>
+    private void CreateRoom()
+    {
+
+    }
+
+    /// <summary>
+    /// 通过房间查询队
+    /// </summary>
+    /// <param name="roomid"></param>
+    private void SearchSingleRoom(string roomid)
+    {
+        SendNotification(RoomNotifications.SINGLE_ROOM, roomid);
+    }
+    public override IList<string> ListNotificationInterests()
+    {
+        IList<string> list = new List<string>();
+        list.Add(RoomNotifications.ALL_ROOM_SUCCESS);
+        list.Add(RoomNotifications.SINGLE_GROUNP_SUCCESS);
+        list.Add(RoomNotifications.SINGLE_ROOM_SUCCESS);
+        return list;
+    }
+
+    public override void HandleNotification(INotification notification)
+    {
+        switch (notification.Name)
+        {
+
+            //返回room列表
+            case RoomNotifications.ALL_ROOM_SUCCESS:
+
+                List<Room> rooms = notification.Body as List<Room>;
+                root.GetComponent<RootRoomView>().roomListView.CreateRoomList(rooms);
+
+                break;
+            //通过room查询gourp
+            case RoomNotifications.SINGLE_ROOM_SUCCESS:
+
+                
+                break;
+            //通过grounp查询userList
+            case RoomNotifications.SINGLE_GROUNP_SUCCESS:
+
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+}

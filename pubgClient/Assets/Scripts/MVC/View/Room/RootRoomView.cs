@@ -30,6 +30,14 @@ public class RootRoomView : MonoBehaviour {
         CreateRoomFade.GetInstance().StartUp(gameObject);
     }
 
+
+    public void ClickDeleteHandleEvent(UnityAction action)
+    {
+        deleteButton.onClick.AddListener(action);
+    }
+
+
+
     private UnityAction<string> sinlgeRoomAction;
     public void SearchSingleRoomAction(UnityAction<string> sinlgeRoomAction)
     {

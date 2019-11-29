@@ -1,16 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class RoomEditView : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    public Button editButton;
+
+    [SerializeField]
+    public InputField  roomInputField;
+
+
+    [SerializeField]
+    public InputField grounpInputField;
+
+
+    [SerializeField]
+    public InputField passwordInputField;
+
+    public void EditClickHandleEvent(UnityAction<string,string,string> action)
+    {
+        editButton.onClick.AddListener(() => {
+
+            action.Invoke(roomInputField.text, grounpInputField.text, passwordInputField.text);
+        });
+    }
+
+
 }

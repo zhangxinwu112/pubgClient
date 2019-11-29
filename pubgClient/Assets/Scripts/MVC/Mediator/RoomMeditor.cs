@@ -21,9 +21,10 @@ public class RoomMeditor : Mediator
         this.root = _root;
 
         root.GetComponent<RootRoomView>().roomCreateView.ClickHandleEvent(CreateRoom);
+        root.GetComponent<RootRoomView>().ClickDeleteHandleEvent(DeleteRoom);
+        root.GetComponent<RootRoomView>().roomEditView.EditClickHandleEvent(EditRoom);
         root.GetComponent<RootRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
-        
         SendNotification(RoomNotifications.ALL_ROOM);
     }
 
@@ -32,10 +33,14 @@ public class RoomMeditor : Mediator
     /// </summary>
     private void CreateRoom(string createName)
     {
-
+        if(string.IsNullOrEmpty(createName))
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("创建名称不能为空。");
+            return;
+        }
     }
 
-    private void EditRoom()
+    private void EditRoom(string roomName,string grounpName,string password)
     {
 
     }

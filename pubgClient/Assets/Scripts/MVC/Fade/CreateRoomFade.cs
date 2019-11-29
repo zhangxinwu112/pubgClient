@@ -23,10 +23,9 @@ public class CreateRoomFade : Facade, IFacade
         RegisterCommand(RoomNotifications.ALL_ROOM, typeof(SearchAllRoomCommand));
         RegisterCommand(RoomNotifications.SINGLE_ROOM, typeof(SearchSinlgeRoomCommand));
         RegisterCommand(RoomNotifications.SINGLE_GROUNP, typeof(SearchGrounpCommand));
-
     }
 
-   
+ 
     protected override void InitializeModel()
     {
         base.InitializeModel();

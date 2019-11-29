@@ -56,9 +56,11 @@ public class RegisterView : MonoBehaviour {
         InitTypeData();
     }
    
-    public void  Register(UnityAction action)
+    public void  Register(UnityAction<Button> action)
     {
-        submit.onClick.AddListener(action);
+        submit.onClick.AddListener(()=> {
+            action.Invoke(submit);
+        });
     }
 
     public void ShowError(string error)
@@ -68,6 +70,7 @@ public class RegisterView : MonoBehaviour {
         DOVirtual.DelayedCall(4.0f, () => {
             message.text = "";
         });
+        submit.interactable = true;
     }
 
     public void SetSuccessView()

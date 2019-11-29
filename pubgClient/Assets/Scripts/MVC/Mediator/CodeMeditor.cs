@@ -3,6 +3,7 @@ using PureMVC.Patterns;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CodeMeditor : Mediator
 {
@@ -20,16 +21,18 @@ public class CodeMeditor : Mediator
 
     } 
 
-    private void Check()
+    private void Check(Button button)
     {
         string code = root.GetComponent<CodeView>().GetCodeContont();
         if(!string.IsNullOrEmpty(code))
         {
-            
+
+            button.interactable = false;
             SendNotification(LoginNotifications.CODE_LOGIN, code);
 
             return;
-        }else
+        }
+        else
         {
             root.GetComponent<CodeView>().ShowMessage("激活码不能为空。");
         }

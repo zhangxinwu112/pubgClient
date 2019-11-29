@@ -10,17 +10,17 @@ using UnityEngine.EventSystems;
 using DataModel;
 using server.Model;
 
-public class CreateRoomMeditor : Mediator
+public class RoomMeditor : Mediator
 {
-    public new const string NAME = "CreateRoomMeditor";
+    public new const string NAME = "RoomMeditor";
 
     private GameObject root = null;
 
-    public CreateRoomMeditor(GameObject _root) : base(NAME)
+    public RoomMeditor(GameObject _root) : base(NAME)
     {
         this.root = _root;
 
-        root.GetComponent<RootRoomView>().ClickHandleEvent(CreateRoom);
+        root.GetComponent<RootRoomView>().roomCreateView.ClickHandleEvent(CreateRoom);
         root.GetComponent<RootRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
         
@@ -30,11 +30,20 @@ public class CreateRoomMeditor : Mediator
     /// <summary>
     /// 创建房间
     /// </summary>
-    private void CreateRoom()
+    private void CreateRoom(string createName)
     {
 
     }
 
+    private void EditRoom()
+    {
+
+    }
+
+    public void DeleteRoom()
+    {
+
+    }
     /// <summary>
     /// 通过房间查询队
     /// </summary>

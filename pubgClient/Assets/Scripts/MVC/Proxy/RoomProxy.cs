@@ -18,6 +18,11 @@ public class RoomProxy : Proxy
 
     public void SearchAllRoom()
     {
+        if(SocketService.instance==null)
+        {
+            Debug.LogError("SocketService is null");
+            return;
+        }
         SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT+ "SearchAllRoom", new string[] { LoginInfo.Userinfo.id.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             

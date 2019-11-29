@@ -31,14 +31,18 @@ public class LoginView : MonoBehaviour
         DOVirtual.DelayedCall(3.0f, () => {
             LoginerrorMessage.text = "";
         });
+        LoginButton.interactable = false;
     }
 
   
     //login
-    public void OnClickLoginButton(UnityAction action)
+    public void OnClickLoginButton(UnityAction<Button> action)
     {
        // Debug.Log("点击登陆页面!");
-        LoginButton.onClick.AddListener(action);
+        LoginButton.onClick.AddListener(()=> {
+            action.Invoke(LoginButton);
+
+        });
        
     }
 
@@ -58,6 +62,14 @@ public class LoginView : MonoBehaviour
     {
         userName.text = _userName;
     }
+
+    //public void EnableLoginButton(bool isEnable)
+    //{
+    //    if(LoginButton!=null)
+    //    {
+    //        LoginButton.GetComponent<Button>().interactable = isEnable;
+    //    }
+    //}
 
   
 

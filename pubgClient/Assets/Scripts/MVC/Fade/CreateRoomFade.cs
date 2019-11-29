@@ -35,7 +35,7 @@ public class CreateRoomFade : Facade, IFacade
 
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new CreateRoomMeditor(root));
+        RegisterMediator(new RoomMeditor(root));
     }
 
    

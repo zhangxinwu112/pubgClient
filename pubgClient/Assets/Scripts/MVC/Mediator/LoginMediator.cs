@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
-using DG.Tweening;
-using server.Model;
+using UnityEngine.UI;
+
 
 public class LoginMediator : Mediator
 {
@@ -26,8 +23,10 @@ public class LoginMediator : Mediator
 
 
     private string userName = "";
-    private void StartLogin()
+    private Button button;
+    private void StartLogin(Button button)
     {
+        this.button = button;
         userName = root.GetComponent<LoginView>().GetLoginUserName();
         string passWord = root.GetComponent<LoginView>().GetLoginPassWord();
         if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
@@ -35,7 +34,11 @@ public class LoginMediator : Mediator
             root.GetComponent<LoginView>().ShowLoginError("账号和密码不能为空。");
             return;
         }
-
+      //  root.GetComponent<LoginView>().EnableLoginButton(false);
+       if(button!=null)
+        {
+            button.interactable = false;
+        }
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("username", userName);
         dic.Add("password", passWord);
@@ -62,11 +65,7 @@ public class LoginMediator : Mediator
             //登录成成功
             case LoginNotifications.QUERY_LOGIN_SUCCESS:
 
-               
-               
                 SceneTools.instance.LoadScene("MachineCode");
-
-               
                 break;
 
             //登录失败
@@ -74,6 +73,8 @@ public class LoginMediator : Mediator
 
                 string errorMessage = notification.Body as string;
                 root.GetComponent<LoginView>().ShowLoginError(errorMessage);
+               
+
                 break;
 
         

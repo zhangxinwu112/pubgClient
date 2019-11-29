@@ -6,23 +6,28 @@ using UnityEngine.UI;
 
 public class RootRoomView : MonoBehaviour {
 
-    // Use this for initialization
-
 
     [SerializeField]
     public RoomListView roomListView;
 
+
     [SerializeField]
-    public Button createButton;
+    public Button deleteButton;
+
+    [SerializeField]
+    public RoomCreateView roomCreateView;
+
+
+    [SerializeField]
+    public RoomEditView roomEditView;
+
+
+    [SerializeField]
+    public ErrorMessage errorMessage;
+
 
     void Start () {
         CreateRoomFade.GetInstance().StartUp(gameObject);
-
-    }
-
-    public void ClickHandleEvent(UnityAction  action)
-    {
-        createButton.onClick.AddListener(action);
     }
 
     private UnityAction<string> sinlgeRoomAction;
@@ -33,13 +38,11 @@ public class RootRoomView : MonoBehaviour {
 
     public void CallSearchSingleRoomAction(string id)
     {
-
         if (sinlgeRoomAction != null && !string.IsNullOrEmpty(id))
         {
             sinlgeRoomAction.Invoke(id);
         }
     }
-
 
     private UnityAction<string> sinlgGrounpAction;
     public void SearchSingleGrounpAction(UnityAction<string> sinlgeGrounpAction)
@@ -55,11 +58,4 @@ public class RootRoomView : MonoBehaviour {
         }
     }
 
-
-
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

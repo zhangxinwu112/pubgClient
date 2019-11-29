@@ -22,7 +22,7 @@ public class RegisterMeditor : Mediator
     } 
 
 
-    public void StartRegiter()
+    public void StartRegiter(Button button)
     {
         string telephone = root.GetComponent<RegisterView>().telephone.text.Trim();
         if(string.IsNullOrEmpty(telephone))
@@ -76,6 +76,7 @@ public class RegisterMeditor : Mediator
             return;
         }
 
+        button.interactable = false;
         Dictionary<string, string> dic = new Dictionary<string, string>();
 
         dic.Add("telephone", telephone);

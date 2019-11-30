@@ -13,6 +13,6 @@ public class CommonRoomMeditor : Mediator
 
     protected void ShowListData()
     {
-        SendNotification(RoomNotifications.ALL_ROOM);
+        //SendNotification(RoomNotifications.ALL_ROOM);
     }
 }

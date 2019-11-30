@@ -26,7 +26,7 @@ public class JoinRoomMeditor : Mediator
 
         root.GetComponent<RootJoinRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootJoinRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
-        SendNotification(RoomNotifications.ALL_ROOM,"1"); 
+        SendRequestAllRoom();
     }
 
     /// <summary>
@@ -122,12 +122,18 @@ public class JoinRoomMeditor : Mediator
         if (dataResult.result == 0)
         {
             root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(successMessage);
-            SendNotification(RoomNotifications.ALL_ROOM);
+            SendRequestAllRoom();
+
         }
         else
         {
             root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(dataResult.resean);
         }
+    }
+
+    private void SendRequestAllRoom()
+    {
+        SendNotification(RoomNotifications.ALL_ROOM, "1");
     }
 
 

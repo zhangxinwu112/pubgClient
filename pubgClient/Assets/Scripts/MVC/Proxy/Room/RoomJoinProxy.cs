@@ -42,7 +42,7 @@ public class RoomJoinProxy : Proxy
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.ExitRoomDao" + Constant.METHOD_SPLIT + "ExitRoom", new string[] { grounpId, LoginInfo.Userinfo.id.ToString() }, (result) => {
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "ExitRoom", new string[] { grounpId, LoginInfo.Userinfo.id.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.EXIT_ROOM_RESULT, dataResult);
 

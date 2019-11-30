@@ -84,7 +84,7 @@ public class RoomMeditor : Mediator
         SendNotification(RoomNotifications.SINGLE_ROOM, roomId);
     }
 
-
+    //通过分队查询用户
     private void SearchSingleGrounp(string grounpId)
     {
         SendNotification(RoomNotifications.SINGLE_GROUNP, grounpId);

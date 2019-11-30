@@ -25,12 +25,14 @@ public class RoomListView : MonoBehaviour {
     /// <param name="rooms"></param>
     public void CreateList<T>(List<T> datas, int type=0) where T : ModelBase
     {
+       
         ListMsg listMsg = null;
         //room列表
         if(type==0)
         {
             listMsg = room.GetComponentInChildren<ListMsg>();
-            ClearUserData();
+          
+            ClearAll();
         }
         //grounp列表
         else if(type == 1)
@@ -59,10 +61,16 @@ public class RoomListView : MonoBehaviour {
                     selectRoomId = item.id.ToString();
                     GetComponentInParent<RootRoomView>().roomEditView.ShowRoomName(item.name);
                 }
+                //group列表
                 else if(type == 1)
                 {
                     selectGrounpId = item.id.ToString();
                     GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(item.name);
+                    if(item is Grounp)
+                    {
+                        Grounp grounp = item as Grounp;
+                        GetComponentInParent<RootRoomView>().roomEditView.ShowPassword(grounp.checkCode);
+                    }
                 }
             }
             else
@@ -80,6 +88,15 @@ public class RoomListView : MonoBehaviour {
         if(listMsg!=null)
         {
             listMsg.Clear();
+        }
+    }
+
+    private void ClearAll()
+    {
+        ListMsg[]  listmsgs =  userList.transform.parent.GetComponentsInChildren<ListMsg>();
+        for(int i=0;i< listmsgs.Length;i++)
+        {
+            listmsgs[i].Clear();
         }
     }
  

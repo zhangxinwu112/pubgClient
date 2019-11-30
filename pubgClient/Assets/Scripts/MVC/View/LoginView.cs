@@ -31,7 +31,7 @@ public class LoginView : MonoBehaviour
         DOVirtual.DelayedCall(3.0f, () => {
             LoginerrorMessage.text = "";
         });
-        LoginButton.interactable = false;
+        LoginButton.interactable = true;
     }
 
   

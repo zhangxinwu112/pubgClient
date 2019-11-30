@@ -20,11 +20,11 @@ public class RoomEditView : MonoBehaviour {
     [SerializeField]
     public InputField passwordInputField;
 
-    public void EditClickHandleEvent(UnityAction<string,string,string> action)
+    public void EditClickHandleEvent(UnityAction<string,string,string,string> action)
     {
         editButton.onClick.AddListener(() => {
 
-            action.Invoke(roomInputField.text, grounpInputField.text, passwordInputField.text);
+            action.Invoke(roomInputField.text, grounpInputField.text, passwordInputField.text,"");
         });
     }
 

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DataModel;
 using server.Model;
+using Model;
 
 public class RoomMeditor : Mediator
 {
@@ -38,11 +39,36 @@ public class RoomMeditor : Mediator
             root.GetComponent<RootRoomView>().errorMessage.ShowMessage("创建名称不能为空。");
             return;
         }
+
+        SendNotification(RoomNotifications.CREATE_ROOM, createName);
     }
 
-    private void EditRoom(string roomName,string grounpName,string password)
+    private void EditRoom(string roomName,string grounpName,string password,string roomid_grounpid)
     {
+        if (string.IsNullOrEmpty(roomName))
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("修改的房间名称不能为空。");
+            return;
+        }
 
+        if (string.IsNullOrEmpty(grounpName))
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("修改的队名称不能为空。");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(password))
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("修改的队的校验密码不能为空。");
+            return;
+        }
+
+        Dictionary<string, object> dic = new Dictionary<string, object>();
+        dic.Add("roomName", roomName);
+        dic.Add("grounpName", grounpName);
+        dic.Add("password", password);
+        dic.Add("roomid_grounpid", roomid_grounpid);
+        SendNotification(RoomNotifications.EDIT_ROOM, dic);
     }
 
     public void DeleteRoom()
@@ -66,9 +92,15 @@ public class RoomMeditor : Mediator
     public override IList<string> ListNotificationInterests()
     {
         IList<string> list = new List<string>();
+        //search
         list.Add(RoomNotifications.ALL_ROOM_SUCCESS);
         list.Add(RoomNotifications.SINGLE_GROUNP_SUCCESS);
         list.Add(RoomNotifications.SINGLE_ROOM_SUCCESS);
+
+        //edit
+        list.Add(RoomNotifications.CREATE_ROOM_RESULT);
+        list.Add(RoomNotifications.EDIT_ROOM_RESULT);
+        list.Add(RoomNotifications.DELETE_ROOM_RESULT);
         return list;
     }
 
@@ -96,6 +128,22 @@ public class RoomMeditor : Mediator
                 List<UserItem> UserItems = notification.Body as List<UserItem>;
                 root.GetComponent<RootRoomView>().roomListView.CreateList(UserItems, 2);
                 break;
+
+            case RoomNotifications.CREATE_ROOM_RESULT:
+
+                DataResult  dataResult = notification.Body as DataResult;
+                if(dataResult.result==0)
+                {
+                    root.GetComponent<RootRoomView>().errorMessage.ShowMessage("房间创建成功");
+                    SendNotification(RoomNotifications.ALL_ROOM);
+                }
+                else
+                {
+                    root.GetComponent<RootRoomView>().errorMessage.ShowMessage(dataResult.resean);
+                }
+                break;
+
+
             default:
                 break;
         }

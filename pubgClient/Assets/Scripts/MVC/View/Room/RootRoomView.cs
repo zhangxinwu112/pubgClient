@@ -27,7 +27,7 @@ public class RootRoomView : MonoBehaviour {
 
 
     void Start () {
-        CreateRoomFade.GetInstance().StartUp(gameObject);
+        RoomFade.GetInstance().StartUp(gameObject);
     }
 
 

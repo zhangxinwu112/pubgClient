@@ -1195,7 +1195,7 @@ Prefab:
     - target: {fileID: 114249135891267084, guid: 26465bb59b2c69949b8ff26bb39874f6,
         type: 2}
       propertyPath: m_Text
-      value: "\u961F"
+      value: "\u5206\u961F"
       objectReference: {fileID: 0}
     - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
         type: 2}

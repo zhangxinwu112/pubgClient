@@ -8,7 +8,18 @@ public class SearchAllRoomCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
-        RoomSearchProxy roomProxy = (RoomSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+        string type = notification.Body.ToString();
+        RoomSearchProxy roomProxy = null;
+        if (type.Equals("0"))
+        {
+            
+            roomProxy = (RoomSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+        }
+        else
+        {
+            roomProxy = (RoomSearchProxy)JoinRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+        }
+        
         roomProxy.SearchAllRoom();
     }
 }

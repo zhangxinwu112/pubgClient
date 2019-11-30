@@ -19,6 +19,7 @@ public class RoomListView : MonoBehaviour {
     public string selectGrounpId = "";
 
 
+    public List<Grounp> grounpList = null;
     /// <summary>
     /// 创建list列表
     /// </summary>
@@ -38,6 +39,7 @@ public class RoomListView : MonoBehaviour {
         else if(type == 1)
         {
             listMsg = grounp.GetComponentInChildren<ListMsg>();
+            grounpList = datas as List<Grounp>;
         }
         //userlist
         else if(type == 2)
@@ -66,11 +68,14 @@ public class RoomListView : MonoBehaviour {
                 {
                     selectGrounpId = item.id.ToString();
                     GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(item.name);
-                    if(item is Grounp)
+
+                    Grounp grounp = FindGrounp(selectGrounpId);
+                    if(grounp!=null)
                     {
-                        Grounp grounp = item as Grounp;
                         GetComponentInParent<RootRoomView>().roomEditView.ShowPassword(grounp.checkCode);
                     }
+                  
+                    
                 }
             }
             else
@@ -98,6 +103,18 @@ public class RoomListView : MonoBehaviour {
         {
             listmsgs[i].Clear();
         }
+    }
+
+
+    public Grounp FindGrounp(string id)
+    {
+        if(grounpList!=null && grounpList.Count>0)
+        {
+           Grounp grounp =  grounpList.Find(c => c.id.ToString().Equals(id));//返回指定条件的元素
+            return grounp;
+        }
+
+        return null;
     }
  
 

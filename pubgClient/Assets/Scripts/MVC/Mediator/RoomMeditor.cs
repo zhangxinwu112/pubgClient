@@ -43,7 +43,7 @@ public class RoomMeditor : Mediator
         SendNotification(RoomNotifications.CREATE_ROOM, createName);
     }
 
-    private void EditRoom(string roomName,string grounpName,string password,string roomid_grounpid)
+    private void EditRoom(string roomName,string grounpName,string password)
     {
         if (string.IsNullOrEmpty(roomName))
         {
@@ -67,7 +67,8 @@ public class RoomMeditor : Mediator
         dic.Add("roomName", roomName);
         dic.Add("grounpName", grounpName);
         dic.Add("password", password);
-        dic.Add("roomid_grounpid", roomid_grounpid);
+        dic.Add("roomId", root.GetComponent<RootRoomView>().roomListView.selectRoomId);
+        dic.Add("grounpId", root.GetComponent<RootRoomView>().roomListView.selectGrounpId);
         SendNotification(RoomNotifications.EDIT_ROOM, dic);
     }
 

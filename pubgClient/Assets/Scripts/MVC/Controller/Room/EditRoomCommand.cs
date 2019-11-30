@@ -12,6 +12,12 @@ public class EditRoomCommand : SimpleCommand
         string roomName = dic["roomName"].ToString();
         string grounpName = dic["grounpName"].ToString();
         string password = dic["password"].ToString();
-        string roomid_grounpid = dic["roomid_grounpid"].ToString();
+        string roomId = dic["roomId"].ToString();
+        string grounpId = dic["grounpId"].ToString();
+        RoomEditProxy editroomProxy = (RoomEditProxy)RoomFade.GetInstance().RetrieveProxy(RoomEditProxy.NAME);
+        editroomProxy.EditRoom(roomName, grounpName, password, roomId, grounpId);
+
+
+
     }
 }

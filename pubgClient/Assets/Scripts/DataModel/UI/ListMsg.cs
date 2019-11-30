@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DataModel;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -66,6 +67,11 @@ public class ListMsg : MonoBehaviour {
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
             GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(itemName);
 
+            Grounp grounp = GetComponentInParent<RootRoomView>().roomListView.FindGrounp(grounpId);
+            if(grounp!=null)
+            {
+                GetComponentInParent<RootRoomView>().roomEditView.ShowPassword(grounp.checkCode);
+            }
             GetComponentInParent<RootRoomView>().CallSearchSingleGrounpAction(grounpId);
 
 

@@ -15,12 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MachineCode.unity
     guid: 562968b4ae490b44fb5f465ee5bdb2a3
   - enabled: 1
-    path: Assets/Scenes/ForgetPassword.unity
-    guid: 7460c11fc3d71b9449869bc58e06a626
-  - enabled: 1
     path: Assets/Scenes/Register.unity
     guid: bbb0d9d42fa4f4c4ba17ec9879792dcb
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 5a18dc3f72c2ecd419abebc221692663
+  - enabled: 1
+    path: Assets/Scenes/CreateRoom.unity
+    guid: 984913efee5aef94683b187a0af5b261
+  - enabled: 1
+    path: Assets/Scenes/JoinRoom.unity
+    guid: 34d3c400e130357429a4f9fc04629d3e
   m_configObjects: {}

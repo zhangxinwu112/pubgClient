@@ -38,9 +38,9 @@ public class RoomEditView : MonoBehaviour {
         grounpInputField.text = grounpName;
     }
 
-    public void ShowPassword(string password)
+    public void ShowCheckCode(string checkCode)
     {
-        passwordInputField.text = password;
+        passwordInputField.text = checkCode;
     }
 
 

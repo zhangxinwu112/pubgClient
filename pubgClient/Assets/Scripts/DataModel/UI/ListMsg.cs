@@ -70,7 +70,7 @@ public class ListMsg : MonoBehaviour {
             Grounp grounp = GetComponentInParent<RootRoomView>().roomListView.FindGrounp(grounpId);
             if(grounp!=null)
             {
-                GetComponentInParent<RootRoomView>().roomEditView.ShowPassword(grounp.checkCode);
+                GetComponentInParent<RootRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
             }
             GetComponentInParent<RootRoomView>().CallSearchSingleGrounpAction(grounpId);
 

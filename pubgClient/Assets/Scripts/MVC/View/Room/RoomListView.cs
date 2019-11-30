@@ -72,10 +72,8 @@ public class RoomListView : MonoBehaviour {
                     Grounp grounp = FindGrounp(selectGrounpId);
                     if(grounp!=null)
                     {
-                        GetComponentInParent<RootRoomView>().roomEditView.ShowPassword(grounp.checkCode);
+                        GetComponentInParent<RootRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
                     }
-                  
-                    
                 }
             }
             else

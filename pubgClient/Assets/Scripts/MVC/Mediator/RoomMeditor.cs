@@ -43,7 +43,7 @@ public class RoomMeditor : Mediator
         SendNotification(RoomNotifications.CREATE_ROOM, createName);
     }
 
-    private void EditRoom(string roomName,string grounpName,string password)
+    private void EditRoom(string roomName,string grounpName,string checkCode)
     {
         if (string.IsNullOrEmpty(roomName))
         {
@@ -57,16 +57,16 @@ public class RoomMeditor : Mediator
             return;
         }
 
-        if (string.IsNullOrEmpty(password))
+        if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("修改的队的校验密码不能为空。");
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("修改的分队的校验密码不能为空。");
             return;
         }
 
         Dictionary<string, object> dic = new Dictionary<string, object>();
         dic.Add("roomName", roomName);
         dic.Add("grounpName", grounpName);
-        dic.Add("password", password);
+        dic.Add("checkCode", checkCode);
         dic.Add("roomId", root.GetComponent<RootRoomView>().roomListView.selectRoomId);
         dic.Add("grounpId", root.GetComponent<RootRoomView>().roomListView.selectGrounpId);
         SendNotification(RoomNotifications.EDIT_ROOM, dic);

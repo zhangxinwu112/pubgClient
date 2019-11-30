@@ -11,11 +11,11 @@ public class EditRoomCommand : SimpleCommand
         Dictionary<string, object> dic = notification.Body as Dictionary<string, object>;
         string roomName = dic["roomName"].ToString();
         string grounpName = dic["grounpName"].ToString();
-        string password = dic["password"].ToString();
+        string checkCode = dic["checkCode"].ToString();
         string roomId = dic["roomId"].ToString();
         string grounpId = dic["grounpId"].ToString();
         RoomEditProxy editroomProxy = (RoomEditProxy)RoomFade.GetInstance().RetrieveProxy(RoomEditProxy.NAME);
-        editroomProxy.EditRoom(roomName, grounpName, password, roomId, grounpId);
+        editroomProxy.EditRoom(roomName, grounpName, checkCode, roomId, grounpId);
 
 
 

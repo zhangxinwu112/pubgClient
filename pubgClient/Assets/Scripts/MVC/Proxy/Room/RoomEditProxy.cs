@@ -35,14 +35,14 @@ public class RoomEditProxy : Proxy
     }
 
 
-    public void EditRoom(string roomName,string grounpName,string password,string roomId,string grounpId)
+    public void EditRoom(string roomName,string grounpName,string checkCode, string roomId,string grounpId)
     {
         if (SocketService.instance == null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.EditRoomDao" + Constant.METHOD_SPLIT + "UpdateRoom", new string[] { roomName, grounpName , password , roomId , grounpId }, (result) => {
+        SocketService.instance.PostData("server.DAO.EditRoomDao" + Constant.METHOD_SPLIT + "UpdateRoom", new string[] { roomName, grounpName , checkCode, roomId , grounpId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.EDIT_ROOM_RESULT, dataResult);
 

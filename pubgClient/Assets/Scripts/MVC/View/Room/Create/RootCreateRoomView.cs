@@ -4,13 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class RootCreateRoomView : MonoBehaviour {
-
-
-    [SerializeField]
-    public RoomListView roomListView;
-
-
+public class RootCreateRoomView : RootBaseRoomView
+{
     [SerializeField]
     public Button deleteButton;
 
@@ -22,13 +17,6 @@ public class RootCreateRoomView : MonoBehaviour {
     public RoomEditView roomEditView;
 
 
-    [SerializeField]
-    public ErrorMessage errorMessage;
-
-
-
-    
-
     void Start () {
         CreateRoomFade.GetInstance().StartUp(gameObject);
     }
@@ -38,35 +26,4 @@ public class RootCreateRoomView : MonoBehaviour {
     {
         deleteButton.onClick.AddListener(action);
     }
-
-
-
-    private UnityAction<string> sinlgeRoomAction;
-    public void SearchSingleRoomAction(UnityAction<string> sinlgeRoomAction)
-    {
-        this.sinlgeRoomAction = sinlgeRoomAction;
-    }
-
-    public void CallSearchSingleRoomAction(string roomId)
-    {
-        if (sinlgeRoomAction != null && !string.IsNullOrEmpty(roomId))
-        {
-            sinlgeRoomAction.Invoke(roomId);
-        }
-    }
-
-    private UnityAction<string> sinlgGrounpAction;
-    public void SearchSingleGrounpAction(UnityAction<string> sinlgeGrounpAction)
-    {
-        this.sinlgGrounpAction = sinlgeGrounpAction;
-    }
-    public void CallSearchSingleGrounpAction(string grounId)
-    {
-
-        if (sinlgGrounpAction != null && !string.IsNullOrEmpty(grounId))
-        {
-            sinlgGrounpAction.Invoke(grounId);
-        }
-    }
-
 }

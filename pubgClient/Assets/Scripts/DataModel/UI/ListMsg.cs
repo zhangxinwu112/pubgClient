@@ -6,10 +6,7 @@ using UnityEngine.UI;
 
 public class ListMsg : MonoBehaviour {
 
-
     public Transform item;
-
-	
     public  void Create(string id,string name,bool isSelected =false)
     {
         GameObject coloneItem =  GameObject.Instantiate<GameObject>(item.gameObject);
@@ -34,7 +31,6 @@ public class ListMsg : MonoBehaviour {
         }
     }
 
-  
     /// <summary>
     /// 选择房间
     /// </summary>
@@ -46,9 +42,12 @@ public class ListMsg : MonoBehaviour {
             string roomId = toggle.name;
             GetComponentInParent<RoomListView>().selectRoomId = roomId;
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
-            GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoomName(itemName);
-            GetComponentInParent<RootCreateRoomView>().CallSearchSingleRoomAction(roomId);
-
+            if(GetComponentInParent<RootCreateRoomView>()!=null)
+            {
+                GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoomName(itemName);
+               
+            }
+            GetComponentInParent<RootBaseRoomView>().CallSearchSingleRoomAction(roomId);
 
         }
        
@@ -65,16 +64,17 @@ public class ListMsg : MonoBehaviour {
             string grounpId = toggle.name;
             GetComponentInParent<RoomListView>().selectGrounpId = grounpId;
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
-            GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(itemName);
-
-            Grounp grounp = GetComponentInParent<RootCreateRoomView>().roomListView.FindGrounp(grounpId);
-            if(grounp!=null)
+            if(GetComponentInParent<RootCreateRoomView>()!=null)
             {
-                GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
+                GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(itemName);
+
+                Grounp grounp = GetComponentInParent<RootCreateRoomView>().roomListView.FindGrounp(grounpId);
+                if (grounp != null)
+                {
+                    GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
+                }
             }
-            GetComponentInParent<RootCreateRoomView>().CallSearchSingleGrounpAction(grounpId);
-
-
+            GetComponentInParent<RootBaseRoomView>().CallSearchSingleGrounpAction(grounpId);
         }
     }
 }

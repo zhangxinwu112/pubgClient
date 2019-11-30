@@ -16,14 +16,14 @@ public class RoomSearchProxy : Proxy
 
     }
 
-    public void SearchAllRoom()
+    public void SearchAllRoom(string userId)
     {
         if(SocketService.instance==null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT+ "SearchAllRoom", new string[] { LoginInfo.Userinfo.id.ToString() }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT+ "SearchAllRoom", new string[] { userId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
              string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
@@ -31,14 +31,13 @@ public class RoomSearchProxy : Proxy
             
              SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, rooms);
            
-             
             // Debug.Log("回调成功："+ rooms.Count);
         });
     }
 
-    public void SearchSingleRoom(string roomid)
+    public void SearchSingleRoom(string roomId)
     {
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleRoom", new string[] { roomid }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleRoom", new string[] { roomId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
 
             string json = Utils.CollectionsConvert.ToJSON(dataResult.data);

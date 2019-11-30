@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class RootJoinRoomView : MonoBehaviour {
-
-
-    [SerializeField]
-    public RoomListView roomListView;
-
+public class RootJoinRoomView : RootBaseRoomView
+{
 
     [SerializeField]
     public Button joinButton;
@@ -17,10 +13,7 @@ public class RootJoinRoomView : MonoBehaviour {
     [SerializeField]
     public Button exitButton;
 
-
-    [SerializeField]
-    public ErrorMessage errorMessage;
-
+  
     void Start () {
 
         JoinRoomFade.GetInstance().StartUp(gameObject);
@@ -34,8 +27,6 @@ public class RootJoinRoomView : MonoBehaviour {
             action.Invoke(grounpid);
         });
     }
-
-
     public void ClickExitHandleEvent(UnityAction<string> action)
     {
         exitButton.onClick.AddListener(()=> {
@@ -44,32 +35,5 @@ public class RootJoinRoomView : MonoBehaviour {
         });
     }
 
-    private UnityAction<string> sinlgeRoomAction;
-    public void SearchSingleRoomAction(UnityAction<string> sinlgeRoomAction)
-    {
-        this.sinlgeRoomAction = sinlgeRoomAction;
-    }
-
-    public void CallSearchSingleRoomAction(string roomId)
-    {
-        if (sinlgeRoomAction != null && !string.IsNullOrEmpty(roomId))
-        {
-            sinlgeRoomAction.Invoke(roomId);
-        }
-    }
-
-    private UnityAction<string> sinlgGrounpAction;
-    public void SearchSingleGrounpAction(UnityAction<string> sinlgeGrounpAction)
-    {
-        this.sinlgGrounpAction = sinlgeGrounpAction;
-    }
-    public void CallSearchSingleGrounpAction(string grounId)
-    {
-
-        if (sinlgGrounpAction != null && !string.IsNullOrEmpty(grounId))
-        {
-            sinlgGrounpAction.Invoke(grounId);
-        }
-    }
 
 }

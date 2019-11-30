@@ -10,6 +10,7 @@ public class SearchAllRoomCommand : SimpleCommand
     {
         string type = notification.Body.ToString();
         RoomSearchProxy roomProxy = null;
+        string userId = LoginInfo.Userinfo.id.ToString();
         if (type.Equals("0"))
         {
             
@@ -18,8 +19,9 @@ public class SearchAllRoomCommand : SimpleCommand
         else
         {
             roomProxy = (RoomSearchProxy)JoinRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+            userId = "0";
         }
         
-        roomProxy.SearchAllRoom();
+        roomProxy.SearchAllRoom(userId);
     }
 }

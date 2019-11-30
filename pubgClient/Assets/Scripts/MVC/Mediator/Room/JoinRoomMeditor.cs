@@ -32,15 +32,15 @@ public class JoinRoomMeditor : Mediator
     /// <summary>
     /// 创建房间
     /// </summary>
-    private void JoinRoom(string roomId)
+    private void JoinRoom(string grounpId)
     {
       
-        SendNotification(RoomNotifications.JOIN_ROOM, roomId);
+        SendNotification(RoomNotifications.JOIN_ROOM, grounpId);
     }
 
-    private void ExitRoom(string roomId)
+    private void ExitRoom(string grounpId)
     {
-        SendNotification(RoomNotifications.EXIT_ROOM, roomId);
+        SendNotification(RoomNotifications.EXIT_ROOM, grounpId);
     }
 
     /// <summary>
@@ -98,11 +98,11 @@ public class JoinRoomMeditor : Mediator
 
             case RoomNotifications.JOIN_ROOM_RESULT:
 
-                ResultcallBack(notification,"加入成功");
+                ResultcallBack(notification,"加入分队成功");
                 break;
             case RoomNotifications.EXIT_ROOM_RESULT:
 
-                ResultcallBack(notification, "退出成功");
+                ResultcallBack(notification, "退出分队成功");
                 break;
           
 
@@ -114,15 +114,19 @@ public class JoinRoomMeditor : Mediator
     private void  ResultcallBack(INotification notification,string successMessage)
     {
         DataResult dataResult = notification.Body as DataResult;
-        root.GetComponent<RootCreateRoomView>().roomCreateView.ClearContent();
+        if(root.GetComponent<RootCreateRoomView>()!=null)
+        {
+            root.GetComponent<RootCreateRoomView>().roomCreateView.ClearContent();
+        }
+      
         if (dataResult.result == 0)
         {
-            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage(successMessage);
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(successMessage);
             SendNotification(RoomNotifications.ALL_ROOM);
         }
         else
         {
-            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage(dataResult.resean);
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(dataResult.resean);
         }
     }
 

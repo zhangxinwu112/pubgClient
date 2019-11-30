@@ -54,7 +54,7 @@ public class ListMsg : MonoBehaviour {
     }
 
     /// <summary>
-    /// 选择队
+    /// 选择分队
     /// </summary>
     /// <param name="toggle"></param>
     public void GrounpToggleChange(Toggle toggle)

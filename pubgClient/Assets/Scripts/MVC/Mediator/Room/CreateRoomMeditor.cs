@@ -83,7 +83,7 @@ public class CreateRoomMeditor : Mediator
         SendNotification(RoomNotifications.DELETE_ROOM, selectRoomId);
     }
     /// <summary>
-    /// 通过房间查询队
+    /// 通过房间查询分队
     /// </summary>
     /// <param name="roomid"></param>
     private void SearchSingleRoom(string roomId)

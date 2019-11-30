@@ -18,7 +18,6 @@ public class RoomListView : MonoBehaviour {
 
     public string selectGrounpId = "";
 
-
     public List<Grounp> grounpList = null;
     /// <summary>
     /// 创建list列表
@@ -45,7 +44,7 @@ public class RoomListView : MonoBehaviour {
         else if(type == 2)
         {
             listMsg = userList.GetComponentInChildren<ListMsg>();
-            ClearUserData();
+           // ClearUserData();
         }
         listMsg.Clear();
         if(datas==null || datas.Count==0)

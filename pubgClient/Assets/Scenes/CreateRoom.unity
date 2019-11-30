@@ -1677,6 +1677,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 562649095}
     m_Modifications:
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224312217096954008, guid: 26465bb59b2c69949b8ff26bb39874f6,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1781,6 +1786,56 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224386873296492296, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224386873296492296, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224386873296492296, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224519771940144592, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000011429189
+      objectReference: {fileID: 0}
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1157909521}
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RoomToggleChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Toggle, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1157909522}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26465bb59b2c69949b8ff26bb39874f6, type: 2}
   m_IsPrefabAsset: 0
@@ -1789,6 +1844,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224312217096954008, guid: 26465bb59b2c69949b8ff26bb39874f6,
     type: 2}
   m_PrefabInternal: {fileID: 1157909519}
+--- !u!114 &1157909521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114972504846149262, guid: 26465bb59b2c69949b8ff26bb39874f6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1157909519}
+  m_Script: {fileID: 11500000, guid: 3e7003c7dcd3548448273ff82710c70d, type: 3}
+--- !u!114 &1157909522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114277368842812718, guid: 26465bb59b2c69949b8ff26bb39874f6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1157909519}
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1161090288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,10 +2546,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomListView: {fileID: 562649098}
+  errorMessage: {fileID: 2077669351}
   deleteButton: {fileID: 1940301689}
   roomCreateView: {fileID: 945504508}
   roomEditView: {fileID: 748019806}
-  errorMessage: {fileID: 2077669351}
 --- !u!1 &1528104503
 GameObject:
   m_ObjectHideFlags: 0

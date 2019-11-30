@@ -46,8 +46,8 @@ public class ListMsg : MonoBehaviour {
             string roomId = toggle.name;
             GetComponentInParent<RoomListView>().selectRoomId = roomId;
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
-            GetComponentInParent<RootRoomView>().roomEditView.ShowRoomName(itemName);
-            GetComponentInParent<RootRoomView>().CallSearchSingleRoomAction(roomId);
+            GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoomName(itemName);
+            GetComponentInParent<RootCreateRoomView>().CallSearchSingleRoomAction(roomId);
 
 
         }
@@ -65,14 +65,14 @@ public class ListMsg : MonoBehaviour {
             string grounpId = toggle.name;
             GetComponentInParent<RoomListView>().selectGrounpId = grounpId;
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
-            GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(itemName);
+            GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(itemName);
 
-            Grounp grounp = GetComponentInParent<RootRoomView>().roomListView.FindGrounp(grounpId);
+            Grounp grounp = GetComponentInParent<RootCreateRoomView>().roomListView.FindGrounp(grounpId);
             if(grounp!=null)
             {
-                GetComponentInParent<RootRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
+                GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
             }
-            GetComponentInParent<RootRoomView>().CallSearchSingleGrounpAction(grounpId);
+            GetComponentInParent<RootCreateRoomView>().CallSearchSingleGrounpAction(grounpId);
 
 
         }

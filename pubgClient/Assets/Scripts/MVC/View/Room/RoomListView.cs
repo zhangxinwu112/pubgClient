@@ -61,18 +61,18 @@ public class RoomListView : MonoBehaviour {
                 if(type == 0)
                 {
                     selectRoomId = item.id.ToString();
-                    GetComponentInParent<RootRoomView>().roomEditView.ShowRoomName(item.name);
+                    GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoomName(item.name);
                 }
                 //group列表
                 else if(type == 1)
                 {
                     selectGrounpId = item.id.ToString();
-                    GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(item.name);
+                    GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(item.name);
 
                     Grounp grounp = FindGrounp(selectGrounpId);
                     if(grounp!=null)
                     {
-                        GetComponentInParent<RootRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
+                        GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
                     }
                 }
             }

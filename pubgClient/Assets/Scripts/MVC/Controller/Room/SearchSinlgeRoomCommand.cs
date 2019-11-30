@@ -9,7 +9,7 @@ public class SearchSinlgeRoomCommand : SimpleCommand
     public override void Execute(INotification notification)
     {
 
-        RoomSearchProxy roomProxy = (RoomSearchProxy)RoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+        RoomSearchProxy roomProxy = (RoomSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
         roomProxy.SearchSingleRoom(notification.Body.ToString());
     }
 }

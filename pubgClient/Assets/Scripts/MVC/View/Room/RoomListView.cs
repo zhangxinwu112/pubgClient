@@ -12,9 +12,15 @@ public class RoomListView : MonoBehaviour {
     public Transform grounp;
 
     public Transform userList;
-	
+
+  
+    public string selectRoomId = "";
+
+    public string selectGrounpId = "";
+
+
     /// <summary>
-    /// 创建房间列表
+    /// 创建list列表
     /// </summary>
     /// <param name="rooms"></param>
     public void CreateList<T>(List<T> datas, int type=0) where T : ModelBase
@@ -48,6 +54,16 @@ public class RoomListView : MonoBehaviour {
             if(i==0)
             {
                 listMsg.Create(item.id.ToString(), item.name,true);
+                if(type == 0)
+                {
+                    selectRoomId = item.id.ToString();
+                    GetComponentInParent<RootRoomView>().roomEditView.ShowRoomName(item.name);
+                }
+                else if(type == 1)
+                {
+                    selectGrounpId = item.id.ToString();
+                    GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(item.name);
+                }
             }
             else
             {

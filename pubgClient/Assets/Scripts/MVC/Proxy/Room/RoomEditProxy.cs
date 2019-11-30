@@ -30,8 +30,7 @@ public class RoomEditProxy : Proxy
             {
                 SendNotification(RoomNotifications.CREATE_ROOM_RESULT, dataResult);
             }
-      
-            // Debug.Log("回调成功："+ rooms.Count);
+     
         });
     }
 
@@ -43,33 +42,21 @@ public class RoomEditProxy : Proxy
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchAllRoom", new string[] { LoginInfo.Userinfo.id.ToString() }, (result) => {
+        SocketService.instance.PostData("server.DAO.EditRoomDao" + Constant.METHOD_SPLIT + "SearchAllRoom", new string[] { LoginInfo.Userinfo.id.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+            SendNotification(RoomNotifications.EDIT_ROOM_RESULT, dataResult);
 
-            string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
-            List<Room> rooms = Utils.CollectionsConvert.ToObject<List<Room>>(json);
-
-            SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, rooms);
-
-
-            // Debug.Log("回调成功："+ rooms.Count);
         });
     }
 
-
-
-
-    public void DeleteRoom(int  roomid)
+    public void DeleteRoom(string  roomid)
     {
-        //SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleGrounp", new string[] { roomid }, (result) => {
-        //    DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+        SocketService.instance.PostData("server.DAO.EditRoomDao" + Constant.METHOD_SPLIT + "DeleteRoom", new string[] { roomid }, (result) =>
+        {
+            DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+            SendNotification(RoomNotifications.DELETE_ROOM_RESULT, dataResult);
 
-        //    string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
-        //    List<UserItem> Grounps = Utils.CollectionsConvert.ToObject<List<UserItem>>(json);
-
-        //    SendNotification(RoomNotifications.SINGLE_GROUNP_SUCCESS, Grounps);
-
-        //});
+        });
     }
 
 

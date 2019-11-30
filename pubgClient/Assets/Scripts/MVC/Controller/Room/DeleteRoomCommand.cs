@@ -8,7 +8,8 @@ public class DeleteRoomCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
+        RoomEditProxy editroomProxy = (RoomEditProxy)RoomFade.GetInstance().RetrieveProxy(RoomEditProxy.NAME);
+        editroomProxy .DeleteRoom(notification.Body.ToString());
 
-        
     }
 }

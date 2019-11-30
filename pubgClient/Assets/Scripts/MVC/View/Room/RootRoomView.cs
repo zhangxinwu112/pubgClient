@@ -26,6 +26,9 @@ public class RootRoomView : MonoBehaviour {
     public ErrorMessage errorMessage;
 
 
+
+    
+
     void Start () {
         RoomFade.GetInstance().StartUp(gameObject);
     }
@@ -44,11 +47,11 @@ public class RootRoomView : MonoBehaviour {
         this.sinlgeRoomAction = sinlgeRoomAction;
     }
 
-    public void CallSearchSingleRoomAction(string id)
+    public void CallSearchSingleRoomAction(string roomId)
     {
-        if (sinlgeRoomAction != null && !string.IsNullOrEmpty(id))
+        if (sinlgeRoomAction != null && !string.IsNullOrEmpty(roomId))
         {
-            sinlgeRoomAction.Invoke(id);
+            sinlgeRoomAction.Invoke(roomId);
         }
     }
 
@@ -57,12 +60,12 @@ public class RootRoomView : MonoBehaviour {
     {
         this.sinlgGrounpAction = sinlgeGrounpAction;
     }
-    public void CallSearchSingleGrounpAction(string id)
+    public void CallSearchSingleGrounpAction(string grounId)
     {
 
-        if (sinlgGrounpAction != null && !string.IsNullOrEmpty(id))
+        if (sinlgGrounpAction != null && !string.IsNullOrEmpty(grounId))
         {
-            sinlgGrounpAction.Invoke(id);
+            sinlgGrounpAction.Invoke(grounId);
         }
     }
 

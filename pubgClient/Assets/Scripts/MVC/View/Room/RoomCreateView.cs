@@ -20,4 +20,9 @@ public class RoomCreateView : MonoBehaviour {
         });
     }
 
+    public void ClearContent()
+    {
+        inputField.text = "";
+    }
+
 }

@@ -73,7 +73,13 @@ public class RoomMeditor : Mediator
 
     public void DeleteRoom()
     {
-
+        string selectRoomId = root.GetComponent<RootRoomView>().roomListView.selectRoomId;
+        if(string.IsNullOrEmpty(selectRoomId))
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage("当前选择的房间为空，请重试。");
+            return;
+        }
+        SendNotification(RoomNotifications.DELETE_ROOM, selectRoomId);
     }
     /// <summary>
     /// 通过房间查询队
@@ -131,21 +137,34 @@ public class RoomMeditor : Mediator
 
             case RoomNotifications.CREATE_ROOM_RESULT:
 
-                DataResult  dataResult = notification.Body as DataResult;
-                if(dataResult.result==0)
-                {
-                    root.GetComponent<RootRoomView>().errorMessage.ShowMessage("房间创建成功");
-                    SendNotification(RoomNotifications.ALL_ROOM);
-                }
-                else
-                {
-                    root.GetComponent<RootRoomView>().errorMessage.ShowMessage(dataResult.resean);
-                }
+                ResultcallBack(notification,"房间创建成功");
                 break;
+            case RoomNotifications.DELETE_ROOM_RESULT:
 
+                ResultcallBack(notification, "删除成功");
+                break;
+            case RoomNotifications.EDIT_ROOM_RESULT:
+
+                ResultcallBack(notification, "修改成功");
+                break;
 
             default:
                 break;
+        }
+    }
+
+    private void  ResultcallBack(INotification notification,string successMessage)
+    {
+        DataResult dataResult = notification.Body as DataResult;
+        root.GetComponent<RootRoomView>().roomCreateView.ClearContent();
+        if (dataResult.result == 0)
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage(successMessage);
+            SendNotification(RoomNotifications.ALL_ROOM);
+        }
+        else
+        {
+            root.GetComponent<RootRoomView>().errorMessage.ShowMessage(dataResult.resean);
         }
     }
 

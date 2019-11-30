@@ -42,9 +42,11 @@ public class ListMsg : MonoBehaviour {
     {
         if(toggle.isOn)
         {
-            string id = toggle.name;
-
-            GetComponentInParent<RootRoomView>().CallSearchSingleRoomAction(id);
+            string roomId = toggle.name;
+            GetComponentInParent<RoomListView>().selectRoomId = roomId;
+            string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
+            GetComponentInParent<RootRoomView>().roomEditView.ShowRoomName(itemName);
+            GetComponentInParent<RootRoomView>().CallSearchSingleRoomAction(roomId);
 
 
         }
@@ -59,9 +61,12 @@ public class ListMsg : MonoBehaviour {
     {
         if (toggle.isOn)
         {
-            string id = toggle.name;
+            string grounpId = toggle.name;
+            GetComponentInParent<RoomListView>().selectGrounpId = grounpId;
+            string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
+            GetComponentInParent<RootRoomView>().roomEditView.ShowGrounpName(itemName);
 
-            GetComponentInParent<RootRoomView>().CallSearchSingleGrounpAction(id);
+            GetComponentInParent<RootRoomView>().CallSearchSingleGrounpAction(grounpId);
 
 
         }

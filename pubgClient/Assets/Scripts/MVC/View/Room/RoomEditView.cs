@@ -28,5 +28,20 @@ public class RoomEditView : MonoBehaviour {
         });
     }
 
+    public void ShowRoomName(string roomName)
+    {
+        roomInputField.text = roomName;
+    }
+
+    public void ShowGrounpName(string grounpName)
+    {
+        grounpInputField.text = grounpName;
+    }
+
+    public void ShowPassword(string password)
+    {
+        passwordInputField.text = password;
+    }
+
 
 }

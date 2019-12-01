@@ -10,7 +10,12 @@ public class JoinRoomCommand : SimpleCommand
     {
 
         RoomJoinProxy roomJoinProxy = (RoomJoinProxy)JoinRoomFade.GetInstance().RetrieveProxy(RoomJoinProxy.NAME);
-        roomJoinProxy.JoinRoom(notification.Body.ToString());
+
+        Dictionary<string, string> dic = notification.Body as Dictionary<string, string>;
+        string checkCode = dic["checkCode"].ToString();
+        string grounpId = dic["grounpId"].ToString();
+       
+        roomJoinProxy.JoinRoom(checkCode, grounpId);
 
 
 

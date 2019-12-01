@@ -33,12 +33,22 @@ public class JoinRoomMeditor : Mediator
     }
 
     /// <summary>
-    /// 创建房间
+    /// 加入房间
     /// </summary>
     private void JoinRoom(string grounpId)
     {
-      
-        SendNotification(RoomNotifications.JOIN_ROOM, grounpId);
+        string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
+        if (string.IsNullOrEmpty(checkCode))
+        {
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入分队的密码不能为空。");
+            return;
+        }
+
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("checkCode", checkCode);
+        dic.Add("grounpId", grounpId);
+
+        SendNotification(RoomNotifications.JOIN_ROOM, dic);
     }
 
     private void ExitRoom(string grounpId)
@@ -71,13 +81,7 @@ public class JoinRoomMeditor : Mediator
     /// </summary>
     private void EnterButtonHandle()
     {
-        string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
-        if (string.IsNullOrEmpty(checkCode))
-        {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("进入房间的密码不能为空。");
-            return;
-        }
-        SendNotification(RoomNotifications.CHECK_ENTER_BUTTON,checkCode);
+        SceneTools.instance.LoadScene("Game");
 
     }
     public override IList<string> ListNotificationInterests()

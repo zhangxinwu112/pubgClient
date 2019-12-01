@@ -34,7 +34,7 @@ public class MachineCodeProxy : Proxy
             }
             else
             {
-                SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, dataResult.resean);
+                SendNotification(LoginNotifications.QUERY_CODE_LOGIN_ERROR, dataResult.resean);
             }
          
         });

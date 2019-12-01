@@ -23,7 +23,6 @@ public class CodeView : MonoBehaviour {
 
     public void OnClickCheckButton(UnityAction<Button> action)
     {
-        // Debug.Log("点击登陆页面!");
         submitButton.onClick.AddListener(()=> {
 
             action.Invoke(submitButton);

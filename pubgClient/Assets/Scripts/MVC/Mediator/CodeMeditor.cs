@@ -19,10 +19,13 @@ public class CodeMeditor : Mediator
 
         AutoCheck();
 
-    } 
+    }
 
+
+    private Button button;
     private void Check(Button button)
     {
+        this.button = button;
         string code = root.GetComponent<CodeView>().GetCodeContont();
         if(!string.IsNullOrEmpty(code))
         {
@@ -60,6 +63,7 @@ public class CodeMeditor : Mediator
 
                 string errorMessage = notification.Body as string;
                 root.GetComponent<CodeView>().ShowMessage(errorMessage);
+                button.interactable = true;
                 break;
             default:
                 break;

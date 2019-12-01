@@ -6,6 +6,7 @@ public class Main : MonoBehaviour {
 
     void Start () {
 
+        //PlayerPrefs.DeleteAll();
         Config.Startload(this,
            () =>
            {

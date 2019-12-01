@@ -63,5 +63,19 @@ public class RoomJoinProxy : Proxy
         });
     }
 
-    
+    public void CheckEnterButton(string chekCode)
+    {
+        if (SocketService.instance == null)
+        {
+            Debug.LogError("SocketService is null");
+            return;
+        }
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "CheckEnterButton", new string[] { chekCode,LoginInfo.Userinfo.id.ToString() }, (result) => {
+            DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+            SendNotification(RoomNotifications.CHECK_ENTER_BUTTON_RESULT, dataResult);
+
+        });
+    }
+
+
 }

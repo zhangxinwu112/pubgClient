@@ -17,17 +17,20 @@ public class RootJoinRoomView : RootBaseRoomView
     [SerializeField]
     public Button enterButton;
 
+    [SerializeField]
+    public InputField enterInputField;
+
 
     void Start () {
 
         JoinRoomFade.GetInstance().StartUp(gameObject);
         enterButton.interactable = false;
-        enterButton.onClick.AddListener(()=> {
-            SceneTools.instance.LoadScene("Game");
-
-        });
-
         StartCoroutine(CheckEnterState());
+    }
+
+    public void EnterRoom(UnityAction action)
+    {
+        enterButton.onClick.AddListener(action);
     }
 
     public void ClickJoinHandleEvent(UnityAction<string> action)

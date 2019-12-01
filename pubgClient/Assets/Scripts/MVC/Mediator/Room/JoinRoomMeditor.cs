@@ -28,6 +28,7 @@ public class JoinRoomMeditor : Mediator
         root.GetComponent<RootJoinRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
         //查询进入游戏按钮的状态
         root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
+        root.GetComponent<RootJoinRoomView>().EnterRoom(EnterButtonHandle);
         SendRequestAllRoom();
     }
 
@@ -64,6 +65,21 @@ public class JoinRoomMeditor : Mediator
     {
         SendNotification(RoomNotifications.SEARCH_BUTTON_STATE);
     }
+
+    /// <summary>
+    /// 进入按钮
+    /// </summary>
+    private void EnterButtonHandle()
+    {
+        string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
+        if (string.IsNullOrEmpty(checkCode))
+        {
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("进入房间的密码不能为空。");
+            return;
+        }
+        SendNotification(RoomNotifications.CHECK_ENTER_BUTTON,checkCode);
+
+    }
     public override IList<string> ListNotificationInterests()
     {
         IList<string> list = new List<string>();
@@ -76,9 +92,6 @@ public class JoinRoomMeditor : Mediator
         list.Add(RoomNotifications.JOIN_ROOM_RESULT);
         list.Add(RoomNotifications.EXIT_ROOM_RESULT);
         list.Add(RoomNotifications.SEARCH_BUTTON_STATE_RESULT);
-
-
-
         return list;
     }
 

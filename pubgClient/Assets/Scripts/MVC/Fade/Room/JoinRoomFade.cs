@@ -29,6 +29,7 @@ public class JoinRoomFade : CommonRoomFade
         RegisterCommand(RoomNotifications.JOIN_ROOM, typeof(JoinRoomCommand));
         RegisterCommand(RoomNotifications.EXIT_ROOM, typeof(ExitRoomCommand));
         RegisterCommand(RoomNotifications.SEARCH_BUTTON_STATE, typeof(EnterButtonStateCommand));
+        RegisterCommand(RoomNotifications.CHECK_ENTER_BUTTON, typeof(CheckEnterButtonCommand));
 
     }
 

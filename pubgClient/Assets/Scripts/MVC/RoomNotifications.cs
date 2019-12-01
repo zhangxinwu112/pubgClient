@@ -39,6 +39,14 @@ public class RoomNotifications
 
 
 
+    //=================================================================
+    public const string CHECK_ENTER_BUTTON = "check_enter_button";
+    public const string CHECK_ENTER_BUTTON_RESULT = "check_enter_button_result";
+    //=====================================================================
+
+
+
+
 
 
 }

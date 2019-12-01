@@ -29,7 +29,13 @@ public class RoomNotifications
  
     public const string JOIN_ROOM_RESULT = "join_room_result";
     public const string EXIT_ROOM_RESULT = "exit_room_result";
-  
+
+    //================================================================
+
+
+    public const string SEARCH_BUTTON_STATE = "search_button_state";
+    public const string SEARCH_BUTTON_STATE_RESULT = "search_button_state_result";
+
 
 
 

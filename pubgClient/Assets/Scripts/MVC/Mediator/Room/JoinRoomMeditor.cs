@@ -26,6 +26,8 @@ public class JoinRoomMeditor : Mediator
 
         root.GetComponent<RootJoinRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootJoinRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
+        //查询进入游戏按钮的状态
+        root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
         SendRequestAllRoom();
     }
 
@@ -57,6 +59,11 @@ public class JoinRoomMeditor : Mediator
     {
         SendNotification(RoomNotifications.SINGLE_GROUNP, grounpId);
     }
+
+    private void SearchEnterButtonState()
+    {
+        SendNotification(RoomNotifications.SEARCH_BUTTON_STATE);
+    }
     public override IList<string> ListNotificationInterests()
     {
         IList<string> list = new List<string>();
@@ -65,9 +72,13 @@ public class JoinRoomMeditor : Mediator
         list.Add(RoomNotifications.SINGLE_GROUNP_SUCCESS);
         list.Add(RoomNotifications.SINGLE_ROOM_SUCCESS);
 
-        //edit
+        //join and exit
         list.Add(RoomNotifications.JOIN_ROOM_RESULT);
         list.Add(RoomNotifications.EXIT_ROOM_RESULT);
+        list.Add(RoomNotifications.SEARCH_BUTTON_STATE_RESULT);
+
+
+
         return list;
     }
 
@@ -94,6 +105,17 @@ public class JoinRoomMeditor : Mediator
 
                 List<UserItem> UserItems = notification.Body as List<UserItem>;
                 root.GetComponent<RootJoinRoomView>().roomListView.CreateList(UserItems, 2);
+                break;
+
+            case RoomNotifications.SEARCH_BUTTON_STATE_RESULT:
+
+                DataResult dataResult = notification.Body as DataResult;
+                if(dataResult.result == 0)
+                {
+                    bool resultstate = (bool)dataResult.data;
+                    root.GetComponent<RootJoinRoomView>().SetEnterButtonActive(resultstate);
+                }
+               
                 break;
 
             case RoomNotifications.JOIN_ROOM_RESULT:

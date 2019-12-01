@@ -13,10 +13,21 @@ public class RootJoinRoomView : RootBaseRoomView
     [SerializeField]
     public Button exitButton;
 
-  
+
+    [SerializeField]
+    public Button enterButton;
+
+
     void Start () {
 
         JoinRoomFade.GetInstance().StartUp(gameObject);
+        enterButton.interactable = false;
+        enterButton.onClick.AddListener(()=> {
+            SceneTools.instance.LoadScene("Game");
+
+        });
+
+        StartCoroutine(CheckEnterState());
     }
 
     public void ClickJoinHandleEvent(UnityAction<string> action)
@@ -33,6 +44,37 @@ public class RootJoinRoomView : RootBaseRoomView
             string grounpid = GetComponentInChildren<RoomListView>().selectGrounpId;
             action.Invoke(grounpid);
         });
+    }
+
+    private UnityAction callBack;
+
+    public void ButtonStateCallBack(UnityAction callBack)
+    {
+        this.callBack = callBack;
+    }
+
+    private IEnumerator CheckEnterState()
+    {
+        while(true)
+        {
+            if (callBack != null)
+            {
+                callBack.Invoke();
+            }
+
+            yield return new WaitForSeconds(2.0f);
+           
+        }
+    }
+
+    public void SetEnterButtonActive(bool isActive)
+    {
+        enterButton.interactable = isActive;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 
 

@@ -49,5 +49,19 @@ public class RoomJoinProxy : Proxy
         });
     }
 
+    public void SearchButtonState()
+    {
+        if (SocketService.instance == null)
+        {
+            Debug.LogError("SocketService is null");
+            return;
+        }
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "SearchEnterButtonState", new string[] {  LoginInfo.Userinfo.id.ToString() }, (result) => {
+            DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+            SendNotification(RoomNotifications.SEARCH_BUTTON_STATE_RESULT, dataResult);
+
+        });
+    }
+
     
 }

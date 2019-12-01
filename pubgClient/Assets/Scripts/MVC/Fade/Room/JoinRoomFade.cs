@@ -28,7 +28,8 @@ public class JoinRoomFade : CommonRoomFade
         base.InitializeCommand();
         RegisterCommand(RoomNotifications.JOIN_ROOM, typeof(JoinRoomCommand));
         RegisterCommand(RoomNotifications.EXIT_ROOM, typeof(ExitRoomCommand));
-   
+        RegisterCommand(RoomNotifications.SEARCH_BUTTON_STATE, typeof(EnterButtonStateCommand));
+
     }
 
     protected override void InitializeModel()

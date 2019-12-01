@@ -55,13 +55,13 @@ public class RegisterMeditor : Mediator
         {
             root.GetComponent<RegisterView>().repassword.text = "";
             root.GetComponent<RegisterView>().repassword.ActivateInputField();
-            root.GetComponent<RegisterView>().ShowError("再次密码不能为空");
+            root.GetComponent<RegisterView>().ShowError("再次输入的密码不能为空");
             return;
         }
 
         if(!repasword.Equals(password))
         {
-            root.GetComponent<RegisterView>().ShowError("密码输出不一致");
+            root.GetComponent<RegisterView>().ShowError("两次密码输入不一致。");
             return;
         }
 

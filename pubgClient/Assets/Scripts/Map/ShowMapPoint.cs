@@ -16,24 +16,44 @@ public class ShowMapPoint : MonoBehaviour {
     }
 
     void Start () {
-       
+
+        uniWebView = GetComponent<UniWebView>();
+
+        if (uniWebView == null)
+        {
+            uniWebView = gameObject.AddComponent<UniWebView>();
+            uniWebView.ReferenceRectTransform = transform.parent.GetComponent<RectTransform>();
+        }
+        uniWebView.OnMessageReceived += FunctionCallBack;
         string mapUrl = Config.parse("Map2dAddress");
         OpenWebPage(mapUrl);
         StartCoroutine(UpdatePostion());
         UIUtility.LockScreen(8.0f);
+
+        //if (uniWebView != null)
+        //{
+        //    NGUIDebug.Log("callBack");
+        //    DOVirtual.DelayedCall(3.0f, () => {
+
+        //        uniWebView.OnMessageReceived += FunctionCallBack;
+        //    });
+
+
+        //}
+        uniWebView.AddJavaScript("function Exit( ) { }", completionHandler: _ => {
+            //webView.EvaluateJavaScript("add(4, 5);", completionHandler: (payload) => {
+            //    print(payload.resultCode); // => "0"
+            //    print(payload.data);  // => "9"
+            //});
+        });
+
+
 
     }
 
     private UniWebView uniWebView;
     public void OpenWebPage(string mapUrl)
     {
-        uniWebView = GetComponent<UniWebView>();
-       
-        if(uniWebView==null)
-        {
-            uniWebView = gameObject.AddComponent<UniWebView>();
-            uniWebView.ReferenceRectTransform = transform.parent.GetComponent<RectTransform>();
-        }
        
         uniWebView.Load(mapUrl);
         
@@ -50,6 +70,27 @@ public class ShowMapPoint : MonoBehaviour {
             DOVirtual.DelayedCall(0.1f, () => { OpenWebPage(mapUrl); });
             return true;
         };
+       
+        
+    }
+
+    private void FunctionCallBack(UniWebView webView, UniWebViewMessage message)
+    {
+        NGUIDebug.Log(message.Path);
+        switch (message.Path)
+        {
+            //退出
+            case "Exit":
+                {
+
+                    Application.Quit();
+                    break;
+                };
+         
+
+    
+        }
+
     }
 
     public void DeleteWebPage()

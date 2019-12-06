@@ -5,10 +5,11 @@ using UnityEngine;
 public class GPSItem  {
 
 
+    public int userId;
+
     public string userName;
 
     public double lon;
-
 
     public double lat;
 

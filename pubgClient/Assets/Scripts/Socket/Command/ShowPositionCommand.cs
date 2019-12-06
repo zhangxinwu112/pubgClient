@@ -12,7 +12,7 @@ public class ShowPositionCommand : ICommand
     {
         get
         {
-            return "ShowPostion";
+            return "ShowPosition";
         }
     }
 

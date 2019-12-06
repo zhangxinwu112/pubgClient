@@ -103,6 +103,7 @@ public class ShowMapPoint : MonoBehaviour {
             GPSItem gpsItem = new GPSItem();
             gpsItem.telephone = LoginInfo.Userinfo.telephone;
             gpsItem.userName = LoginInfo.Userinfo.name;
+            gpsItem.userId = LoginInfo.Userinfo.id;
             gpsItem.lat = _lat;
             gpsItem.lon = _lon;
             string json = Utils.CollectionsConvert.ToJSON(gpsItem);

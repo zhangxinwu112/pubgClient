@@ -43,5 +43,12 @@ public class RoomEditView : MonoBehaviour {
         passwordInputField.text = checkCode;
     }
 
+    public void ClearAll()
+    {
+        ShowRoomName("");
+        ShowGrounpName("");
+        ShowCheckCode("");
+    }
+
 
 }

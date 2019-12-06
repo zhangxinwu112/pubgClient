@@ -80,6 +80,7 @@ public class CreateRoomMeditor : Mediator
             root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("当前选择的房间为空，请重试。");
             return;
         }
+        root.GetComponent<RootCreateRoomView>().roomEditView.ClearAll();
         SendNotification(RoomNotifications.DELETE_ROOM, selectRoomId);
     }
     /// <summary>

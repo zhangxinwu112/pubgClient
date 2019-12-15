@@ -75,6 +75,7 @@ public class GameMeditor : Mediator
 
         SetValue(_currentIndex, textTitle);
     }
+   
 
     private void SetValue(int _currentIndex, string textTitle)
     {

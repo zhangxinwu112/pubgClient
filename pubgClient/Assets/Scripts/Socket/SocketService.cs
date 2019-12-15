@@ -49,7 +49,7 @@ public class SocketService : MonoBehaviour
 
     public void ReceiveData(string key, string body, string[] paraters)
     {
-        Debug.Log(key + "," + body);
+       // Debug.Log(key + "," + body);
         // NGUIDebug.Log(key + ","+ body);
         commandsUtils.Exec(key, body, paraters);
     }

@@ -40,7 +40,7 @@ public class JoinRoomMeditor : Mediator
         string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入分队的密码不能为空。");
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入房间的密码不能为空。");
             return;
         }
 
@@ -137,11 +137,11 @@ public class JoinRoomMeditor : Mediator
 
             case RoomNotifications.JOIN_ROOM_RESULT:
 
-                ResultcallBack(notification,"加入分队成功");
+                ResultcallBack(notification, "成功加入房间");
                 break;
             case RoomNotifications.EXIT_ROOM_RESULT:
 
-                ResultcallBack(notification, "退出分队成功");
+                ResultcallBack(notification, "成功退出房间");
                 break;
           
 

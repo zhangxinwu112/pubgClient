@@ -26,13 +26,18 @@ public class RoomListView : MonoBehaviour {
     public void CreateList<T>(List<T> datas, int type=0) where T : ModelBase
     {
        
+        if((datas == null || datas.Count == 0)&& (type==1))
+        {
+            return;
+        }
+
         ListMsg listMsg = null;
         //room列表
         if(type==0)
         {
             listMsg = room.GetComponentInChildren<ListMsg>();
           
-            ClearAll();
+           // ClearAll();
         }
         //grounp列表
         else if(type == 1)
@@ -44,6 +49,7 @@ public class RoomListView : MonoBehaviour {
         else if(type == 2)
         {
             listMsg = userList.GetComponentInChildren<ListMsg>();
+         
            // ClearUserData();
         }
         listMsg.Clear();

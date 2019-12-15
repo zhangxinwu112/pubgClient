@@ -56,7 +56,7 @@ public class RoomJoinProxy : Proxy
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "SearchEnterButtonState", new string[] {  LoginInfo.Userinfo.id.ToString() }, (result) => {
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "SearchEnterRoomState", new string[] {  LoginInfo.Userinfo.id.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.SEARCH_BUTTON_STATE_RESULT, dataResult);
 

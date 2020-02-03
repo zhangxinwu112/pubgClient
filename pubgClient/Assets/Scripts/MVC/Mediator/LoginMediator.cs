@@ -19,6 +19,7 @@ public class LoginMediator : Mediator
         //注册按钮的方法
         root.GetComponent<LoginView>().OnClickLoginButton(StartLogin);
         SetCookieUserName();
+       
     }
 
 

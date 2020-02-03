@@ -11,13 +11,13 @@ using DataModel;
 using server.Model;
 using Model;
 
-public class CreateRoomMeditor : Mediator
+public class CreateGrounpMeditor : Mediator
 {
-    public new const string NAME = "CreateRoomMeditor";
+    public new const string NAME = "CreateGrounpMeditor";
 
     private GameObject root = null;
 
-    public CreateRoomMeditor(GameObject _root) : base(NAME)
+    public CreateGrounpMeditor(GameObject _root) : base(NAME)
     {
         this.root = _root;
 
@@ -30,7 +30,7 @@ public class CreateRoomMeditor : Mediator
     }
 
     /// <summary>
-    /// 创建房间
+    /// 创建队
     /// </summary>
     private void CreateRoom(string createName)
     {
@@ -40,7 +40,7 @@ public class CreateRoomMeditor : Mediator
             return;
         }
 
-        SendNotification(RoomNotifications.CREATE_ROOM, createName);
+        SendNotification(RoomNotifications.CREATE_GROUNP, createName);
     }
 
     private void EditRoom(string roomName,string grounpName,string checkCode)
@@ -69,7 +69,7 @@ public class CreateRoomMeditor : Mediator
         dic.Add("checkCode", checkCode);
         dic.Add("roomId", root.GetComponent<RootCreateRoomView>().roomListView.selectRoomId);
         dic.Add("grounpId", root.GetComponent<RootCreateRoomView>().roomListView.selectGrounpId);
-        SendNotification(RoomNotifications.EDIT_ROOM, dic);
+        SendNotification(RoomNotifications.EDIT_GROUNP, dic);
     }
 
     public void DeleteRoom()
@@ -81,7 +81,7 @@ public class CreateRoomMeditor : Mediator
             return;
         }
         root.GetComponent<RootCreateRoomView>().roomEditView.ClearAll();
-        SendNotification(RoomNotifications.DELETE_ROOM, selectRoomId);
+        SendNotification(RoomNotifications.DELETE_GROUNP, selectRoomId);
     }
     /// <summary>
     /// 通过房间查询分队
@@ -101,14 +101,14 @@ public class CreateRoomMeditor : Mediator
     {
         IList<string> list = new List<string>();
         //search
-        list.Add(RoomNotifications.ALL_ROOM_SUCCESS);
+        list.Add(RoomNotifications.ALL_GROUNP_SUCCESS);
         list.Add(RoomNotifications.SINGLE_GROUNP_SUCCESS);
         list.Add(RoomNotifications.SINGLE_ROOM_SUCCESS);
 
         //edit
-        list.Add(RoomNotifications.CREATE_ROOM_RESULT);
-        list.Add(RoomNotifications.EDIT_ROOM_RESULT);
-        list.Add(RoomNotifications.DELETE_ROOM_RESULT);
+        list.Add(RoomNotifications.CREATE_GROUNP_RESULT);
+        list.Add(RoomNotifications.EDIT_GROUNP_RESULT);
+        list.Add(RoomNotifications.DELETE_GROUNP_RESULT);
         return list;
     }
 
@@ -117,35 +117,35 @@ public class CreateRoomMeditor : Mediator
         switch (notification.Name)
         {
 
-            //返回room列表
-            case RoomNotifications.ALL_ROOM_SUCCESS:
-
-                List<Room> rooms = notification.Body as List<Room>;
-                root.GetComponent<RootCreateRoomView>().roomListView.CreateList(rooms,0);
-
-                break;
-            //通过room查询gourp
-            case RoomNotifications.SINGLE_ROOM_SUCCESS:
+            //返回grounp列表
+            case RoomNotifications.ALL_GROUNP_SUCCESS:
 
                 List<Grounp> grounps = notification.Body as List<Grounp>;
-                root.GetComponent<RootCreateRoomView>().roomListView.CreateList(grounps,1);
+                root.GetComponent<RootCreateRoomView>().roomListView.CreateList(grounps, 0);
+
                 break;
-            //通过grounp查询userList
+            //通过grounp查询room
+            case RoomNotifications.SINGLE_ROOM_SUCCESS:
+
+                List<Room> rooms = notification.Body as List<Room>;
+                root.GetComponent<RootCreateRoomView>().roomListView.CreateList(rooms, 1);
+                break;
+            //通过room查询userList
             case RoomNotifications.SINGLE_GROUNP_SUCCESS:
 
                 List<UserItem> UserItems = notification.Body as List<UserItem>;
                 root.GetComponent<RootCreateRoomView>().roomListView.CreateList(UserItems, 2);
                 break;
 
-            case RoomNotifications.CREATE_ROOM_RESULT:
+            case RoomNotifications.CREATE_GROUNP_RESULT:
 
-                ResultcallBack(notification,"房间创建成功");
+                ResultcallBack(notification,"队创建成功");
                 break;
-            case RoomNotifications.DELETE_ROOM_RESULT:
+            case RoomNotifications.DELETE_GROUNP_RESULT:
 
                 ResultcallBack(notification, "删除成功");
                 break;
-            case RoomNotifications.EDIT_ROOM_RESULT:
+            case RoomNotifications.EDIT_GROUNP_RESULT:
 
                 ResultcallBack(notification, "修改成功");
                 break;
@@ -172,7 +172,7 @@ public class CreateRoomMeditor : Mediator
 
     private void SendRequestAllRoom()
     {
-        SendNotification(RoomNotifications.ALL_ROOM, "0");
+        SendNotification(RoomNotifications.ALL_GROUNP, "0");
     }
 
 

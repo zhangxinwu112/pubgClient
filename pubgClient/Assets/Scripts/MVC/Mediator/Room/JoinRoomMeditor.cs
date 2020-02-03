@@ -88,7 +88,7 @@ public class JoinRoomMeditor : Mediator
     {
         IList<string> list = new List<string>();
         //search
-        list.Add(RoomNotifications.ALL_ROOM_SUCCESS);
+        list.Add(RoomNotifications.ALL_GROUNP_SUCCESS);
         list.Add(RoomNotifications.SINGLE_GROUNP_SUCCESS);
         list.Add(RoomNotifications.SINGLE_ROOM_SUCCESS);
 
@@ -105,16 +105,16 @@ public class JoinRoomMeditor : Mediator
         {
 
             //返回room列表
-            case RoomNotifications.ALL_ROOM_SUCCESS:
+            case RoomNotifications.ALL_GROUNP_SUCCESS:
 
-                List<Room> rooms = notification.Body as List<Room>;
+                List<Grounp> rooms = notification.Body as List<Grounp>;
                 root.GetComponent<RootJoinRoomView>().roomListView.CreateList(rooms,0);
 
                 break;
             //通过room查询gourp
             case RoomNotifications.SINGLE_ROOM_SUCCESS:
 
-                List<Grounp> grounps = notification.Body as List<Grounp>;
+                List<Room> grounps = notification.Body as List<Room>;
                 root.GetComponent<RootJoinRoomView>().roomListView.CreateList(grounps,1);
                 break;
             //通过grounp查询userList
@@ -172,7 +172,7 @@ public class JoinRoomMeditor : Mediator
 
     private void SendRequestAllRoom()
     {
-        SendNotification(RoomNotifications.ALL_ROOM, "1");
+        SendNotification(RoomNotifications.ALL_GROUNP, "1");
     }
 
 

@@ -7,50 +7,50 @@ using System.Collections.Generic;
 using Tool;
 using UnityEngine;
 
-public class RoomSearchProxy : Proxy
+public class GrounpSearchProxy : Proxy
 {
-    public new const string NAME = "RoomSearchProxy";
+    public new const string NAME = "GrounpSearchProxy";
 
-    public RoomSearchProxy() : base(NAME)
+    public GrounpSearchProxy() : base(NAME)
     {
 
     }
 
-    public void SearchAllRoom(string userId)
+    public void SearchAllGrounp(string userId)
     {
         if(SocketService.instance==null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT+ "SearchAllRoom", new string[] { userId }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT+ "SearchAllGrounp", new string[] { userId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
              string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
-             List<Room> rooms = Utils.CollectionsConvert.ToObject<List<Room>>(json);
+             List<Grounp> grounps = Utils.CollectionsConvert.ToObject<List<Grounp>>(json);
             
-             SendNotification(RoomNotifications.ALL_ROOM_SUCCESS, rooms);
+             SendNotification(RoomNotifications.ALL_GROUNP_SUCCESS, grounps);
            
             // Debug.Log("回调成功："+ rooms.Count);
         });
     }
 
-    public void SearchSingleRoom(string roomId)
+    public void SearchSingleGrounp(string grounpId)
     {
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleRoom", new string[] { roomId }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT + "SearchSingleGrounp", new string[] { grounpId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
 
             string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
-            List<Grounp> Grounps = Utils.CollectionsConvert.ToObject<List<Grounp>>(json);
+            List<Room> Grounps = Utils.CollectionsConvert.ToObject<List<Room>>(json);
            
            SendNotification(RoomNotifications.SINGLE_ROOM_SUCCESS, Grounps);
           
         });
     }
 
-    public void SearchSingleGrounp(string grounpId)
+    public void SearchSingleRoom(string roomId)
     {
-        SocketService.instance.PostData("server.DAO.SearchRoomDao" + Constant.METHOD_SPLIT + "SearchSingleGrounp", new string[] { grounpId }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT + "SearchSingleRoom", new string[] { roomId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
 
             string json = Utils.CollectionsConvert.ToJSON(dataResult.data);

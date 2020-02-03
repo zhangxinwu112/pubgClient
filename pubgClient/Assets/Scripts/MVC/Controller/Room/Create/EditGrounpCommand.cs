@@ -4,7 +4,7 @@ using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using UnityEngine;
 
-public class EditRoomCommand : SimpleCommand
+public class EditGrounpCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
@@ -14,8 +14,8 @@ public class EditRoomCommand : SimpleCommand
         string checkCode = dic["checkCode"].ToString();
         string roomId = dic["roomId"].ToString();
         string grounpId = dic["grounpId"].ToString();
-        RoomEditProxy editroomProxy = (RoomEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomEditProxy.NAME);
-        editroomProxy.EditRoom(roomName, grounpName, checkCode, roomId, grounpId);
+        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
+        editGrounpProxy.EditGrounp(roomName, grounpName, checkCode, roomId, grounpId);
 
 
 

@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class RoomListView : MonoBehaviour {
 
     // Use this for initialization
-    public Transform room;
+    public Transform _grounp;
 
-    public Transform grounp;
+    public Transform _room;
 
     public Transform userList;
 
@@ -18,7 +18,7 @@ public class RoomListView : MonoBehaviour {
 
     public string selectGrounpId = "";
 
-    public List<Grounp> grounpList = null;
+    public List<Room> roomList = null;
     /// <summary>
     /// 创建list列表
     /// </summary>
@@ -30,29 +30,32 @@ public class RoomListView : MonoBehaviour {
         {
             return;
         }
+        
 
         ListMsg listMsg = null;
-        //room列表
-        if(type==0)
-        {
-            listMsg = room.GetComponentInChildren<ListMsg>();
-          
-           // ClearAll();
-        }
         //grounp列表
+        if (type==0)
+        {
+            listMsg = _grounp.GetComponentInChildren<ListMsg>();
+            ClearAll();
+            // ClearAll();
+
+        }
+        //room列表
         else if(type == 1)
         {
-            listMsg = grounp.GetComponentInChildren<ListMsg>();
-            grounpList = datas as List<Grounp>;
+            listMsg = _room.GetComponentInChildren<ListMsg>();
+            listMsg.Clear();
+            roomList = datas as List<Room>;
         }
         //userlist
         else if(type == 2)
         {
             listMsg = userList.GetComponentInChildren<ListMsg>();
-         
-           // ClearUserData();
+            listMsg.Clear();
+            // ClearUserData();
         }
-        listMsg.Clear();
+       
         if(datas==null || datas.Count==0)
         {
             return;
@@ -72,7 +75,7 @@ public class RoomListView : MonoBehaviour {
                     }
                    
                 }
-                //group列表
+                //room列表
                 else if(type == 1)
                 {
                     selectGrounpId = item.id.ToString();
@@ -80,10 +83,10 @@ public class RoomListView : MonoBehaviour {
                     {
                         GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(item.name);
 
-                        Grounp grounp = FindGrounp(selectGrounpId);
-                        if (grounp != null)
+                        Room room = FindGrounp(selectGrounpId);
+                        if (room != null)
                         {
-                            GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
+                            GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(room.checkCode);
                         }
                     }
                    
@@ -97,6 +100,8 @@ public class RoomListView : MonoBehaviour {
             i++;
         });
     }
+
+   
 
     private void ClearUserData()
     {
@@ -117,11 +122,11 @@ public class RoomListView : MonoBehaviour {
     }
 
 
-    public Grounp FindGrounp(string id)
+    public Room FindGrounp(string id)
     {
-        if(grounpList!=null && grounpList.Count>0)
+        if(roomList!=null && roomList.Count>0)
         {
-           Grounp grounp =  grounpList.Find(c => c.id.ToString().Equals(id));//返回指定条件的元素
+           Room grounp = roomList.Find(c => c.id.ToString().Equals(id));//返回指定条件的元素
             return grounp;
         }
 

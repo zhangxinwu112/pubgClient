@@ -9,7 +9,7 @@ public class SearchGrounpCommand : SimpleCommand
     public override void Execute(INotification notification)
     {
 
-        RoomSearchProxy roomProxy = (RoomSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
-        roomProxy.SearchSingleGrounp(notification.Body.ToString());
+        GrounpSearchProxy grounpProxy = (GrounpSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpSearchProxy.NAME);
+        grounpProxy.SearchSingleRoom(notification.Body.ToString());
     }
 }

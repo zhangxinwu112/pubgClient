@@ -4,24 +4,24 @@ using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using UnityEngine;
 
-public class SearchAllRoomCommand : SimpleCommand
+public class SearchAllGrounpCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
         string type = notification.Body.ToString();
-        RoomSearchProxy roomProxy = null;
+        GrounpSearchProxy grounpProxy = null;
         string userId = LoginInfo.Userinfo.id.ToString();
         if (type.Equals("0"))
         {
-            
-            roomProxy = (RoomSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+
+            grounpProxy = (GrounpSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpSearchProxy.NAME);
         }
         else
         {
-            roomProxy = (RoomSearchProxy)JoinRoomFade.GetInstance().RetrieveProxy(RoomSearchProxy.NAME);
+            grounpProxy = (GrounpSearchProxy)JoinRoomFade.GetInstance().RetrieveProxy(GrounpSearchProxy.NAME);
             userId = "0";
         }
-        
-        roomProxy.SearchAllRoom(userId);
+
+        grounpProxy.SearchAllGrounp(userId);
     }
 }

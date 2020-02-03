@@ -68,10 +68,10 @@ public class ListMsg : MonoBehaviour {
             {
                 GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(itemName);
 
-                Grounp grounp = GetComponentInParent<RootCreateRoomView>().roomListView.FindGrounp(grounpId);
-                if (grounp != null)
+                Room room = GetComponentInParent<RootCreateRoomView>().roomListView.FindGrounp(grounpId);
+                if (room != null)
                 {
-                    GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(grounp.checkCode);
+                    GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(room.checkCode);
                 }
             }
             GetComponentInParent<RootBaseRoomView>().CallSearchSingleGrounpAction(grounpId);

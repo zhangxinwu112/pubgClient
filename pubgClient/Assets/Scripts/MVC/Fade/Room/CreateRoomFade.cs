@@ -26,9 +26,9 @@ public class CreateRoomFade : CommonRoomFade
     protected override void InitializeCommand()
     {
         base.InitializeCommand();
-        RegisterCommand(RoomNotifications.CREATE_ROOM, typeof(CreateRoomCommand));
-        RegisterCommand(RoomNotifications.EDIT_ROOM, typeof(EditRoomCommand));
-        RegisterCommand(RoomNotifications.DELETE_ROOM, typeof(DeleteRoomCommand));
+        RegisterCommand(RoomNotifications.CREATE_GROUNP, typeof(CreateGrounpCommand));
+        RegisterCommand(RoomNotifications.EDIT_GROUNP, typeof(EditGrounpCommand));
+        RegisterCommand(RoomNotifications.DELETE_GROUNP, typeof(DeleteGrounpCommand));
     }
 
     protected override void InitializeModel()
@@ -39,13 +39,13 @@ public class CreateRoomFade : CommonRoomFade
     protected override void InitializeProxy()
     {
         base.InitializeProxy();
-        RegisterProxy(new RoomEditProxy());
+        RegisterProxy(new GrounpEditProxy());
     }
 
 
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new CreateRoomMeditor(root));
+        RegisterMediator(new CreateGrounpMeditor(root));
     }
 
    

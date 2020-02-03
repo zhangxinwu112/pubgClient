@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-    public class Grounp: ModelBase
+   public class Grounp: ModelBase
     {
- 
-        public int roomId;
+        //地区
+        public string area;
 
-        //编号
-        public int code;
+        //创建用户id
+        public int userId;
 
-        public string checkCode;
+      
     }
 }

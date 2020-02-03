@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-   public class Room: ModelBase
+    public class Room: ModelBase
     {
-        //地区
-        public string area;
+ 
+        public int grounpId;
 
-        //创建用户id
-        public int userId;
+        //编号
+        public int code;
 
-      
+        public string checkCode;
     }
 }

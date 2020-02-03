@@ -5,23 +5,23 @@ using UnityEngine;
 public class RoomNotifications
 {
     //search========================================================
-    public const string ALL_ROOM = "all_room";
+    public const string ALL_GROUNP = "all_grounp";
     public const string SINGLE_GROUNP = "single_grounp";
     public const string SINGLE_ROOM = "single_room";
 
-    public const string ALL_ROOM_SUCCESS = "all_room_success";
+    public const string ALL_GROUNP_SUCCESS = "all_grounp_success";
     public const string SINGLE_GROUNP_SUCCESS = "single_grounp_success";
     public const string SINGLE_ROOM_SUCCESS = "single_room_success";
 
     // create edit==============================================================
 
-    public const string CREATE_ROOM = "create_room";
-    public const string EDIT_ROOM = "edit_room";
-    public const string DELETE_ROOM = "delete_room";
+    public const string CREATE_GROUNP = "create_grounp";
+    public const string EDIT_GROUNP = "edit_grounp";
+    public const string DELETE_GROUNP = "delete_grounp";
 
-    public const string CREATE_ROOM_RESULT = "create_room_result";
-    public const string EDIT_ROOM_RESULT = "edit_room_result";
-    public const string DELETE_ROOM_RESULT = "delete_room_result";
+    public const string CREATE_GROUNP_RESULT = "create_grounp_result";
+    public const string EDIT_GROUNP_RESULT = "edit_grounp_result";
+    public const string DELETE_GROUNP_RESULT = "delete_grounp_result";
 
     //join room=====================================================
     public const string JOIN_ROOM = "join_room";

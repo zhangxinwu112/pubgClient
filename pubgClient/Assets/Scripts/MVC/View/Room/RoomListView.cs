@@ -26,37 +26,48 @@ public class RoomListView : MonoBehaviour {
     public void CreateList<T>(List<T> datas, int type=0) where T : ModelBase
     {
        
-        if((datas == null || datas.Count == 0)&& (type==1))
+        if((datas == null || datas.Count == 0))
         {
+            if(type == 0)
+            {
+                ClearAll();
+            }
+            else if(type == 1)
+            {
+                _room.GetComponentInChildren<ListMsg>().Clear();
+                userList.GetComponentInChildren<ListMsg>().Clear();
+            }
+            else
+            {
+                userList.GetComponentInChildren<ListMsg>().Clear();
+            }
             return;
         }
-        
 
+      
         ListMsg listMsg = null;
         //grounp列表
         if (type==0)
         {
             listMsg = _grounp.GetComponentInChildren<ListMsg>();
-            ClearAll();
-            // ClearAll();
-
+           
         }
         //room列表
         else if(type == 1)
         {
             listMsg = _room.GetComponentInChildren<ListMsg>();
-            listMsg.Clear();
+           
             roomList = datas as List<Room>;
         }
         //userlist
         else if(type == 2)
         {
             listMsg = userList.GetComponentInChildren<ListMsg>();
-            listMsg.Clear();
-            // ClearUserData();
+          
+           
         }
-       
-        if(datas==null || datas.Count==0)
+        listMsg.Clear();
+        if (datas==null || datas.Count==0)
         {
             return;
         }

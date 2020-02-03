@@ -26,7 +26,7 @@ public class CreateGrounpMeditor : Mediator
         root.GetComponent<RootCreateRoomView>().roomEditView.EditClickHandleEvent(EditRoom);
         root.GetComponent<RootCreateRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootCreateRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
-        SendRequestAllRoom();
+        SendRequestAllGrounp();
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ public class CreateGrounpMeditor : Mediator
         {
             root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage(successMessage);
             root.GetComponent<RootCreateRoomView>().roomEditView.ClearAll();
-            SendRequestAllRoom();
+            SendRequestAllGrounp();
         }
         else
         {
@@ -171,7 +171,7 @@ public class CreateGrounpMeditor : Mediator
         }
     }
 
-    private void SendRequestAllRoom()
+    private void SendRequestAllGrounp()
     {
         SendNotification(RoomNotifications.ALL_GROUNP, "0");
     }

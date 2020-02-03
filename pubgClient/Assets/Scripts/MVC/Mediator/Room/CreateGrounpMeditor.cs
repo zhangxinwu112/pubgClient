@@ -59,7 +59,7 @@ public class CreateGrounpMeditor : Mediator
 
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("修改的分队的校验密码不能为空。");
+            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("修改的房间的校验密码不能为空。");
             return;
         }
 
@@ -77,10 +77,10 @@ public class CreateGrounpMeditor : Mediator
         string selectRoomId = root.GetComponent<RootCreateRoomView>().roomListView.selectRoomId;
         if(string.IsNullOrEmpty(selectRoomId))
         {
-            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("当前选择的房间为空，请重试。");
+            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("当前选择的队为空，请重试。");
             return;
         }
-        root.GetComponent<RootCreateRoomView>().roomEditView.ClearAll();
+        //root.GetComponent<RootCreateRoomView>().roomEditView.ClearAll();
         SendNotification(RoomNotifications.DELETE_GROUNP, selectRoomId);
     }
     /// <summary>
@@ -162,6 +162,7 @@ public class CreateGrounpMeditor : Mediator
         if (dataResult.result == 0)
         {
             root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage(successMessage);
+            root.GetComponent<RootCreateRoomView>().roomEditView.ClearAll();
             SendRequestAllRoom();
         }
         else

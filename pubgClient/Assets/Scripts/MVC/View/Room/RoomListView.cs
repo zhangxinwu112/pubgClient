@@ -19,6 +19,8 @@ public class RoomListView : MonoBehaviour {
     public string selectGrounpId = "";
 
     public List<Room> roomList = null;
+
+    public List<Grounp> grounpList = null;
     /// <summary>
     /// 创建list列表
     /// </summary>
@@ -50,7 +52,9 @@ public class RoomListView : MonoBehaviour {
         if (type==0)
         {
             listMsg = _grounp.GetComponentInChildren<ListMsg>();
-           
+            grounpList = datas as List<Grounp>;
+
+
         }
         //room列表
         else if(type == 1)
@@ -82,7 +86,8 @@ public class RoomListView : MonoBehaviour {
                     selectRoomId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)
                     {
-                        GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoomName(item.name);
+                        string playerTime = (item as Grounp).playerTime.ToString();
+                        GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoom(item.name, playerTime);
                     }
                    
                 }
@@ -94,7 +99,7 @@ public class RoomListView : MonoBehaviour {
                     {
                         GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(item.name);
 
-                        Room room = FindGrounp(selectGrounpId);
+                        Room room = FindRoomByKey(selectGrounpId);
                         if (room != null)
                         {
                             GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(room.checkCode);
@@ -133,16 +138,27 @@ public class RoomListView : MonoBehaviour {
     }
 
 
-    public Room FindGrounp(string id)
+    public Room FindRoomByKey(string id)
     {
         if(roomList!=null && roomList.Count>0)
         {
-           Room grounp = roomList.Find(c => c.id.ToString().Equals(id));//返回指定条件的元素
+           Room room = roomList.Find(c => c.id.ToString().Equals(id));//返回指定条件的元素
+            return room;
+        }
+
+        return null;
+    }
+
+    public Grounp FindGrounpByKey(string id)
+    {
+        if (grounpList != null && grounpList.Count > 0)
+        {
+            Grounp grounp = grounpList.Find(c => c.id.ToString().Equals(id));//返回指定条件的元素
             return grounp;
         }
 
         return null;
     }
- 
+
 
 }

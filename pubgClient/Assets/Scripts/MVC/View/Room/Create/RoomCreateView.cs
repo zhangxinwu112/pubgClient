@@ -7,22 +7,26 @@ using UnityEngine.UI;
 public class RoomCreateView : MonoBehaviour {
 
     [SerializeField]
-    public Button createButton;
+    private Button createButton;
 
     [SerializeField]
-    public InputField inputField;
+    private InputField grounpInputField;
 
-    public void ClickHandleEvent(UnityAction<string> action)
+    [SerializeField]
+    private InputField playerTimeInputField;
+
+    public void ClickHandleEvent(UnityAction<string,string> action)
     {
         createButton.onClick.AddListener(()=> {
 
-            action.Invoke(inputField.text);
+            action.Invoke(grounpInputField.text, playerTimeInputField.text);
         });
     }
 
     public void ClearContent()
     {
-        inputField.text = "";
+        grounpInputField.text = "";
+        playerTimeInputField.text = "";
     }
 
 }

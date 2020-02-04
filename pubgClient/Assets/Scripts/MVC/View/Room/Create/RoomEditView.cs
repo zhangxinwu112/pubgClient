@@ -7,30 +7,35 @@ using UnityEngine.UI;
 public class RoomEditView : MonoBehaviour {
 
     [SerializeField]
-    public Button editButton;
+    private Button editButton;
 
     [SerializeField]
-    public InputField  roomInputField;
-
-
-    [SerializeField]
-    public InputField grounpInputField;
+    private InputField  roomInputField;
 
 
     [SerializeField]
-    public InputField passwordInputField;
+    private InputField grounpInputField;
 
-    public void EditClickHandleEvent(UnityAction<string,string,string> action)
+
+    [SerializeField]
+    private InputField passwordInputField;
+
+    [SerializeField]
+    private InputField playerTimeInputField;
+
+
+    public void EditClickHandleEvent(UnityAction<string,string,string,string> action)
     {
         editButton.onClick.AddListener(() => {
 
-            action.Invoke(roomInputField.text, grounpInputField.text, passwordInputField.text);
+            action.Invoke(roomInputField.text, grounpInputField.text, passwordInputField.text,playerTimeInputField.text);
         });
     }
 
-    public void ShowRoomName(string roomName)
+    public void ShowRoom(string roomName,string playerTime)
     {
         roomInputField.text = roomName;
+        playerTimeInputField.text = playerTime;
     }
 
     public void ShowGrounpName(string grounpName)
@@ -45,7 +50,7 @@ public class RoomEditView : MonoBehaviour {
 
     public void ClearAll()
     {
-        ShowRoomName("");
+        ShowRoom("","");
         ShowGrounpName("");
         ShowCheckCode("");
     }

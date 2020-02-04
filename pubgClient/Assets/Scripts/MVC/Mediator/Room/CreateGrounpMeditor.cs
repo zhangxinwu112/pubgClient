@@ -32,7 +32,7 @@ public class CreateGrounpMeditor : Mediator
     /// <summary>
     /// 创建队
     /// </summary>
-    private void CreateRoom(string createName)
+    private void CreateRoom(string createName,string playerTime)
     {
         if(string.IsNullOrEmpty(createName))
         {
@@ -40,10 +40,19 @@ public class CreateGrounpMeditor : Mediator
             return;
         }
 
-        SendNotification(RoomNotifications.CREATE_GROUNP, createName);
+        if (string.IsNullOrEmpty(playerTime))
+        {
+            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("游戏时长不能为空。");
+            return;
+        }
+
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("createName", createName);
+        dic.Add("playerTime", playerTime);
+        SendNotification(RoomNotifications.CREATE_GROUNP, dic);
     }
 
-    private void EditRoom(string roomName,string grounpName,string checkCode)
+    private void EditRoom(string roomName,string grounpName,string checkCode,string playerTime)
     {
         if (string.IsNullOrEmpty(roomName))
         {
@@ -63,9 +72,16 @@ public class CreateGrounpMeditor : Mediator
             return;
         }
 
+        if (string.IsNullOrEmpty(playerTime))
+        {
+            root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage("游戏时长不能为空。");
+            return;
+        }
+
         Dictionary<string, object> dic = new Dictionary<string, object>();
         dic.Add("roomName", roomName);
         dic.Add("grounpName", grounpName);
+        dic.Add("playerTime", playerTime);
         dic.Add("checkCode", checkCode);
         dic.Add("roomId", root.GetComponent<RootCreateRoomView>().roomListView.selectRoomId);
         dic.Add("grounpId", root.GetComponent<RootCreateRoomView>().roomListView.selectGrounpId);

@@ -14,8 +14,9 @@ public class EditGrounpCommand : SimpleCommand
         string checkCode = dic["checkCode"].ToString();
         string roomId = dic["roomId"].ToString();
         string grounpId = dic["grounpId"].ToString();
+        string playerTime = dic["playerTime"].ToString();
         GrounpEditProxy editGrounpProxy = (GrounpEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
-        editGrounpProxy.EditGrounp(roomName, grounpName, checkCode, roomId, grounpId);
+        editGrounpProxy.EditGrounp(roomName, playerTime,grounpName, checkCode, roomId, grounpId);
 
 
 

@@ -16,14 +16,14 @@ public class GrounpEditProxy : Proxy
 
     }
 
-    public void AddGrounp(string grounpName)
+    public void AddGrounp(string grounpName,string playerTime)
     {
         if(SocketService.instance==null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.EditGrounpDao" + Constant.METHOD_SPLIT+ "AddGrounp", new string[] { grounpName, LoginInfo.Userinfo.id.ToString(),"cs" }, (result) => {
+        SocketService.instance.PostData("server.DAO.EditGrounpDao" + Constant.METHOD_SPLIT+ "AddGrounp", new string[] { grounpName, playerTime,LoginInfo.Userinfo.id.ToString(),"cs" }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
             if(dataResult!=null)
@@ -35,14 +35,14 @@ public class GrounpEditProxy : Proxy
     }
 
 
-    public void EditGrounp(string grounpName,string roomName,string checkCode, string grounpId,string roomId)
+    public void EditGrounp(string grounpName, string playerTime,string roomName,string checkCode, string grounpId,string roomId)
     {
         if (SocketService.instance == null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.EditGrounpDao" + Constant.METHOD_SPLIT + "UpdateGrounp", new string[] { grounpName, roomName, checkCode, grounpId, roomId }, (result) => {
+        SocketService.instance.PostData("server.DAO.EditGrounpDao" + Constant.METHOD_SPLIT + "UpdateGrounp", new string[] { grounpName, playerTime,roomName, checkCode, grounpId, roomId }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.EDIT_GROUNP_RESULT, dataResult);
 

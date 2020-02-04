@@ -44,7 +44,10 @@ public class ListMsg : MonoBehaviour {
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
             if(GetComponentInParent<RootCreateRoomView>()!=null)
             {
-                GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoomName(itemName);
+
+                string playerTime = GetComponentInParent<RoomListView>().FindGrounpByKey(roomId)==null?"": 
+                    GetComponentInParent<RoomListView>().FindGrounpByKey(roomId).playerTime.ToString();
+                GetComponentInParent<RootCreateRoomView>().roomEditView.ShowRoom(itemName, playerTime);
                
             }
             GetComponentInParent<RootBaseRoomView>().CallSearchSingleRoomAction(roomId);
@@ -68,7 +71,7 @@ public class ListMsg : MonoBehaviour {
             {
                 GetComponentInParent<RootCreateRoomView>().roomEditView.ShowGrounpName(itemName);
 
-                Room room = GetComponentInParent<RootCreateRoomView>().roomListView.FindGrounp(grounpId);
+                Room room = GetComponentInParent<RootCreateRoomView>().roomListView.FindRoomByKey(grounpId);
                 if (room != null)
                 {
                     GetComponentInParent<RootCreateRoomView>().roomEditView.ShowCheckCode(room.checkCode);

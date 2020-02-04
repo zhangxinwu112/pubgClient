@@ -10,6 +10,11 @@ public class CreateGrounpCommand : SimpleCommand
     {
 
         GrounpEditProxy editGrounpProxy = (GrounpEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
-        editGrounpProxy.AddGrounp(notification.Body.ToString());
+
+        Dictionary<string, string> dic = notification.Body as Dictionary<string, string>;
+        string createName = dic["createName"].ToString();
+        string playerTime = dic["playerTime"].ToString();
+
+        editGrounpProxy.AddGrounp(createName, playerTime);
     }
 }

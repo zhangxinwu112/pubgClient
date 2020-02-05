@@ -23,7 +23,7 @@ namespace DataModel
 
         public float fenceLat;
 
-        public float fenceDistance;
+        public int fenceRadius;
 
 
     }

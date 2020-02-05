@@ -26,6 +26,23 @@ public class CreateGrounpMeditor : Mediator
         root.GetComponent<RootCreateRoomView>().roomEditView.EditClickHandleEvent(EditRoom);
         root.GetComponent<RootCreateRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootCreateRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
+        root.GetComponent<RootCreateRoomView>().ClickEnterHandleEvent(()=> {
+            SceneTools.instance.LoadScene("Game");
+        });
+
+        root.GetComponent<RootCreateRoomView>().ClickFenceHandleEvent(() => {
+            string grounpId = root.GetComponentInChildren<RoomListView>().selectRoomId;
+            Grounp grounp = root.GetComponentInChildren<RoomListView>().FindGrounpByKey(root.GetComponentInChildren<RoomListView>().selectRoomId);
+            PlayerPrefs.SetString("grounpId", grounpId);
+            if(grounp!=null)
+            {
+                PlayerPrefs.SetFloat("fenceLon", grounp.fenceLon);
+                PlayerPrefs.SetFloat("fenceLat", grounp.fenceLat);
+                PlayerPrefs.SetInt("fenceRadius", grounp.fenceRadius);
+            }
+          
+            SceneTools.instance.LoadScene("Fence");
+        });
         SendRequestAllGrounp();
     }
 

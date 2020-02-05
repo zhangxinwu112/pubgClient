@@ -80,9 +80,10 @@ public class RoomListView : MonoBehaviour {
 
             if(i==0)
             {
-                listMsg.Create(item.id.ToString(), item.name,true);
+           
                 if(type == 0)
                 {
+                    listMsg.Create(item.id.ToString(), item.name, true, (item as Grounp).runState);
                     selectRoomId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)
                     {
@@ -94,6 +95,7 @@ public class RoomListView : MonoBehaviour {
                 //room列表
                 else if(type == 1)
                 {
+                    listMsg.Create(item.id.ToString(), item.name, true);
                     selectGrounpId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)
                     {
@@ -107,10 +109,22 @@ public class RoomListView : MonoBehaviour {
                     }
                    
                 }
+                else
+                {
+                    listMsg.Create(item.id.ToString(), item.name, true);
+                }
             }
             else
             {
-                listMsg.Create(item.id.ToString(), item.name, false);
+                if(type == 0)
+                {
+                    listMsg.Create(item.id.ToString(), item.name, false, (item as Grounp).runState);
+                }
+                else
+                {
+                    listMsg.Create(item.id.ToString(), item.name, false);
+                }
+               
             }
             
             i++;

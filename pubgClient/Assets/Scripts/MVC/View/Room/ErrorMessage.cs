@@ -11,10 +11,10 @@ public class ErrorMessage : MonoBehaviour {
         GetComponentInChildren<Text>().text = "";
 	}
 	
-    public void ShowMessage(string text)
+    public void ShowMessage(string text,float time = 3.0f)
     {
         GetComponentInChildren<Text>().text = text;
-        DOVirtual.DelayedCall(3.0f, ()=> {
+        DOVirtual.DelayedCall(time, ()=> {
             GetComponentInChildren<Text>().text = "";
         });
     }

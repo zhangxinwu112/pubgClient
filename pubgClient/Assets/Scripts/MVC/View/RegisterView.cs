@@ -82,7 +82,11 @@ public class RegisterView : MonoBehaviour {
     private List<DropDownItem> DropDownItems = new List<DropDownItem>();
     private void InitTypeData()
     {
-        usertype.options.Clear();
+        if(usertype!=null && usertype.options!=null)
+        {
+            usertype.options.Clear();
+        }
+      
         DropDownDataItem optiondata = null;
         DropDownItem playerItem = new DropDownItem(0,"玩家");
         DropDownItem adminItem = new DropDownItem(1, "管理员");

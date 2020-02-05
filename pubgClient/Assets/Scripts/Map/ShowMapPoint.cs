@@ -142,11 +142,12 @@ public class ShowMapPoint : MonoBehaviour {
             double _lat = datas[0];
             double _lon = datas[1];
             GPSItem gpsItem = new GPSItem();
-            gpsItem.telephone = LoginInfo.Userinfo.telephone;
+           // gpsItem.telephone = LoginInfo.Userinfo.telephone;
             gpsItem.userName = LoginInfo.Userinfo.name;
             gpsItem.userId = LoginInfo.Userinfo.id;
             gpsItem.lat = _lat;
             gpsItem.lon = _lon;
+            gpsItem.userType = LoginInfo.Userinfo.type;
             string json = Utils.CollectionsConvert.ToJSON(gpsItem);
             string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
             SocketService.instance.SendData(sendData);

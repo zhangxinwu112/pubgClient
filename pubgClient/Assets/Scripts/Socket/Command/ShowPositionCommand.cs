@@ -30,7 +30,7 @@ public class ShowPositionCommand : ICommand
        
         for(int i=0;i< gpsItems.Count;i++)
         {
-            if(gpsItems[i].telephone.Equals(LoginInfo.Userinfo.telephone))
+            if(gpsItems[i].userId.Equals(LoginInfo.Userinfo.id))
             {
                 first = gpsItems[i];
                 gpsItems.RemoveAt(i);

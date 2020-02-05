@@ -11,10 +11,9 @@ namespace server.Model
 
         public string telephone;
         public string image;
-        // 0 超级管理员
-        //1 普通管理员
+        // 0 玩家
+        //1 管理员
         // 2 道具
-        // 3 普通玩家
         public int type;
     }
 }

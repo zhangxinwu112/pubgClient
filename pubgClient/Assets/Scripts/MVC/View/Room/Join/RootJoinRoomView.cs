@@ -44,8 +44,11 @@ public class RootJoinRoomView : RootBaseRoomView
     public void ClickExitHandleEvent(UnityAction<string> action)
     {
         exitButton.onClick.AddListener(()=> {
-            string grounpid = GetComponentInChildren<RoomListView>().selectGrounpId;
-            action.Invoke(grounpid);
+            string grounpId = GetComponentInChildren<RoomListView>().selectGrounpId;
+            if(!string.IsNullOrEmpty(grounpId))
+            {
+                action.Invoke(grounpId);
+            }
         });
     }
 

@@ -19,6 +19,7 @@ public class LoginProxy : Proxy
     {
         SocketService.instance.PostData("server.DAO.LoginDao" + Constant.METHOD_SPLIT+ "CheckLogin", new string[] { username, password }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+            //登录成功
             if(dataResult.result==0)
             {
                 string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
@@ -27,6 +28,7 @@ public class LoginProxy : Proxy
                 {
                     PlayerPrefs.SetString("telephone", _user.telephone);
                     LoginInfo.Userinfo = _user;
+                    MainView.instacne.SetUserInfo( _user);
                 }
                 SendNotification(LoginNotifications.QUERY_LOGIN_SUCCESS, dataResult.data);
             }

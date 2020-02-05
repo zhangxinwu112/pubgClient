@@ -21,12 +21,25 @@ public class CreateGrounpMeditor : Mediator
     {
         this.root = _root;
 
+       
+    }
+
+    public CreateGrounpMeditor() : base(NAME)
+    {
+       
+
+
+    }
+
+    public void Init(GameObject _root)
+    {
+        this.root = _root;
         root.GetComponent<RootCreateRoomView>().roomCreateView.ClickHandleEvent(CreateRoom);
         root.GetComponent<RootCreateRoomView>().ClickDeleteHandleEvent(DeleteRoom);
         root.GetComponent<RootCreateRoomView>().roomEditView.EditClickHandleEvent(EditRoom);
         root.GetComponent<RootCreateRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootCreateRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
-        root.GetComponent<RootCreateRoomView>().ClickEnterHandleEvent(()=> {
+        root.GetComponent<RootCreateRoomView>().ClickEnterHandleEvent(() => {
             SceneTools.instance.LoadScene("Game");
         });
 
@@ -34,13 +47,13 @@ public class CreateGrounpMeditor : Mediator
             string grounpId = root.GetComponentInChildren<RoomListView>().selectRoomId;
             Grounp grounp = root.GetComponentInChildren<RoomListView>().FindGrounpByKey(root.GetComponentInChildren<RoomListView>().selectRoomId);
             PlayerPrefs.SetString("grounpId", grounpId);
-            if(grounp!=null)
+            if (grounp != null)
             {
                 PlayerPrefs.SetFloat("fenceLon", grounp.fenceLon);
                 PlayerPrefs.SetFloat("fenceLat", grounp.fenceLat);
                 PlayerPrefs.SetInt("fenceRadius", grounp.fenceRadius);
             }
-          
+
             SceneTools.instance.LoadScene("Fence");
         });
         SendRequestAllGrounp();

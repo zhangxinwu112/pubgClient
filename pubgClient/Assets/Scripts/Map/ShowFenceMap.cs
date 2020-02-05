@@ -59,7 +59,7 @@ public class ShowFenceMap : MonoBehaviour {
         uniWebView.OnPageFinished += (view, statusCode, url) =>
         {
             view.Show();
-            Show();
+            ShowData();
 
         };
 
@@ -80,15 +80,20 @@ public class ShowFenceMap : MonoBehaviour {
             //退出
             case "Back":
                 {
-
                     SceneTools.instance.LoadScene("CreateRoom");
                     break;
                 };
-         
-
-    
+        
         }
 
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            SceneTools.instance.LoadScene("CreateRoom");
+        }
     }
 
     public void DeleteWebPage()
@@ -103,7 +108,7 @@ public class ShowFenceMap : MonoBehaviour {
     }
 
    
-    private void Show()
+    private void ShowData()
     {
 
         double _lat = 0.0;

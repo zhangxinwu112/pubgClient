@@ -42,10 +42,16 @@ public class CreateRoomFade : CommonRoomFade
         RegisterProxy(new GrounpEditProxy());
     }
 
+    private CreateGrounpMeditor createGrounpMeditor;
 
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new CreateGrounpMeditor(root));
+        if(createGrounpMeditor==null)
+        {
+            createGrounpMeditor = new CreateGrounpMeditor();
+            RegisterMediator(createGrounpMeditor);
+        }
+        createGrounpMeditor.Init(root);
     }
 
    

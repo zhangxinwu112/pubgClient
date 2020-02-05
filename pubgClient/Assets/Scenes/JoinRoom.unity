@@ -1330,31 +1330,6 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224386873296492296, guid: 26465bb59b2c69949b8ff26bb39874f6,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224386873296492296, guid: 26465bb59b2c69949b8ff26bb39874f6,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224386873296492296, guid: 26465bb59b2c69949b8ff26bb39874f6,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114249135891267084, guid: 26465bb59b2c69949b8ff26bb39874f6,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 224013827630038316, guid: 26465bb59b2c69949b8ff26bb39874f6,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26465bb59b2c69949b8ff26bb39874f6, type: 2}
   m_IsPrefabAsset: 0

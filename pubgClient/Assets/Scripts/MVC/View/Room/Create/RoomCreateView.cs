@@ -26,7 +26,7 @@ public class RoomCreateView : MonoBehaviour {
     public void ClearContent()
     {
         grounpInputField.text = "";
-        playerTimeInputField.text = "";
+        playerTimeInputField.text = "30";
     }
 
 }

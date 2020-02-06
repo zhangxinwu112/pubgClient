@@ -27,6 +27,10 @@ public class ShowPositionCommand : ICommand
         string grounpJson = Utils.CollectionsConvert.ToJSON(resultDic["grounp"]);
 
         Grounp grounp = Utils.CollectionsConvert.ToObject<Grounp>(grounpJson);
+        if(grounp==null)
+        {
+            grounp = new Grounp();
+        }
         if (gpsItems==null || gpsItems.Count==0)
         {
            // MessageShow.instance.ShowMesage("发送数据为空");
@@ -46,6 +50,15 @@ public class ShowPositionCommand : ICommand
                 gpsItems[i].color = colors[1];
             }
         }
+        if(currentUser==null)
+        {
+            currentUser = new GPSItem();
+            float lat = Input.location.lastData.latitude;
+            float lon = Input.location.lastData.longitude;
+            double[] datas = GPSTools.gps84_To_Gcj02(lat, lon);
+            currentUser.lat = datas[0];
+            currentUser.lon = datas[1];
+        }
 
         Dictionary<string, object> result = new Dictionary<string, object>();
         result.Add("currentUser", currentUser);
@@ -53,7 +66,7 @@ public class ShowPositionCommand : ICommand
         result.Add("grounp", grounp);
        
         string sendJson = Utils.CollectionsConvert.ToJSON(result);
-        // Debug.Log(sendJson);
+         Debug.Log(sendJson);
         ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(sendJson));
         return null;
     }

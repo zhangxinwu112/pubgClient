@@ -105,18 +105,18 @@ public class ShowMapPoint : MonoBehaviour {
     }
 
     private float intervalTime = 5.0f;
-    public void Show(double lon,double lat)
-    {
+    //public void Show(double lon,double lat)
+    //{
        
-        string functionName = "CreateMarker" + "("+ lon+","+ lat+")";
+    //    string functionName = "CreateMarker" + "("+ lon+","+ lat+")";
       
-        GetComponent<UniWebView>().EvaluateJavaScript(functionName);
-    }
+    //    GetComponent<UniWebView>().EvaluateJavaScript(functionName);
+    //}
     public void Show(string json)
     {
         //MessageShow.instance.ShowMesage(TimeUtils.GetCurrentTimestamp()+"："+ json);
 
-        string functionName = "CreateMarker" + "(" + json + ")";
+        string functionName = "CreateMapAndMarker" + "(" + json + ")";
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
     }
 
@@ -152,6 +152,19 @@ public class ShowMapPoint : MonoBehaviour {
             string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
             SocketService.instance.SendData(sendData);
         }
+        //else
+        //{
+        //    GPSItem gpsItem = new GPSItem();
+        //    // gpsItem.telephone = LoginInfo.Userinfo.telephone;
+        //    gpsItem.userName = LoginInfo.Userinfo.name;
+        //    gpsItem.userId = LoginInfo.Userinfo.id;
+        //    gpsItem.lat = 11.2566f;
+        //    gpsItem.lon = 123311.2566f;
+        //    gpsItem.userType = LoginInfo.Userinfo.type;
+        //    string json = Utils.CollectionsConvert.ToJSON(gpsItem);
+        //    string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
+        //    SocketService.instance.SendData(sendData);
+        //}
     }
 
     private void SendFirstData()

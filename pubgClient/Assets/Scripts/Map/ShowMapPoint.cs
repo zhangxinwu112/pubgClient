@@ -158,8 +158,8 @@ public class ShowMapPoint : MonoBehaviour {
         //    // gpsItem.telephone = LoginInfo.Userinfo.telephone;
         //    gpsItem.userName = LoginInfo.Userinfo.name;
         //    gpsItem.userId = LoginInfo.Userinfo.id;
-        //    gpsItem.lat = 11.2566f;
-        //    gpsItem.lon = 123311.2566f;
+        //    gpsItem.lat = 34.1732384409584;
+        //    gpsItem.lon = 108.964236948926;
         //    gpsItem.userType = LoginInfo.Userinfo.type;
         //    string json = Utils.CollectionsConvert.ToJSON(gpsItem);
         //    string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;

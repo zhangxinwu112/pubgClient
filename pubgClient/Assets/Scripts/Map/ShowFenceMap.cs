@@ -88,13 +88,13 @@ public class ShowFenceMap : MonoBehaviour {
 
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.A))
-        {
-            SceneTools.instance.LoadScene("CreateRoom");
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyUp(KeyCode.A))
+    //    {
+    //        SceneTools.instance.LoadScene("CreateRoom");
+    //    }
+    //}
 
     public void DeleteWebPage()
     {

@@ -16,5 +16,8 @@ public class GPSItem  {
     //public string telephone;
     public int userType;
 
+    //蓝色
+    public string color = "#3366FF";
+
 
 }

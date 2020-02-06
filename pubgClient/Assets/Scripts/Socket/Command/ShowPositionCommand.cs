@@ -17,7 +17,7 @@ public class ShowPositionCommand : ICommand
         }
     }
 
-    private string[] colors = new string[] { "#3366FF", "#CC33FF", "#2EB800", "#B8008A" };
+    private string[] colors = new string[] { "#CC33FF", "#3366FF" };
     public object ExecuteCommand(string body, string[] parameter)
     {
         Dictionary<string,object> resultDic = Utils.CollectionsConvert.ToObject<Dictionary<string, object>>(body);
@@ -38,9 +38,12 @@ public class ShowPositionCommand : ICommand
         {
             if(gpsItems[i].userId.Equals(LoginInfo.Userinfo.id))
             {
+                gpsItems[i].color = colors[0];
                 currentUser = gpsItems[i];
-                //gpsItems.RemoveAt(i);
-                break;
+            }
+            else
+            {
+                gpsItems[i].color = colors[1];
             }
         }
 
@@ -50,7 +53,7 @@ public class ShowPositionCommand : ICommand
         result.Add("grounp", grounp);
        
         string sendJson = Utils.CollectionsConvert.ToJSON(result);
-        //Debug.Log(sendJson);
+       // Debug.Log(sendJson);
         ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(sendJson));
         return null;
     }

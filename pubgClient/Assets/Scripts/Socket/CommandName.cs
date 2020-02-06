@@ -9,7 +9,8 @@ namespace command
     {
         ECHO,
         UpdatePosition,
-        Post
+        Post,
+        RequestLogin
 
 
     }

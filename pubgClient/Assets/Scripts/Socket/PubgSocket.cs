@@ -18,18 +18,22 @@ public sealed class PubgSocket  {
     private int port = 9000;
 
     private EasyClient client = null;
-    /// <summary>
-    /// 心跳检查定时器
-    /// </summary>
-    private System.Threading.Timer tmrHeartBeat = null;
-    /// <summary>
-    /// 断线重连定时器
-    /// </summary>
-    private System.Threading.Timer tmrReConnection = null;
     private int mHeartBeatInterval = 1000 * 5;
-    private int mReConnectionInterval = 1000 * 5;
+    /// 心跳检查定时器
+    private System.Threading.Timer tmrHeartBeat = null;
 
-   
+    private int mReConnectionInterval = 1000 * 5;
+    /// 断线重连定时器
+    private System.Threading.Timer tmrReConnection = null;
+
+
+
+    private int mReLoginInterval = 1000 * 3;
+    /// 断线重连定时器
+    private System.Threading.Timer tmrReLogin = null;
+
+
+
     private ISyncManager syncManager;
     public System.Action<string,string,string[]> callBack;
     public void InitTimer(ISyncManager sm)
@@ -95,9 +99,15 @@ public sealed class PubgSocket  {
     {
        tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
        tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
+        tmrReLogin = new System.Threading.Timer(ReLoginCallBack, null, mReLoginInterval, mReLoginInterval);
+        
     }
 
    
+    /// <summary>
+    /// 心跳
+    /// </summary>
+    /// <param name="state"></param>
     private void HeartBeatCallBack(object state)
     {
         try
@@ -115,6 +125,10 @@ public sealed class PubgSocket  {
         }
     }
 
+    /// <summary>
+    /// 重连
+    /// </summary>
+    /// <param name="state"></param>
     private void ReConnectionCallBack(object state)
     {
         try
@@ -129,6 +143,24 @@ public sealed class PubgSocket  {
         finally
         {
             tmrReConnection.Change(mHeartBeatInterval, mHeartBeatInterval);
+        }
+    }
+
+    private void ReLoginCallBack(object state)
+    {
+        try
+        {
+            tmrReLogin.Change(Timeout.Infinite, Timeout.Infinite);
+
+            if(LoginInfo.Userinfo!=null)
+            {
+                string sendData = command.CommandName.RequestLogin.ToString() + Constant.START_SPLIT + LoginInfo.Userinfo.telephone;
+                Send(sendData);
+            }
+        }
+        finally
+        {
+            tmrReLogin.Change(mReLoginInterval, mReLoginInterval);
         }
     }
 

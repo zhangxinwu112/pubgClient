@@ -53,7 +53,7 @@ public class ShowPositionCommand : ICommand
         result.Add("grounp", grounp);
        
         string sendJson = Utils.CollectionsConvert.ToJSON(result);
-       // Debug.Log(sendJson);
+        // Debug.Log(sendJson);
         ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(sendJson));
         return null;
     }

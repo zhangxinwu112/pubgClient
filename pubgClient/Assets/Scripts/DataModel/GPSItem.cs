@@ -14,7 +14,7 @@ public class GPSItem  {
     public double lat;
 
     //public string telephone;
-    public int userType;
+    public int userType=-1;
 
     //蓝色
     public string color = "#3366FF";

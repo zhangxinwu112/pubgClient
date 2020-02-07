@@ -27,7 +27,16 @@ public class ShowPositionCommand : ICommand
         string grounpJson = Utils.CollectionsConvert.ToJSON(resultDic["grounp"]);
 
         Grounp grounp = Utils.CollectionsConvert.ToObject<Grounp>(grounpJson);
-        if(grounp==null)
+
+        string roomJson = Utils.CollectionsConvert.ToJSON(resultDic["room"]);
+        Room room = Utils.CollectionsConvert.ToObject<Room>(roomJson);
+
+
+        string lifeJson = Utils.CollectionsConvert.ToJSON(resultDic["life"]);
+        Life life = Utils.CollectionsConvert.ToObject<Life>(lifeJson);
+
+
+        if (grounp==null)
         {
             grounp = new Grounp();
         }
@@ -64,7 +73,9 @@ public class ShowPositionCommand : ICommand
         result.Add("currentUser", currentUser);
         result.Add("gpsData", gpsItems);
         result.Add("grounp", grounp);
-       
+        result.Add("room", room);
+        result.Add("life", life);
+
         string sendJson = Utils.CollectionsConvert.ToJSON(result);
          Debug.Log(sendJson);
         ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(sendJson));

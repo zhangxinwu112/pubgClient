@@ -175,7 +175,6 @@ public class ShowMapPoint : MonoBehaviour {
         float lon = Input.location.lastData.longitude;
         double[] datas = GPSTools.gps84_To_Gcj02(lat, lon);
 
-      
         dic.Add("lat", datas[0]);
         dic.Add("lon", datas[1]);
         dic.Add("userName", LoginInfo.Userinfo.name);

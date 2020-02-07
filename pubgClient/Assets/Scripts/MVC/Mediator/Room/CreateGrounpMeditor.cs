@@ -46,7 +46,7 @@ public class CreateGrounpMeditor : Mediator
         root.GetComponent<RootCreateRoomView>().ClickFenceHandleEvent(() => {
             string grounpId = root.GetComponentInChildren<RoomListView>().selectRoomId;
             Grounp grounp = root.GetComponentInChildren<RoomListView>().FindGrounpByKey(root.GetComponentInChildren<RoomListView>().selectRoomId);
-            GrounpSataeProxy.SearchState(grounpId, (result) =>
+            GrounpStateProxy.SearchState(grounpId, (result) =>
             {
                 result = result.Trim('"');
                 if (result.Equals("1"))

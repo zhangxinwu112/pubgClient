@@ -75,6 +75,7 @@ public class ShowPositionCommand : ICommand
         result.Add("grounp", grounp);
         result.Add("room", room);
         result.Add("life", life);
+        result.Add("ip", Config.parse("ServerIP"));
 
         string sendJson = Utils.CollectionsConvert.ToJSON(result);
          //Debug.Log(sendJson);

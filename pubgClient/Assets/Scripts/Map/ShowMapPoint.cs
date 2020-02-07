@@ -86,11 +86,9 @@ public class ShowMapPoint : MonoBehaviour {
                     Application.Quit();
                     break;
                 };
-         
-
-    
+        
         }
-
+ 
     }
 
     public void DeleteWebPage()
@@ -118,6 +116,15 @@ public class ShowMapPoint : MonoBehaviour {
 
         string functionName = "CreateMapAndMarker" + "(" + json + ")";
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
+    }
+
+    public void ShowChatMesage(string content)
+    {
+        string functionName = "ChatMessage" + "(" + content + ")";
+        NGUIDebug.Log(functionName);
+        //GrounpStateProxy.Debug(functionName, null);
+        GetComponent<UniWebView>().EvaluateJavaScript(functionName);
+        //GetComponent<UniWebView>().EvaluateJavaScript(functionName);
     }
 
      private IEnumerator UpdatePostion()

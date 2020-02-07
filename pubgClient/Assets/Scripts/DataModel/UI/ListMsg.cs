@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ListMsg : MonoBehaviour {
 
     public Transform item;
-    public  void Create(string id,string name,bool isSelected,int runState=-1,int userCount=0)
+    public  void Create(string id,string name,bool isSelected,int runState=-1,int userCount=0,bool isCurrentUser =false)
     {
         GameObject coloneItem =  GameObject.Instantiate<GameObject>(item.gameObject);
         coloneItem.transform.SetParent(item.transform.parent);
@@ -33,6 +33,10 @@ public class ListMsg : MonoBehaviour {
         if(coloneItem.transform.Find("count") != null)
         {
             coloneItem.transform.Find("count").GetComponentInChildren<Text>().text = userCount.ToString();
+            if(isCurrentUser)
+            {
+                coloneItem.transform.Find("count").GetComponent<Image>().color = new Color32(204, 51, 255, 255);
+            }
         }
     }
 

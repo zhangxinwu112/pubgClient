@@ -93,7 +93,7 @@ public class RoomListView : MonoBehaviour {
                 //room列表
                 else if(type == 1)
                 {
-                    listMsg.Create(item.id.ToString(), item.name, true,-1, (item as Room).userCount);
+                    listMsg.Create(item.id.ToString(), item.name, true,-1, (item as Room).userCount, (item as Room).isCurrentUser);
                     selectGrounpId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)
                     {
@@ -121,7 +121,7 @@ public class RoomListView : MonoBehaviour {
                 }
                 else if(type == 1)
                 {
-                    listMsg.Create(item.id.ToString(), item.name, false, -1, (item as Room).userCount);
+                    listMsg.Create(item.id.ToString(), item.name, false, -1, (item as Room).userCount, (item as Room).isCurrentUser);
                 }
                 else
                 {

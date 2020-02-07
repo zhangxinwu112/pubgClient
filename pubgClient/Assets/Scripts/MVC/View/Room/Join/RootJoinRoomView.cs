@@ -20,12 +20,17 @@ public class RootJoinRoomView : RootBaseRoomView
     [SerializeField]
     public InputField enterInputField;
 
+    [SerializeField]
+    public InputField KeyNameSearchField;
+
 
     void Start () {
 
         JoinRoomFade.GetInstance().StartUp(gameObject);
         enterButton.interactable = false;
         StartCoroutine(CheckEnterState());
+        KeyNameSearchField.text = "";
+        enterInputField.text = "";
     }
 
     public void EnterRoom(UnityAction action)
@@ -33,6 +38,14 @@ public class RootJoinRoomView : RootBaseRoomView
         enterButton.onClick.AddListener(action);
     }
 
+    public void KeyNameChangeEvent(UnityAction<string> action)
+    {
+        KeyNameSearchField.onValueChanged.AddListener((a)=> {
+
+            action.Invoke(KeyNameSearchField.text);
+        });
+    }
+    //加入按钮
     public void ClickJoinHandleEvent(UnityAction<string> action)
     {
         joinButton.onClick.AddListener(()=> {
@@ -45,6 +58,7 @@ public class RootJoinRoomView : RootBaseRoomView
            
         });
     }
+    //退出room
     public void ClickExitHandleEvent(UnityAction<string> action)
     {
         exitButton.onClick.AddListener(()=> {

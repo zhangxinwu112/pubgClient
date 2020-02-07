@@ -219,7 +219,10 @@ public class CreateGrounpMeditor : Mediator
 
     private void SendRequestAllGrounp()
     {
-        SendNotification(RoomNotifications.ALL_GROUNP, "0");
+        Dictionary<string,string> dic = new Dictionary<string, string>();
+        dic.Add("type","0");
+        dic.Add("keyName", "");
+        SendNotification(RoomNotifications.ALL_GROUNP, dic);
     }
 
 

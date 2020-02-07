@@ -29,7 +29,8 @@ public class JoinRoomMeditor : Mediator
         //查询进入游戏按钮的状态
         root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
         root.GetComponent<RootJoinRoomView>().EnterRoom(EnterButtonHandle);
-        SendRequestAllRoom();
+        root.GetComponent<RootJoinRoomView>().KeyNameChangeEvent(_KeyNameChangeEvent);
+        SendRequestAllGrounp();
     }
 
     /// <summary>
@@ -54,6 +55,16 @@ public class JoinRoomMeditor : Mediator
     private void ExitRoom(string grounpId)
     {
         SendNotification(RoomNotifications.EXIT_ROOM, grounpId);
+    }
+
+    /// <summary>
+    /// 关键字搜索
+    /// </summary>
+    /// <param name="keyName"></param>
+    private void _KeyNameChangeEvent(string keyName)
+    {
+        //Debug.Log(keyName);
+        SendRequestAllGrounp();
     }
 
     /// <summary>
@@ -161,7 +172,7 @@ public class JoinRoomMeditor : Mediator
         if (dataResult.result == 0)
         {
             root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(successMessage);
-            SendRequestAllRoom();
+            SendRequestAllGrounp();
 
         }
         else
@@ -170,9 +181,13 @@ public class JoinRoomMeditor : Mediator
         }
     }
 
-    private void SendRequestAllRoom()
+    private void SendRequestAllGrounp()
     {
-        SendNotification(RoomNotifications.ALL_GROUNP, "1");
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("type", "1");
+        dic.Add("keyName", root.GetComponent<RootJoinRoomView>().KeyNameSearchField.text.Trim());
+
+        SendNotification(RoomNotifications.ALL_GROUNP, dic);
     }
 
 

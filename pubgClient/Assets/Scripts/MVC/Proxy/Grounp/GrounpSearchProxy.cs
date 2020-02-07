@@ -16,14 +16,18 @@ public class GrounpSearchProxy : Proxy
 
     }
 
-    public void SearchAllGrounp(string userId)
+    public void SearchAllGrounp(string userId, string keyName)
     {
         if(SocketService.instance==null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT+ "SearchAllGrounp", new string[] { userId }, (result) => {
+        if(string.IsNullOrEmpty(keyName))
+        {
+            keyName = "-1";
+        }
+        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT+ "SearchAllGrounp", new string[] { userId, keyName }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
              string json = Utils.CollectionsConvert.ToJSON(dataResult.data);
@@ -37,7 +41,13 @@ public class GrounpSearchProxy : Proxy
 
     public void SearchSingleGrounp(string grounpId)
     {
-        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT + "SearchSingleGrounp", new string[] { grounpId }, (result) => {
+        int userID = -1;
+        if(LoginInfo.Userinfo.type == 0)
+        {
+            userID = LoginInfo.Userinfo.id;
+        }
+        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT + "SearchSingleGrounp", 
+            new string[] { grounpId, userID.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
 
             string json = Utils.CollectionsConvert.ToJSON(dataResult.data);

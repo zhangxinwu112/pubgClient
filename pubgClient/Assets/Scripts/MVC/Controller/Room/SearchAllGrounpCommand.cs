@@ -8,7 +8,10 @@ public class SearchAllGrounpCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
-        string type = notification.Body.ToString();
+        Dictionary<string, string> dic = notification.Body as Dictionary<string, string>;
+        string type = dic["type"].ToString();
+        string keyName = dic["keyName"].ToString();
+
         GrounpSearchProxy grounpProxy = null;
         string userId = LoginInfo.Userinfo.id.ToString();
         if (type.Equals("0"))
@@ -22,6 +25,6 @@ public class SearchAllGrounpCommand : SimpleCommand
             userId = "0";
         }
 
-        grounpProxy.SearchAllGrounp(userId);
+        grounpProxy.SearchAllGrounp(userId, keyName);
     }
 }

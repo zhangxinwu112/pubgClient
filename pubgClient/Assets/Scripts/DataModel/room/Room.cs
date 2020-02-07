@@ -17,5 +17,7 @@ namespace DataModel
         public string checkCode;
 
         public int userCount;
+
+        public bool isCurrentUser = false;
     }
 }

@@ -30,6 +30,12 @@ public class LoginMediator : Mediator
         this.button = button;
         userName = root.GetComponent<LoginView>().GetLoginUserName();
         string passWord = root.GetComponent<LoginView>().GetLoginPassWord();
+
+        if(!SocketService.instance.pubgSocket.IsLogin)
+        {
+            root.GetComponent<LoginView>().ShowLoginError("服务器连接出错，请检查后重试！");
+            return;
+        }
         if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
         {
             root.GetComponent<LoginView>().ShowLoginError("账号和密码不能为空。");

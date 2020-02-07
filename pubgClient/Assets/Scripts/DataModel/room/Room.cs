@@ -15,5 +15,7 @@ namespace DataModel
         public int code;
 
         public string checkCode;
+
+        public int userCount;
     }
 }

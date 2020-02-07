@@ -12,7 +12,8 @@ using UnityEngine;
 public class SocketService : MonoBehaviour
 {
 
-    private PubgSocket pubgSocket;
+    [HideInInspector]
+    public PubgSocket pubgSocket;
 
     public static SocketService instance;
     private ISyncManager sm;

@@ -67,8 +67,6 @@ public class RoomListView : MonoBehaviour {
         else if(type == 2)
         {
             listMsg = userList.GetComponentInChildren<ListMsg>();
-          
-           
         }
         listMsg.Clear();
         if (datas==null || datas.Count==0)
@@ -78,9 +76,9 @@ public class RoomListView : MonoBehaviour {
         int i = 0;
         datas.ForEach((item) => {
 
+            //第一个默认
             if(i==0)
             {
-           
                 if(type == 0)
                 {
                     listMsg.Create(item.id.ToString(), item.name, true, (item as Grounp).runState);
@@ -95,7 +93,7 @@ public class RoomListView : MonoBehaviour {
                 //room列表
                 else if(type == 1)
                 {
-                    listMsg.Create(item.id.ToString(), item.name, true);
+                    listMsg.Create(item.id.ToString(), item.name, true,-1, (item as Room).userCount);
                     selectGrounpId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)
                     {
@@ -116,9 +114,14 @@ public class RoomListView : MonoBehaviour {
             }
             else
             {
+                //grounp
                 if(type == 0)
                 {
                     listMsg.Create(item.id.ToString(), item.name, false, (item as Grounp).runState);
+                }
+                else if(type == 1)
+                {
+                    listMsg.Create(item.id.ToString(), item.name, false, -1, (item as Room).userCount);
                 }
                 else
                 {

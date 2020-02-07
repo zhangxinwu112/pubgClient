@@ -26,13 +26,9 @@ public sealed class PubgSocket  {
     /// 断线重连定时器
     private System.Threading.Timer tmrReConnection = null;
 
-
-
     private int mReLoginInterval = 1000 * 3;
-    /// 断线重连定时器
+    /// 登录发送定时器
     private System.Threading.Timer tmrReLogin = null;
-
-
 
     private ISyncManager syncManager;
     public System.Action<string,string,string[]> callBack;
@@ -40,6 +36,15 @@ public sealed class PubgSocket  {
     {
         this.syncManager = sm;
         Timer();
+    }
+
+    private bool isLogin = false;
+    public bool IsLogin
+    {
+        get
+        {
+            return isLogin;
+        }
     }
     public async  void  Init()
     {
@@ -57,12 +62,13 @@ public sealed class PubgSocket  {
 
         client.Error += (s, e) =>
         {
-          //  NGUIDebug.Log(e.Exception.Message);
+            //  NGUIDebug.Log(e.Exception.Message);
+            isLogin = false;
         };
 
         client.Closed += (s, e) => {
 
-
+            isLogin = false;
         };
 
 
@@ -75,9 +81,10 @@ public sealed class PubgSocket  {
         {
            // NGUIDebug.Log("connet success");
              Debug.Log("connet success");
+            isLogin = true;
             // Send data to the server
             //client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));
-           // Send("ADD*1#2");
+            // Send("ADD*1#2");
 
 
         }

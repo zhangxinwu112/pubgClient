@@ -81,7 +81,7 @@ public class RoomListView : MonoBehaviour {
             {
                 if(type == 0)
                 {
-                    listMsg.Create(item.id.ToString(), item.name, true, (item as Grounp).runState);
+                    listMsg.Create(item.id.ToString(), item.name, true, (item as Grounp).runState,0, false,(item as Grounp).isDefence);
                     selectRoomId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)
                     {
@@ -117,7 +117,7 @@ public class RoomListView : MonoBehaviour {
                 //grounp
                 if(type == 0)
                 {
-                    listMsg.Create(item.id.ToString(), item.name, false, (item as Grounp).runState);
+                    listMsg.Create(item.id.ToString(), item.name, false, (item as Grounp).runState,0,false, (item as Grounp).isDefence);
                 }
                 else if(type == 1)
                 {

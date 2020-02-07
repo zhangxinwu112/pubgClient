@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ListMsg : MonoBehaviour {
 
     public Transform item;
-    public  void Create(string id,string name,bool isSelected,int runState=-1,int userCount=0,bool isCurrentUser =false)
+    public  void Create(string id,string name,bool isSelected,int runState=-1,int userCount=0,bool isCurrentUser =false,bool isDefence = false)
     {
         GameObject coloneItem =  GameObject.Instantiate<GameObject>(item.gameObject);
         coloneItem.transform.SetParent(item.transform.parent);
@@ -28,6 +28,13 @@ public class ListMsg : MonoBehaviour {
 
             coloneItem.transform.Find("GrounpState").GetComponent<GrounpStateButton>().grounpId = id;
             coloneItem.transform.Find("GrounpState").GetComponent<GrounpStateButton>().grounpName = name;
+        }
+        if(coloneItem.transform.Find("SetFence") != null)
+        {
+            if(isDefence)
+            {
+                coloneItem.transform.Find("SetFence").GetComponent<FenceStateButton>().Change();
+            }
         }
 
         if(coloneItem.transform.Find("count") != null)

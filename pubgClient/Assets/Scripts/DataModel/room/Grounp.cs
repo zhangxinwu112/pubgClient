@@ -25,6 +25,8 @@ namespace DataModel
 
         public int fenceRadius;
 
+        public bool isDefence = false;
+
 
     }
 }

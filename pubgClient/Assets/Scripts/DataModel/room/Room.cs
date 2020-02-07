@@ -19,5 +19,7 @@ namespace DataModel
         public int userCount;
 
         public bool isCurrentUser = false;
+
+       
     }
 }

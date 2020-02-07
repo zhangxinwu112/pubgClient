@@ -46,15 +46,29 @@ public class CreateGrounpMeditor : Mediator
         root.GetComponent<RootCreateRoomView>().ClickFenceHandleEvent(() => {
             string grounpId = root.GetComponentInChildren<RoomListView>().selectRoomId;
             Grounp grounp = root.GetComponentInChildren<RoomListView>().FindGrounpByKey(root.GetComponentInChildren<RoomListView>().selectRoomId);
-            PlayerPrefs.SetString("grounpId", grounpId);
-            if (grounp != null)
+            GrounpSataeProxy.SearchState(grounpId, (result) =>
             {
-                PlayerPrefs.SetFloat("fenceLon", grounp.fenceLon);
-                PlayerPrefs.SetFloat("fenceLat", grounp.fenceLat);
-                PlayerPrefs.SetInt("fenceRadius", grounp.fenceRadius);
-            }
+                result = result.Trim('"');
+                if (result.Equals("1"))
+                {
+                   
+                    PlayerPrefs.SetString("grounpId", grounpId);
+                    if (grounp != null)
+                    {
+                        PlayerPrefs.SetFloat("fenceLon", grounp.fenceLon);
+                        PlayerPrefs.SetFloat("fenceLat", grounp.fenceLat);
+                        PlayerPrefs.SetInt("fenceRadius", grounp.fenceRadius);
+                    }
 
-            SceneTools.instance.LoadScene("Fence");
+                    SceneTools.instance.LoadScene("Fence");
+                }
+                else
+                {
+                    root.GetComponent<RootCreateRoomView>().errorMessage.ShowMessage(grounp.name + "游戏已启动，无法再次进行编辑器电子围栏");
+                }
+
+            });
+           
         });
         SendRequestAllGrounp();
     }

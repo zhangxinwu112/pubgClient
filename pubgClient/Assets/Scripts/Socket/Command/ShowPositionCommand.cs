@@ -40,14 +40,14 @@ public class ShowPositionCommand : ICommand
         {
             grounp = new Grounp();
         }
-        if (gpsItems==null || gpsItems.Count==0)
-        {
-           // MessageShow.instance.ShowMesage("发送数据为空");
-            return null;
-        }
+        //if (gpsItems==null || gpsItems.Count==0)
+        //{
+        //   // MessageShow.instance.ShowMesage("发送数据为空");
+        //    return null;
+        //}
         GPSItem currentUser = null;
        
-        for(int i=0;i< gpsItems.Count;i++)
+        for(int i=0; gpsItems!=null && i < gpsItems.Count;i++)
         {
             if(gpsItems[i].userId.Equals(LoginInfo.Userinfo.id))
             {
@@ -77,7 +77,7 @@ public class ShowPositionCommand : ICommand
         result.Add("life", life);
 
         string sendJson = Utils.CollectionsConvert.ToJSON(result);
-         Debug.Log(sendJson);
+         //Debug.Log(sendJson);
         ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(sendJson));
         return null;
     }

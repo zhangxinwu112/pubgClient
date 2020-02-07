@@ -152,19 +152,19 @@ public class ShowMapPoint : MonoBehaviour {
             string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
             SocketService.instance.SendData(sendData);
         }
-        //else
-        //{
-        //    GPSItem gpsItem = new GPSItem();
-        //    // gpsItem.telephone = LoginInfo.Userinfo.telephone;
-        //    gpsItem.userName = LoginInfo.Userinfo.name;
-        //    gpsItem.userId = LoginInfo.Userinfo.id;
-        //    gpsItem.lat = 34.218229;
-        //    gpsItem.lon = 108.964176;
-        //    gpsItem.userType = LoginInfo.Userinfo.type;
-        //    string json = Utils.CollectionsConvert.ToJSON(gpsItem);
-        //    string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
-        //    SocketService.instance.SendData(sendData);
-        //}
+        else
+        {
+            GPSItem gpsItem = new GPSItem();
+            // gpsItem.telephone = LoginInfo.Userinfo.telephone;
+            gpsItem.userName = LoginInfo.Userinfo.name;
+            gpsItem.userId = LoginInfo.Userinfo.id;
+            gpsItem.lat = 34.218229;
+            gpsItem.lon = 108.964176;
+            gpsItem.userType = LoginInfo.Userinfo.type;
+            string json = Utils.CollectionsConvert.ToJSON(gpsItem);
+            string sendData = CommandName.UpdatePosition.ToString() + Constant.START_SPLIT + json;
+            SocketService.instance.SendData(sendData);
+        }
     }
 
     private void SendFirstData()

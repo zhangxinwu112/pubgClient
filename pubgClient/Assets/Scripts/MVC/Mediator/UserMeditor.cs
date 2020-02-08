@@ -7,13 +7,13 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class RegisterMeditor : Mediator
+public class UserMeditor : Mediator
 {
-    public new const string NAME = "RigisterMeditor";
+    public new const string NAME = "UserMeditor";
 
     private GameObject root = null;
 
-    public RegisterMeditor(GameObject _root) : base(NAME)
+    public UserMeditor(GameObject _root) : base(NAME)
     {
         this.root = _root;
 

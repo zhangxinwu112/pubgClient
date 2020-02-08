@@ -52,4 +52,10 @@ public class RootCreateRoomView : RootBaseRoomView
     {
         setFenceButton.onClick.AddListener(action);
     }
+
+    public void SetButtonState(bool state)
+    {
+        enterGameButton.interactable = state;
+        setFenceButton.interactable = state;
+    }
 }

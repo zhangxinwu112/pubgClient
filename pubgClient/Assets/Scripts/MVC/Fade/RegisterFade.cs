@@ -34,7 +34,7 @@ public class RegisterFade : Facade, IFacade
 
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new RegisterMeditor(root));
+        RegisterMediator(new UserMeditor(root));
     }
 
    

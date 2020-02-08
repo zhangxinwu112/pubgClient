@@ -32,6 +32,7 @@ public class RoomListView : MonoBehaviour {
         {
             if(type == 0)
             {
+                GetComponentInParent<RootCreateRoomView>().SetButtonState(false);
                 ClearAll();
             }
             else if(type == 1)
@@ -81,6 +82,7 @@ public class RoomListView : MonoBehaviour {
             {
                 if(type == 0)
                 {
+                    GetComponentInParent<RootCreateRoomView>().SetButtonState(true);
                     listMsg.Create(item.id.ToString(), item.name, true, (item as Grounp).runState,0, false,(item as Grounp).isDefence);
                     selectRoomId = item.id.ToString();
                     if(GetComponentInParent<RootCreateRoomView>()!=null)

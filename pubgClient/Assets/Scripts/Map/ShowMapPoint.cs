@@ -121,7 +121,7 @@ public class ShowMapPoint : MonoBehaviour {
     public void ShowChatMesage(string content)
     {
         string functionName = "ChatMessage" + "(" + content + ")";
-        NGUIDebug.Log(functionName);
+      //  NGUIDebug.Log(functionName);
         //GrounpStateProxy.Debug(functionName, null);
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
         //GetComponent<UniWebView>().EvaluateJavaScript(functionName);

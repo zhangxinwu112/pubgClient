@@ -67,6 +67,10 @@ public class ShowPositionCommand : ICommand
             double[] datas = GPSTools.gps84_To_Gcj02(lat, lon);
             currentUser.lat = datas[0];
             currentUser.lon = datas[1];
+            currentUser.userId = LoginInfo.Userinfo.id;
+            currentUser.userName = LoginInfo.Userinfo.name;
+            currentUser.userType = 1;
+
         }
 
         Dictionary<string, object> result = new Dictionary<string, object>();

@@ -25,6 +25,7 @@ namespace Socket.Command
             string content = body.ToString();
             NGUIDebug.Log(content);
             //GrounpStateProxy.Debug(content,null);
+            ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(content));
             ShowMapPoint.instacne.ShowChatMesage(content);
             return null;
 

@@ -37,7 +37,7 @@ public class CodeMeditor : Mediator
         }
         else
         {
-            root.GetComponent<CodeView>().ShowMessage("激活码不能为空。");
+            root.GetComponent<CodeView>().ShowMessage("授权码不能为空。");
         }
     }
     public override IList<string> ListNotificationInterests()

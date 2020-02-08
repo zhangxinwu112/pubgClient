@@ -83,7 +83,8 @@ public class ShowMapPoint : MonoBehaviour {
             case "Exit":
                 {
 
-                    Application.Quit();
+                    //Application.Quit();
+                    SceneTools.instance.LoadScene("CreateRoom");
                     break;
                 };
         

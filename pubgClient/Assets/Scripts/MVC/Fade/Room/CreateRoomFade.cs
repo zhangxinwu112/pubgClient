@@ -54,5 +54,14 @@ public class CreateRoomFade : CommonRoomFade
         createGrounpMeditor.Init(root);
     }
 
+    public void DestroyEvent()
+    {
+        if (createGrounpMeditor != null)
+        {
+            RemoveMediator(CreateGrounpMeditor.NAME);
+            createGrounpMeditor = null;
+        }
+    }
+
    
 }

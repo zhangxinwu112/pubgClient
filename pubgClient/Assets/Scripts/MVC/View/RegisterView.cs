@@ -47,7 +47,7 @@ public class RegisterView : MonoBehaviour {
 
     private void Start()
     {
-        RegisterFade.GetInstance().StartUp(gameObject);
+        AccountFade.GetInstance().StartUp(gameObject);
         success.gameObject.SetActive(true);
         register.gameObject.SetActive(true);
         register.transform.localScale = Vector3.one;

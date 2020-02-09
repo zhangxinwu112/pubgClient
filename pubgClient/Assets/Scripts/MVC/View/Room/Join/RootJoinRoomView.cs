@@ -33,6 +33,8 @@ public class RootJoinRoomView : RootBaseRoomView
         enterInputField.text = "";
     }
 
+    
+
     public void EnterRoom(UnityAction action)
     {
         enterButton.onClick.AddListener(action);
@@ -99,6 +101,7 @@ public class RootJoinRoomView : RootBaseRoomView
     private void OnDestroy()
     {
         StopAllCoroutines();
+        JoinRoomFade.GetInstance().DestroyEvent();
     }
 
 

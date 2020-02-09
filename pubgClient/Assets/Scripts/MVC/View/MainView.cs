@@ -15,6 +15,10 @@ public class MainView : MonoBehaviour {
     [SerializeField]
     private Button quitButton;
 
+
+    [SerializeField]
+    private Button backButton;
+
     public static MainView instacne;
     private void Awake()
     {
@@ -25,7 +29,20 @@ public class MainView : MonoBehaviour {
 
             Application.Quit();
         });
+
+        backButton.onClick.AddListener(() => {
+
+            //Application.Quit();
+            SceneTools.instance.LoadScene("Login");
+            LoginInfo.Userinfo = null;
+            backButton.gameObject.SetActive(false);
+            userText.text = "";
+
+        });
+
         userText.text = "";
+
+        backButton.gameObject.SetActive(false);
 
     }
 
@@ -42,6 +59,13 @@ public class MainView : MonoBehaviour {
             userText.text = "欢迎您道具：" + _user.name;
         }
         
+    }
+
+   
+
+    public void ShowHideBack(bool isShow)
+    {
+        backButton.gameObject.SetActive(isShow);
     }
 
 }

@@ -28,9 +28,18 @@ public class GameFade : Facade, IFacade
         base.InitializeModel();
     }
 
+
+    private GameMeditor gameMeditor;
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new GameMeditor(root));
+        if(gameMeditor==null)
+        {
+            gameMeditor = new GameMeditor();
+            RegisterMediator(gameMeditor);
+        }
+        gameMeditor.Init(root);
+
+
     }
 
    

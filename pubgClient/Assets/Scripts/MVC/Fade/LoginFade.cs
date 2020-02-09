@@ -32,9 +32,16 @@ public class LoginFade : Facade, IFacade
 
     }
 
+    private LoginMediator loginMeditor;
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new LoginMediator(root));
+        if(loginMeditor==null)
+        {
+            loginMeditor = new LoginMediator();
+            RegisterMediator(loginMeditor);
+        }
+        loginMeditor.Init(root);
+        
     }
 
    

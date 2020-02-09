@@ -164,6 +164,11 @@ public sealed class PubgSocket  {
                 string sendData = command.CommandName.RequestLogin.ToString() + Constant.START_SPLIT + LoginInfo.Userinfo.telephone;
                 Send(sendData);
             }
+            else
+            {
+                string sendData = command.CommandName.RequestLogin.ToString() + Constant.START_SPLIT + "-1";
+                Send(sendData);
+            }
         }
         finally
         {

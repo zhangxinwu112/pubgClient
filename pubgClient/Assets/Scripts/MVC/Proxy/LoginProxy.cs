@@ -29,6 +29,8 @@ public class LoginProxy : Proxy
                     PlayerPrefs.SetString("telephone", _user.telephone);
                     LoginInfo.Userinfo = _user;
                     MainView.instacne.SetUserInfo( _user);
+                    MainView.instacne.ShowHideBack(true);
+                  
                 }
                 SendNotification(LoginNotifications.QUERY_LOGIN_SUCCESS, dataResult.data);
             }

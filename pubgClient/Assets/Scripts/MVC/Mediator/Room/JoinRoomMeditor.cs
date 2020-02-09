@@ -19,8 +19,17 @@ public class JoinRoomMeditor : Mediator
 
     public JoinRoomMeditor(GameObject _root) : base(NAME)
     {
-        this.root = _root;
+        
+    }
 
+    public JoinRoomMeditor() : base(NAME)
+    {
+
+    }
+
+    public void Init(GameObject _root)
+    {
+        this.root = _root;
         root.GetComponent<RootJoinRoomView>().ClickJoinHandleEvent(JoinRoom);
         root.GetComponent<RootJoinRoomView>().ClickExitHandleEvent(ExitRoom);
 
@@ -32,6 +41,8 @@ public class JoinRoomMeditor : Mediator
         root.GetComponent<RootJoinRoomView>().KeyNameChangeEvent(_KeyNameChangeEvent);
         SendRequestAllGrounp();
     }
+
+
 
     /// <summary>
     /// 加入房间

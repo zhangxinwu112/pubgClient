@@ -17,6 +17,19 @@ public class GameMeditor : Mediator
     public GameMeditor(GameObject _root) : base(NAME)
     {
         this.root = _root;
+        this.root.GetComponent<GameView>().OnClickMap2dButton(OnClick2dMap);
+        this.root.GetComponent<GameView>().OnClickMap3dButton(OnClick3dMap);
+        this.root.GetComponent<GameView>().OnClickChatButton(OnClickChatButton);
+        this.root.GetComponent<GameView>().OnClickSetButton(OnClickSetButton);
+    }
+    public GameMeditor() : base(NAME)
+    {
+
+    }
+
+    public void  Init(GameObject _root) 
+    {
+        this.root = _root;
 
         this.root.GetComponent<GameView>().OnClickMap2dButton(OnClick2dMap);
         this.root.GetComponent<GameView>().OnClickMap3dButton(OnClick3dMap);

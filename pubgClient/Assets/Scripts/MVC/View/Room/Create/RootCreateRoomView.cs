@@ -58,4 +58,9 @@ public class RootCreateRoomView : RootBaseRoomView
         enterGameButton.interactable = state;
         setFenceButton.interactable = state;
     }
+
+    private void OnDestroy()
+    {
+        CreateRoomFade.GetInstance().DestroyEvent();
+    }
 }

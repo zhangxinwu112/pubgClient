@@ -70,21 +70,27 @@ public class ShowMapPoint : MonoBehaviour {
             DOVirtual.DelayedCall(0.1f, () => { OpenWebPage(mapUrl); });
             return true;
         };
-       
-        
+      
     }
 
     private void FunctionCallBack(UniWebView webView, UniWebViewMessage message)
     {
-        NGUIDebug.Log(message.Path);
+        //NGUIDebug.Log(message.Path);
         switch (message.Path)
         {
             //退出
             case "Exit":
                 {
-
-                    //Application.Quit();
-                    SceneTools.instance.LoadScene("CreateRoom");
+                    //玩家
+                    if(LoginInfo.Userinfo.type == 0)
+                    {
+                        SceneTools.instance.LoadScene("JoinRoom");
+                    }
+                    else
+                    {
+                        SceneTools.instance.LoadScene("CreateRoom");
+                    }
+                   
                     break;
                 };
         

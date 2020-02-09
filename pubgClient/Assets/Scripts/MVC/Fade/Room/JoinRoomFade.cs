@@ -46,10 +46,26 @@ public class JoinRoomFade : CommonRoomFade
     }
 
 
+    private JoinRoomMeditor joinRoomMeditor = null;
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new JoinRoomMeditor(root));
+        if(joinRoomMeditor==null)
+        {
+            joinRoomMeditor = new JoinRoomMeditor();
+            RegisterMediator(joinRoomMeditor);
+        }
+        joinRoomMeditor.Init(root);
+        
     }
 
-   
+    public void DestroyEvent()
+    {
+        if (joinRoomMeditor != null)
+        {
+            RemoveMediator(JoinRoomMeditor.NAME);
+            joinRoomMeditor = null;
+        }
+    }
+
+
 }

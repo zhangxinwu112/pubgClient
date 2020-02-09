@@ -19,7 +19,7 @@ public class CreateGrounpMeditor : Mediator
 
     public CreateGrounpMeditor(GameObject _root) : base(NAME)
     {
-        this.root = _root;
+      //  this.root = _root;
 
        
     }

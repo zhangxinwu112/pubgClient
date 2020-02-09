@@ -14,12 +14,22 @@ public class LoginMediator : Mediator
 
     public LoginMediator(GameObject _root) : base(NAME)
     {
+       
+       
+    }
+
+    public LoginMediator() : base(NAME)
+    {
+
+    }
+
+    public void Init(GameObject _root)
+    {
         this.root = _root;
 
         //注册按钮的方法
         root.GetComponent<LoginView>().OnClickLoginButton(StartLogin);
         SetCookieUserName();
-       
     }
 
 
@@ -72,6 +82,7 @@ public class LoginMediator : Mediator
             //登录成成功
             case LoginNotifications.QUERY_LOGIN_SUCCESS:
 
+               
                 SceneTools.instance.LoadScene("MachineCode");
                 break;
 

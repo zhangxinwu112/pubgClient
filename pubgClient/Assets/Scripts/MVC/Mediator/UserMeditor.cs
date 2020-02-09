@@ -15,12 +15,23 @@ public class UserMeditor : Mediator
 
     public UserMeditor(GameObject _root) : base(NAME)
     {
+        
+
+    }
+
+
+    public UserMeditor() : base(NAME)
+    {
+       
+
+    }
+
+    public void Init(GameObject _root)
+    {
         this.root = _root;
 
-        root.GetComponent<RegisterView>().Register(StartRegiter); 
-
-    } 
-
+        root.GetComponent<RegisterView>().Register(StartRegiter);
+    }
 
     public void StartRegiter(Button button)
     {

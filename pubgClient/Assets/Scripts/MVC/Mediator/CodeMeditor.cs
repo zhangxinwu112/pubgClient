@@ -11,14 +11,33 @@ public class CodeMeditor : Mediator
 
     private GameObject root = null;
 
+
     public CodeMeditor(GameObject _root) : base(NAME)
+    {
+        
+
+    }
+    public CodeMeditor() : base(NAME)
+    {
+
+
+    }
+
+    public void Init(GameObject _root)
     {
         this.root = _root;
 
         root.GetComponent<CodeView>().OnClickCheckButton(Check);
 
-        AutoCheck();
-
+        if (LoginInfo.isCheckActiveCode)
+        {
+            JumpScene();
+        }
+        else
+        {
+            AutoCheck();
+        }
+      
     }
 
 
@@ -54,7 +73,7 @@ public class CodeMeditor : Mediator
 
             //校验成功
             case LoginNotifications.QUERY_CODE_LOGIN_SUCCESS:
-
+                LoginInfo.isCheckActiveCode = true;
                 JumpScene(); 
                 break;
 

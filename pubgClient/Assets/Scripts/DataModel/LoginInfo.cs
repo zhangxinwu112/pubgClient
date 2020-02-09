@@ -7,4 +7,6 @@ public class LoginInfo
 {
 
     public static UserItem Userinfo;
+
+    public static bool isCheckActiveCode = false;
 }

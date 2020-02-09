@@ -4,15 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegisterFade : Facade, IFacade
+public class AccountFade : Facade, IFacade
 {
 
-    private static RegisterFade instance = null;
+    private static AccountFade instance = null;
 
-    public static RegisterFade GetInstance()
+    public static AccountFade GetInstance()
     {
         if (instance == null)
-            instance = new RegisterFade();
+            instance = new AccountFade();
         return instance;
     }
 
@@ -32,9 +32,15 @@ public class RegisterFade : Facade, IFacade
 
     }
 
+    private UserMeditor userMeditor;
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new UserMeditor(root));
+        if(userMeditor==null)
+        {
+            userMeditor = new UserMeditor();
+            RegisterMediator(userMeditor);
+        }
+        userMeditor.Init(root);
     }
 
    

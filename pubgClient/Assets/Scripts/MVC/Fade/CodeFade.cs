@@ -31,9 +31,17 @@ public class CodeFade : Facade, IFacade
 
     }
 
+    private CodeMeditor codeMeditor;
     public void StartUp(GameObject root)
     {
-        RegisterMediator(new CodeMeditor(root));
+        if(codeMeditor==null)
+        {
+            codeMeditor = new CodeMeditor();
+            RegisterMediator(codeMeditor);
+        }
+        codeMeditor.Init(root);
+
+
     }
 
    

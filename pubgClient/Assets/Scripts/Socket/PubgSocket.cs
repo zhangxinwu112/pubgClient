@@ -22,7 +22,7 @@ public sealed class PubgSocket  {
     /// 心跳检查定时器
     private System.Threading.Timer tmrHeartBeat = null;
 
-    private int mReConnectionInterval = 1000 * 5;
+    private int mReConnectionInterval = 1000 * 1;
     /// 断线重连定时器
     private System.Threading.Timer tmrReConnection = null;
 
@@ -38,6 +38,7 @@ public sealed class PubgSocket  {
         Timer();
     }
 
+    //是否已经登陆
     private bool isLogin = false;
     public bool IsLogin
     {
@@ -106,7 +107,7 @@ public sealed class PubgSocket  {
     {
        tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
        tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
-        tmrReLogin = new System.Threading.Timer(ReLoginCallBack, null, mReLoginInterval, mReLoginInterval);
+       tmrReLogin = new System.Threading.Timer(ReLoginCallBack, null, mReLoginInterval, mReLoginInterval);
         
     }
 
@@ -182,6 +183,14 @@ public sealed class PubgSocket  {
         {
             client.Close();
             StopTimer();
+        }
+    }
+
+    public void CloseSocket()
+    {
+        if (client != null)
+        {
+            client.Close();
         }
     }
 

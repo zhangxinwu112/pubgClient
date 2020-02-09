@@ -32,11 +32,9 @@ public class MainView : MonoBehaviour {
 
         backButton.onClick.AddListener(() => {
 
-            //Application.Quit();
             SceneTools.instance.LoadScene("Login");
-            LoginInfo.Userinfo = null;
-            backButton.gameObject.SetActive(false);
-            userText.text = "";
+
+            LoingStateReset();
 
         });
 
@@ -44,6 +42,14 @@ public class MainView : MonoBehaviour {
 
         backButton.gameObject.SetActive(false);
 
+    }
+
+    private void LoingStateReset()
+    {
+        LoginInfo.Userinfo = null;
+        backButton.gameObject.SetActive(false);
+        userText.text = "";
+        SocketService.instance.CloseSocket();
     }
 
     public void SetUserInfo(UserItem _user)

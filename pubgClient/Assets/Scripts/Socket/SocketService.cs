@@ -63,6 +63,14 @@ public class SocketService : MonoBehaviour
         }
     }
 
+    public void CloseSocket()
+    {
+        if (pubgSocket != null)
+        {
+            pubgSocket.CloseSocket();
+        }
+    }
+
 
     public void SendData(string data)
     {

@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForgetPassword.unity
     guid: 7d71f3a329fcdce439cac49a29e3f517
+  - enabled: 1
+    path: Assets/Scenes/Fence.unity
+    guid: ddc3f761361d2bc4896c2d2cf4bbb0ec
   m_configObjects: {}

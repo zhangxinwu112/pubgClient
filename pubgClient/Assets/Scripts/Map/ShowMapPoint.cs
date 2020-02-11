@@ -81,15 +81,7 @@ public class ShowMapPoint : MonoBehaviour {
             //退出
             case "Exit":
                 {
-                    //玩家
-                    if(LoginInfo.Userinfo.type == 0)
-                    {
-                        SceneTools.instance.LoadScene("JoinRoom");
-                    }
-                    else
-                    {
-                        SceneTools.instance.LoadScene("CreateRoom");
-                    }
+                    SceneTools.instance.BackScene();
                    
                     break;
                 };

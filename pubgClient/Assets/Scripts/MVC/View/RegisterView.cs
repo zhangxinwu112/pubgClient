@@ -82,6 +82,10 @@ public class RegisterView : MonoBehaviour {
     private List<DropDownItem> DropDownItems = new List<DropDownItem>();
     private void InitTypeData()
     {
+        if(usertype==null || usertype.options==null)
+        {
+            return;
+        }
         if(usertype!=null && usertype.options!=null)
         {
             usertype.options.Clear();

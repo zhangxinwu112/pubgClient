@@ -21,9 +21,10 @@ public class MachineCodeProxy : Proxy
 
         string deviceUniqueIdentifier = SystemInfo.deviceUniqueIdentifier;
         string flat = SystemInfo.deviceType.ToString();
+
         string method = "server.DAO.CodeDao" + Constant.METHOD_SPLIT + "CheckCode";
 
-        SocketService.instance.PostData(method, new string[] { activeCode,
+        SocketService.instance.PostData(method, new string[] { activeCode,LoginInfo.Userinfo.id.ToString(),LoginInfo.Userinfo.type.ToString(),
             deviceUniqueIdentifier, flat, SystemInfo.operatingSystem}, (result) => {
 
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);

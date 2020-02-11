@@ -27,6 +27,10 @@ namespace DataModel
 
         public bool isDefence = false;
 
+        public int checkCode;
+
+        public int roomCount;
+
 
     }
 }

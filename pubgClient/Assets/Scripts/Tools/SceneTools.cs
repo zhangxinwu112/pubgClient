@@ -15,6 +15,7 @@ public  class SceneTools : MonoBehaviour {
 
     public void LoadScene(string sceneName, System.Action callBack = null)
     {
+        PlayerPrefs.SetString("currrentScene", sceneName);
         StartCoroutine(AsyncLoadScene(sceneName, callBack));
 
     }
@@ -46,5 +47,17 @@ public  class SceneTools : MonoBehaviour {
             yield return 0;
         }
 
+    }
+
+    public void BackScene()
+    {
+        if (LoginInfo.Userinfo.type == 0)
+        {
+            SceneTools.instance.LoadScene("JoinRoom");
+        }
+        else
+        {
+            SceneTools.instance.LoadScene("CreateRoom");
+        }
     }
 }

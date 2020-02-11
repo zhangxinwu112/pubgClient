@@ -20,6 +20,11 @@ namespace DataModel
 
         public bool isCurrentUser = false;
 
-       
+        public int userId;
+
+        public int runState;
+
+
+
     }
 }

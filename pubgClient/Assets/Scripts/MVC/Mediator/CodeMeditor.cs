@@ -101,23 +101,7 @@ public class CodeMeditor : Mediator
 
     private void JumpScene()
     {
-       int userType =  LoginInfo.Userinfo.type;
-
-        switch(userType)
-        {
-            //玩家
-            case 0 :
-                {
-                    SceneTools.instance.LoadScene("JoinRoom");
-                    break;
-                }
-            //管理员
-            case 1:
-                {
-                    SceneTools.instance.LoadScene("CreateRoom");
-                    break;
-                }
-        }
+        SceneTools.instance.BackScene();
     }
    
 

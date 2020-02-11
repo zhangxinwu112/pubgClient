@@ -32,9 +32,18 @@ public class MainView : MonoBehaviour {
 
         backButton.onClick.AddListener(() => {
 
-            SceneTools.instance.LoadScene("Login");
-
-            LoingStateReset();
+            string currentScene = PlayerPrefs.GetString("currrentScene");
+           
+            if(string.Compare(currentScene, "Game") ==0)
+            {
+                SceneTools.instance.BackScene();
+            }
+            else
+            {
+                SceneTools.instance.LoadScene("Login");
+                LoingStateReset();
+            }
+            
 
         });
 

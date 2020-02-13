@@ -30,6 +30,7 @@ public class JoinRoomFade : CommonRoomFade
         RegisterCommand(RoomNotifications.EXIT_ROOM, typeof(ExitRoomCommand));
         RegisterCommand(RoomNotifications.SEARCH_BUTTON_STATE, typeof(EnterButtonStateCommand));
         RegisterCommand(RoomNotifications.CHECK_ENTER_BUTTON, typeof(CheckEnterButtonCommand));
+        RegisterCommand(RoomNotifications.CREATE_EDIT_ROOM, typeof(CreateEditRoomCommand));
 
     }
 
@@ -63,6 +64,7 @@ public class JoinRoomFade : CommonRoomFade
         if (joinRoomMeditor != null)
         {
             RemoveMediator(JoinRoomMeditor.NAME);
+            joinRoomMeditor.RemoveEvent();
             joinRoomMeditor = null;
         }
     }

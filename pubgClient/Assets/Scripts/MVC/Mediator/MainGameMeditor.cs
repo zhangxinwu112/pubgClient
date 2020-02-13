@@ -8,13 +8,13 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class GameMeditor : Mediator
+public class MainGameMeditor : Mediator
 {
-    public new const string NAME = "GameMeditor";
+    public new const string NAME = "MainGameMeditor";
 
     private GameObject root = null;
 
-    public GameMeditor(GameObject _root) : base(NAME)
+    public MainGameMeditor(GameObject _root) : base(NAME)
     {
         this.root = _root;
         this.root.GetComponent<GameView>().OnClickMap2dButton(OnClick2dMap);
@@ -22,7 +22,7 @@ public class GameMeditor : Mediator
         this.root.GetComponent<GameView>().OnClickChatButton(OnClickChatButton);
         this.root.GetComponent<GameView>().OnClickSetButton(OnClickSetButton);
     }
-    public GameMeditor() : base(NAME)
+    public MainGameMeditor() : base(NAME)
     {
 
     }

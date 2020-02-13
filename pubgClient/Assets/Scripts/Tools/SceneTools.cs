@@ -57,7 +57,7 @@ public  class SceneTools : MonoBehaviour {
         }
         else
         {
-            SceneTools.instance.LoadScene("CreateRoom");
+            SceneTools.instance.LoadScene("EditGame");
         }
     }
 }

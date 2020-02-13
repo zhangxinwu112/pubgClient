@@ -35,14 +35,14 @@ public class GrounpEditProxy : Proxy
     }
 
 
-    public void EditGrounp(string grounpName, string playerTime,string roomName,string checkCode, string grounpId,string roomId)
+    public void EditGrounp(string grounpId, string grounpName, string checkCode, string playerTime)
     {
         if (SocketService.instance == null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.EditGrounpDao" + Constant.METHOD_SPLIT + "UpdateGrounp", new string[] { grounpName, playerTime,roomName, checkCode, grounpId, roomId }, (result) => {
+        SocketService.instance.PostData("server.DAO.EditGrounpDao" + Constant.METHOD_SPLIT + "UpdateGrounp", new string[] { grounpId, grounpName, checkCode, playerTime }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.EDIT_GROUNP_RESULT, dataResult);
 

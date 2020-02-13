@@ -4,17 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class RootCreateRoomView : RootBaseRoomView
+public class RootEditGameView : RootBaseRoomView
 {
-    [SerializeField]
-    private Button deleteButton;
 
     [SerializeField]
-    public RoomCreateView roomCreateView;
-
-
-    [SerializeField]
-    public RoomEditView roomEditView;
+    public GameEditView gameEditView;
 
 
     [SerializeField]
@@ -25,14 +19,11 @@ public class RootCreateRoomView : RootBaseRoomView
     private Button setFenceButton;
 
 
+    [SerializeField]
+    public InputField keyNames;
+
     void Start () {
-        CreateRoomFade.GetInstance().StartUp(gameObject);
-    }
-
-
-    public void ClickDeleteHandleEvent(UnityAction action)
-    {
-        deleteButton.onClick.AddListener(action);
+        EditGameFade.GetInstance().StartUp(gameObject);
     }
 
     /// <summary>
@@ -61,6 +52,6 @@ public class RootCreateRoomView : RootBaseRoomView
 
     private void OnDestroy()
     {
-        CreateRoomFade.GetInstance().DestroyEvent();
+        EditGameFade.GetInstance().DestroyEvent();
     }
 }

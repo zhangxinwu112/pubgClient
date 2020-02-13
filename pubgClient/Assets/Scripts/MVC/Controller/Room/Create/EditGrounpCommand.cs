@@ -9,14 +9,12 @@ public class EditGrounpCommand : SimpleCommand
     public override void Execute(INotification notification)
     {
         Dictionary<string, object> dic = notification.Body as Dictionary<string, object>;
-        string roomName = dic["roomName"].ToString();
         string grounpName = dic["grounpName"].ToString();
         string checkCode = dic["checkCode"].ToString();
-        string roomId = dic["roomId"].ToString();
         string grounpId = dic["grounpId"].ToString();
         string playerTime = dic["playerTime"].ToString();
-        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
-        editGrounpProxy.EditGrounp(roomName, playerTime,grounpName, checkCode, roomId, grounpId);
+        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)EditGameFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
+        editGrounpProxy.EditGrounp( grounpId, grounpName, checkCode, playerTime);
 
 
 

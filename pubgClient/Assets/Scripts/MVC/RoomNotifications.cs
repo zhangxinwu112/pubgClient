@@ -30,6 +30,12 @@ public class RoomNotifications
     public const string JOIN_ROOM_RESULT = "join_room_result";
     public const string EXIT_ROOM_RESULT = "exit_room_result";
 
+
+
+    //Edit room=====================================================
+    public const string CREATE_EDIT_ROOM = "create_edit_room";
+   
+    public const string CREATE_EDIT_ROOM_RESULT = "create_edit_room_result";
     //================================================================
 
 

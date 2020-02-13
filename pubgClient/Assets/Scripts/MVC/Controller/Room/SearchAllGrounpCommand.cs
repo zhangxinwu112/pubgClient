@@ -8,23 +8,25 @@ public class SearchAllGrounpCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
-        Dictionary<string, string> dic = notification.Body as Dictionary<string, string>;
-        string type = dic["type"].ToString();
-        string keyName = dic["keyName"].ToString();
+        int Usertype = LoginInfo.Userinfo.type;
+        string keyName = notification.Body.ToString();
 
         GrounpSearchProxy grounpProxy = null;
-        string userId = LoginInfo.Userinfo.id.ToString();
-        if (type.Equals("0"))
+        if (Usertype == 0)
         {
 
-            grounpProxy = (GrounpSearchProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpSearchProxy.NAME);
+            grounpProxy = (GrounpSearchProxy)EditGameFade.GetInstance().RetrieveProxy(GrounpSearchProxy.NAME);
         }
         else
         {
             grounpProxy = (GrounpSearchProxy)JoinRoomFade.GetInstance().RetrieveProxy(GrounpSearchProxy.NAME);
-            userId = "0";
+          
         }
 
-        grounpProxy.SearchAllGrounp(userId, keyName);
+        if(string.IsNullOrEmpty("keyName"))
+        {
+            keyName = "-1";
+        }
+        grounpProxy.SearchAllGrounp(keyName);
     }
 }

@@ -13,9 +13,9 @@ public class JoinRoomCommand : SimpleCommand
 
         Dictionary<string, string> dic = notification.Body as Dictionary<string, string>;
         string checkCode = dic["checkCode"].ToString();
-        string grounpId = dic["grounpId"].ToString();
+        string roomId = dic["roomId"].ToString();
        
-        roomJoinProxy.JoinRoom(checkCode, grounpId);
+        roomJoinProxy.JoinRoom(checkCode, roomId);
 
 
 

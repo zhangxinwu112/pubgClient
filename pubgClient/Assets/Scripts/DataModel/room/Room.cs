@@ -11,9 +11,7 @@ namespace DataModel
  
         public int grounpId;
 
-        //编号
-        public int code;
-
+   
         public string checkCode;
 
         public int userCount;

@@ -24,6 +24,10 @@ public class RootJoinRoomView : RootBaseRoomView
     public InputField KeyNameSearchField;
 
 
+    [SerializeField]
+    public CURDView curdView;
+
+
     void Start () {
 
         JoinRoomFade.GetInstance().StartUp(gameObject);
@@ -52,7 +56,7 @@ public class RootJoinRoomView : RootBaseRoomView
     {
         joinButton.onClick.AddListener(()=> {
 
-            string grounpId = GetComponentInChildren<RoomListView>().selectGrounpId;
+            string grounpId = GetComponentInChildren<ListView>().selectRoomId;
             if(!string.IsNullOrEmpty(grounpId))
             {
                 action.Invoke(grounpId);
@@ -64,7 +68,7 @@ public class RootJoinRoomView : RootBaseRoomView
     public void ClickExitHandleEvent(UnityAction<string> action)
     {
         exitButton.onClick.AddListener(()=> {
-            string grounpId = GetComponentInChildren<RoomListView>().selectGrounpId;
+            string grounpId = GetComponentInChildren<ListView>().selectRoomId;
             if(!string.IsNullOrEmpty(grounpId))
             {
                 action.Invoke(grounpId);

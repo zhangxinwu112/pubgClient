@@ -8,7 +8,7 @@ public class RootBaseRoomView : MonoBehaviour {
 
 
     [SerializeField]
-    public RoomListView roomListView;
+    public ListView roomListView;
 
     [SerializeField]
     public ErrorMessage errorMessage;

@@ -10,8 +10,9 @@ using UnityEngine.EventSystems;
 using DataModel;
 using server.Model;
 using Model;
+using Tool;
 
-public class JoinRoomMeditor : Mediator
+public class JoinRoomMeditor : Mediator, IEventListener
 {
     public new const string NAME = "JoinRoomMeditor";
 
@@ -38,7 +39,12 @@ public class JoinRoomMeditor : Mediator
         //查询进入游戏按钮的状态
         root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
         root.GetComponent<RootJoinRoomView>().EnterRoom(EnterButtonHandle);
-        root.GetComponent<RootJoinRoomView>().KeyNameChangeEvent(_KeyNameChangeEvent);
+        //增加修改房间
+        root.GetComponent<RootJoinRoomView>().curdView.ClickSubmitHandleEvent(AddEditRoom);
+
+        //删除房间
+        root.GetComponent<RootJoinRoomView>().curdView.DeleteRoom(DeleteRoom);
+        EventMgr.Instance.AddListener(this, Constant.KEY_SEARCH);
         SendRequestAllGrounp();
     }
 
@@ -47,7 +53,7 @@ public class JoinRoomMeditor : Mediator
     /// <summary>
     /// 加入房间
     /// </summary>
-    private void JoinRoom(string grounpId)
+    private void JoinRoom(string roomId)
     {
         string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
         if (string.IsNullOrEmpty(checkCode))
@@ -58,7 +64,7 @@ public class JoinRoomMeditor : Mediator
 
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("checkCode", checkCode);
-        dic.Add("grounpId", grounpId);
+        dic.Add("roomId", roomId);
 
         SendNotification(RoomNotifications.JOIN_ROOM, dic);
     }
@@ -68,16 +74,7 @@ public class JoinRoomMeditor : Mediator
         SendNotification(RoomNotifications.EXIT_ROOM, grounpId);
     }
 
-    /// <summary>
-    /// 关键字搜索
-    /// </summary>
-    /// <param name="keyName"></param>
-    private void _KeyNameChangeEvent(string keyName)
-    {
-        //Debug.Log(keyName);
-        SendRequestAllGrounp();
-    }
-
+  
     /// <summary>
     /// 通过房间查询队
     /// </summary>
@@ -96,6 +93,22 @@ public class JoinRoomMeditor : Mediator
     private void SearchEnterButtonState()
     {
         SendNotification(RoomNotifications.SEARCH_BUTTON_STATE);
+    }
+
+    public void AddEditRoom(string grounpId,string roomId,string roomName,string roomPassword)
+    {
+        
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("grounpId", grounpId);
+        dic.Add("roomId", roomId);
+        dic.Add("roomName", roomName);
+        dic.Add("roomPassword", roomPassword);
+        SendNotification(RoomNotifications.CREATE_EDIT_ROOM, dic);
+    }
+
+    public void DeleteRoom(string roomId)
+    {
+
     }
 
     /// <summary>
@@ -118,6 +131,8 @@ public class JoinRoomMeditor : Mediator
         list.Add(RoomNotifications.JOIN_ROOM_RESULT);
         list.Add(RoomNotifications.EXIT_ROOM_RESULT);
         list.Add(RoomNotifications.SEARCH_BUTTON_STATE_RESULT);
+
+        list.Add(RoomNotifications.CREATE_EDIT_ROOM_RESULT);
         return list;
     }
 
@@ -165,7 +180,11 @@ public class JoinRoomMeditor : Mediator
 
                 ResultcallBack(notification, "成功退出房间");
                 break;
-          
+            case RoomNotifications.CREATE_EDIT_ROOM_RESULT:
+
+                ResultcallBack(notification, "操作成功");
+                break;
+
 
             default:
                 break;
@@ -175,10 +194,6 @@ public class JoinRoomMeditor : Mediator
     private void  ResultcallBack(INotification notification,string successMessage)
     {
         DataResult dataResult = notification.Body as DataResult;
-        if(root.GetComponent<RootCreateRoomView>()!=null)
-        {
-            root.GetComponent<RootCreateRoomView>().roomCreateView.ClearContent();
-        }
       
         if (dataResult.result == 0)
         {
@@ -194,13 +209,17 @@ public class JoinRoomMeditor : Mediator
 
     private void SendRequestAllGrounp()
     {
-        Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("type", "1");
-        dic.Add("keyName", root.GetComponent<RootJoinRoomView>().KeyNameSearchField.text.Trim());
-
-        SendNotification(RoomNotifications.ALL_GROUNP, dic);
+        SendNotification(RoomNotifications.ALL_GROUNP, root.GetComponent<RootJoinRoomView>().KeyNameSearchField.text.Trim());
     }
 
+    public bool HandleEvent(string eventName, IDictionary<string, object> dictionary)
+    {
+        SendRequestAllGrounp();
+        return true;
+    }
 
-
+    public void RemoveEvent()
+    {
+        EventMgr.Instance.RemoveListener(this, Constant.KEY_SEARCH);
+    }
 }

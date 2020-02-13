@@ -4,15 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateRoomFade : CommonRoomFade
+public class EditGameFade : CommonRoomFade
 {
 
-    private static CreateRoomFade instance = null;
+    private static EditGameFade instance = null;
 
-    public static CreateRoomFade GetInstance()
+    public static EditGameFade GetInstance()
     {
         if (instance == null)
-            instance = new CreateRoomFade();
+            instance = new EditGameFade();
         return instance;
     }
 
@@ -42,24 +42,25 @@ public class CreateRoomFade : CommonRoomFade
         RegisterProxy(new GrounpEditProxy());
     }
 
-    private CreateGrounpMeditor createGrounpMeditor;
+    private EditGameMeditor editGameMeditor;
 
     public void StartUp(GameObject root)
     {
-        if(createGrounpMeditor==null)
+        if(editGameMeditor == null)
         {
-            createGrounpMeditor = new CreateGrounpMeditor();
-            RegisterMediator(createGrounpMeditor);
+            editGameMeditor = new EditGameMeditor();
+            RegisterMediator(editGameMeditor);
         }
-        createGrounpMeditor.Init(root);
+        editGameMeditor.Init(root);
     }
 
     public void DestroyEvent()
     {
-        if (createGrounpMeditor != null)
+        if (editGameMeditor != null)
         {
-            RemoveMediator(CreateGrounpMeditor.NAME);
-            createGrounpMeditor = null;
+            RemoveMediator(EditGameMeditor.NAME);
+            editGameMeditor.RemoveEvent();
+            editGameMeditor = null;
         }
     }
 

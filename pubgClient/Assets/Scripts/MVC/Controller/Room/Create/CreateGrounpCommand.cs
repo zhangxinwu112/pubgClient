@@ -8,8 +8,8 @@ public class CreateGrounpCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
-
-        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
+        
+        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)EditGameFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
 
         Dictionary<string, string> dic = notification.Body as Dictionary<string, string>;
         string createName = dic["createName"].ToString();

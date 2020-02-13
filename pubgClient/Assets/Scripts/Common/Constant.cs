@@ -12,5 +12,7 @@ namespace Tool
         public const string END_SPLIT = "#";
         public const string METHOD_SPLIT = "@";
 
+        public const string KEY_SEARCH = "key_search";
+
     }
 }

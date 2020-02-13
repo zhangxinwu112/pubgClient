@@ -16,7 +16,7 @@ public class GrounpSearchProxy : Proxy
 
     }
 
-    public void SearchAllGrounp(string userId, string keyName)
+    public void SearchAllGrounp(string keyName)
     {
         if(SocketService.instance==null)
         {
@@ -27,7 +27,8 @@ public class GrounpSearchProxy : Proxy
         {
             keyName = "-1";
         }
-        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT+ "SearchAllGrounp", new string[] { userId, keyName }, (result) => {
+        SocketService.instance.PostData("server.DAO.SearchGrounpDao" + Constant.METHOD_SPLIT+ "SearchAllGrounp", new string[] { keyName,LoginInfo.Userinfo.id.ToString(),
+            LoginInfo.Userinfo.type.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
              string json = Utils.CollectionsConvert.ToJSON(dataResult.data);

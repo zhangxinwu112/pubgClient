@@ -8,7 +8,7 @@ public class DeleteGrounpCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
-        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)CreateRoomFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
+        GrounpEditProxy editGrounpProxy = (GrounpEditProxy)EditGameFade.GetInstance().RetrieveProxy(GrounpEditProxy.NAME);
         editGrounpProxy.DeleteGrounp(notification.Body.ToString());
 
     }

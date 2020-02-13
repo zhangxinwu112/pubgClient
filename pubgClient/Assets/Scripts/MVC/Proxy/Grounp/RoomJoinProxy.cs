@@ -16,14 +16,14 @@ public class RoomJoinProxy : Proxy
 
     }
 
-    public void JoinRoom(string checkCode,string grounpId)
+    public void JoinRoom(string checkCode,string roomId)
     {
         if(SocketService.instance==null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT+ "JoinRoom", new string[] { checkCode,grounpId, LoginInfo.Userinfo.id.ToString()}, (result) => {
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT+ "JoinRoom", new string[] { checkCode, roomId, LoginInfo.Userinfo.id.ToString()}, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
             if(dataResult!=null)
@@ -45,6 +45,21 @@ public class RoomJoinProxy : Proxy
         SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "ExitRoom", new string[] { grounpId, LoginInfo.Userinfo.id.ToString() }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.EXIT_ROOM_RESULT, dataResult);
+
+        });
+    }
+
+    public void CreateEditRoom(string grounpId,string roomId,string roomName,string checkCode)
+    {
+        if (SocketService.instance == null)
+        {
+            Debug.LogError("SocketService is null");
+            return;
+        }
+        SocketService.instance.PostData("server.DAO.CURDRoomDao" + Constant.METHOD_SPLIT + "CreateEditRoom", new string[] {
+            grounpId, roomId, roomName, checkCode,LoginInfo.Userinfo.id.ToString() }, (result) => {
+            DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
+            SendNotification(RoomNotifications.CREATE_EDIT_ROOM_RESULT, dataResult);
 
         });
     }

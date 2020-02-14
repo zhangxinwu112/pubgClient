@@ -8,7 +8,7 @@ public class EnterButtonStateCommand : SimpleCommand
 {
     public override void Execute(INotification notification)
     {
-        RoomJoinProxy roomJoinProxy = (RoomJoinProxy)JoinRoomFade.GetInstance().RetrieveProxy(RoomJoinProxy.NAME);
-        roomJoinProxy.SearchButtonState();
+        //RoomJoinProxy roomJoinProxy = (RoomJoinProxy)JoinRoomFade.GetInstance().RetrieveProxy(RoomJoinProxy.NAME);
+       // roomJoinProxy.SearchButtonState();
     }
 }

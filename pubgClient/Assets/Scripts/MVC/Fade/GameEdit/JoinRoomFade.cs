@@ -31,6 +31,7 @@ public class JoinRoomFade : CommonRoomFade
         RegisterCommand(RoomNotifications.SEARCH_BUTTON_STATE, typeof(EnterButtonStateCommand));
         RegisterCommand(RoomNotifications.CHECK_ENTER_BUTTON, typeof(CheckEnterButtonCommand));
         RegisterCommand(RoomNotifications.CREATE_EDIT_ROOM, typeof(CreateEditRoomCommand));
+        RegisterCommand(RoomNotifications.DELETE_ROOM, typeof(DeleteRoomCommand));
 
     }
 
@@ -44,6 +45,7 @@ public class JoinRoomFade : CommonRoomFade
         base.InitializeProxy();
        
         RegisterProxy(new RoomJoinProxy());
+        RegisterProxy(new CURDRoomProxy());
     }
 
 

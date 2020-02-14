@@ -56,10 +56,14 @@ public class RootJoinRoomView : RootBaseRoomView
     {
         joinButton.onClick.AddListener(()=> {
 
-            string grounpId = GetComponentInChildren<ListView>().selectRoomId;
-            if(!string.IsNullOrEmpty(grounpId))
+            string roomId = GetComponentInChildren<ListView>().selectRoomId;
+            if(!string.IsNullOrEmpty(roomId))
             {
-                action.Invoke(grounpId);
+                action.Invoke(roomId);
+            }
+            else
+            {
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("队列表为空，不能加入。");
             }
            
         });
@@ -68,10 +72,10 @@ public class RootJoinRoomView : RootBaseRoomView
     public void ClickExitHandleEvent(UnityAction<string> action)
     {
         exitButton.onClick.AddListener(()=> {
-            string grounpId = GetComponentInChildren<ListView>().selectRoomId;
-            if(!string.IsNullOrEmpty(grounpId))
+            string roomId = GetComponentInChildren<ListView>().selectRoomId;
+            if(!string.IsNullOrEmpty(roomId))
             {
-                action.Invoke(grounpId);
+                action.Invoke(roomId);
             }
         });
     }

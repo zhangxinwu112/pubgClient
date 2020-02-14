@@ -25,7 +25,11 @@ public class CURDView : MonoBehaviour {
     private InputField roomName;
 
     [SerializeField]
-    private InputField passwordInput;
+    private InputField roomCreatePasswordInput;
+
+
+    [SerializeField]
+    private InputField gamePasswordInput;
 
 
     [SerializeField]
@@ -34,6 +38,10 @@ public class CURDView : MonoBehaviour {
     [SerializeField]
     private Button closeButton;
 
+
+    [SerializeField]
+    private Button titleCloseButton;
+
     void Start () {
 
 
@@ -41,7 +49,8 @@ public class CURDView : MonoBehaviour {
         AddButton.onClick.AddListener(AddRoom);
         modifyButton.onClick.AddListener(EditRoom);
         closeButton.onClick.AddListener(CloseRoom);
-       
+        titleCloseButton.onClick.AddListener(CloseRoom);
+
     }
     public void ClickSubmitHandleEvent(UnityAction<string,string,string,string> action)
     {
@@ -52,7 +61,14 @@ public class CURDView : MonoBehaviour {
                 return;
             }
 
-            if (string.IsNullOrEmpty(passwordInput.text.Trim()))
+            if (string.IsNullOrEmpty(gamePasswordInput.text.Trim()))
+            {
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("游戏密码不能为空。");
+                return;
+            }
+
+
+            if (string.IsNullOrEmpty(roomCreatePasswordInput.text.Trim()))
             {
                 GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("创建房间的密码不能为空。");
                 return;
@@ -60,7 +76,7 @@ public class CURDView : MonoBehaviour {
 
 
             CloseRoom();
-            action.Invoke(gameId, roomId, roomName.text.Trim(), passwordInput.text.Trim());
+            action.Invoke(gamePasswordInput.text.Trim(), roomId, roomName.text.Trim(), roomCreatePasswordInput.text.Trim());
         });
     }
 
@@ -68,7 +84,8 @@ public class CURDView : MonoBehaviour {
     public void DeleteRoom(UnityAction<string> action)
     {
         DeleteButton.onClick.AddListener(()=> {
-            action.Invoke("");
+           string roomId = GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().selectRoomId;
+            action.Invoke(roomId);
         });
     }
 
@@ -76,19 +93,33 @@ public class CURDView : MonoBehaviour {
     {
         transform.localScale = Vector3.one;
         roomId = "-1";
+        roomName.text = "";
+        gamePasswordInput.text = "";
+        roomCreatePasswordInput.text = "";
+        ShowHideList(false);
         SetGrounpName();
     }
 
     private void EditRoom()
     {
         transform.localScale = Vector3.one;
+        ShowHideList(false);
         roomId = GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().selectRoomId;
+        Room room = ListData.FindRoomByKey(roomId);
+        if(room!=null)
+        {
+            roomName.text = room.name.Trim();
+            gamePasswordInput.text = "";
+            roomCreatePasswordInput.text = room.checkCode.Trim();
+        }
+
         SetGrounpName();
     }
 
     private void CloseRoom()
     {
         transform.localScale = Vector3.zero;
+        ShowHideList(true);
     }
 
     private string gameId;
@@ -101,6 +132,24 @@ public class CURDView : MonoBehaviour {
         {
             GameName.text = grounp.name;
         }
+    }
+
+    private void ShowHideList(bool isShow)
+    {
+        if(isShow)
+        {
+            GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().transform.localScale = Vector3.one;
+        }
+        else
+        {
+            GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().transform.localScale = Vector3.zero;
+        }
+       
+    }
+
+    public void SetTitle()
+    {
+
     }
 
 

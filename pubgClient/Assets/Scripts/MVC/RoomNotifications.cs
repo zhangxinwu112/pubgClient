@@ -36,6 +36,12 @@ public class RoomNotifications
     public const string CREATE_EDIT_ROOM = "create_edit_room";
    
     public const string CREATE_EDIT_ROOM_RESULT = "create_edit_room_result";
+
+    public const string DELETE_ROOM = "delete_room";
+
+    public const string DELETE_ROOM_RESULT = "delete_room_result";
+
+
     //================================================================
 
 

@@ -26,9 +26,9 @@ public class EditGameFade : CommonRoomFade
     protected override void InitializeCommand()
     {
         base.InitializeCommand();
-        RegisterCommand(RoomNotifications.CREATE_GROUNP, typeof(CreateGrounpCommand));
+       // RegisterCommand(RoomNotifications.CREATE_GROUNP, typeof(CreateGrounpCommand));
         RegisterCommand(RoomNotifications.EDIT_GROUNP, typeof(EditGrounpCommand));
-        RegisterCommand(RoomNotifications.DELETE_GROUNP, typeof(DeleteGrounpCommand));
+       // RegisterCommand(RoomNotifications.DELETE_GROUNP, typeof(DeleteGrounpCommand));
     }
 
     protected override void InitializeModel()

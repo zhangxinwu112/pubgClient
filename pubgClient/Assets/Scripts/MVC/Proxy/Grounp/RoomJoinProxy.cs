@@ -49,20 +49,7 @@ public class RoomJoinProxy : Proxy
         });
     }
 
-    public void CreateEditRoom(string grounpId,string roomId,string roomName,string checkCode)
-    {
-        if (SocketService.instance == null)
-        {
-            Debug.LogError("SocketService is null");
-            return;
-        }
-        SocketService.instance.PostData("server.DAO.CURDRoomDao" + Constant.METHOD_SPLIT + "CreateEditRoom", new string[] {
-            grounpId, roomId, roomName, checkCode,LoginInfo.Userinfo.id.ToString() }, (result) => {
-            DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
-            SendNotification(RoomNotifications.CREATE_EDIT_ROOM_RESULT, dataResult);
-
-        });
-    }
+   
 
     public void SearchButtonState()
     {

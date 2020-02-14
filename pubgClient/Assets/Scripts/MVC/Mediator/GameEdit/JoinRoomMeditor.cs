@@ -58,7 +58,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
         string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入房间的密码不能为空。");
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入队的密码不能为空。");
             return;
         }
 
@@ -69,9 +69,9 @@ public class JoinRoomMeditor : Mediator, IEventListener
         SendNotification(RoomNotifications.JOIN_ROOM, dic);
     }
 
-    private void ExitRoom(string grounpId)
+    private void ExitRoom(string roomId)
     {
-        SendNotification(RoomNotifications.EXIT_ROOM, grounpId);
+        SendNotification(RoomNotifications.EXIT_ROOM, roomId);
     }
 
   
@@ -95,11 +95,13 @@ public class JoinRoomMeditor : Mediator, IEventListener
         SendNotification(RoomNotifications.SEARCH_BUTTON_STATE);
     }
 
-    public void AddEditRoom(string grounpId,string roomId,string roomName,string roomPassword)
+    public void AddEditRoom(string gamePassword,string roomId,string roomName,string roomPassword)
     {
         
         Dictionary<string, string> dic = new Dictionary<string, string>();
+        string grounpId = root.GetComponentInChildren<ListView>().selectGameId;
         dic.Add("grounpId", grounpId);
+        dic.Add("gamePassword", gamePassword);
         dic.Add("roomId", roomId);
         dic.Add("roomName", roomName);
         dic.Add("roomPassword", roomPassword);
@@ -108,7 +110,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
 
     public void DeleteRoom(string roomId)
     {
-
+        SendNotification(RoomNotifications.DELETE_ROOM, roomId);
     }
 
     /// <summary>
@@ -133,6 +135,9 @@ public class JoinRoomMeditor : Mediator, IEventListener
         list.Add(RoomNotifications.SEARCH_BUTTON_STATE_RESULT);
 
         list.Add(RoomNotifications.CREATE_EDIT_ROOM_RESULT);
+        list.Add(RoomNotifications.DELETE_ROOM_RESULT);
+
+        
         return list;
     }
 
@@ -181,6 +186,10 @@ public class JoinRoomMeditor : Mediator, IEventListener
                 ResultcallBack(notification, "成功退出房间");
                 break;
             case RoomNotifications.CREATE_EDIT_ROOM_RESULT:
+
+                ResultcallBack(notification, "操作成功");
+                break;
+            case RoomNotifications.DELETE_ROOM_RESULT:
 
                 ResultcallBack(notification, "操作成功");
                 break;

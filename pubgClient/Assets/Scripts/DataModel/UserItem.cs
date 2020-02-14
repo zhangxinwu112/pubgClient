@@ -15,5 +15,7 @@ namespace server.Model
         //1 管理员
         // 2 道具
         public int type;
+
+        public int runState = -1;
     }
 }

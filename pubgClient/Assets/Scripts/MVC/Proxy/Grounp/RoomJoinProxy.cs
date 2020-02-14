@@ -34,7 +34,6 @@ public class RoomJoinProxy : Proxy
         });
     }
 
-
     public void ExitRoom(string grounpId)
     {
         if (SocketService.instance == null)

@@ -1,4 +1,5 @@
 ﻿using DataModel;
+using server.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,7 +51,7 @@ public class ListMsg : MonoBehaviour {
         {
             if (isDefence)
             {
-                coloneItem.transform.Find("SetFence").GetComponent<FenceStateButton>().Change();
+                coloneItem.transform.Find("SetFence").GetComponent<ChangeStateButton>().Change();
             }
         }
     }
@@ -64,11 +65,38 @@ public class ListMsg : MonoBehaviour {
             {
                 coloneItem.transform.Find("count").GetComponent<Image>().color = new Color32(204, 51, 255, 255);
             }
+            //只读
+            coloneItem.transform.Find("count").GetComponent<Button>().enabled = false;
         }
+        //只读
+        if (coloneItem.transform.Find("ok") != null)
+        {
+            if(runState)
+            {
+                coloneItem.GetComponentInChildren<ChangeStateButton>().Change();
+            }
+           
+            coloneItem.transform.Find("ok").GetComponent<Button>().enabled = false;
+        }
+
     }
 
-    public void SetUser(bool runState)
+    public void SetUser(GameObject newObject, UserItem userItem)
     {
+        if (userItem.runState == 0)
+        {
+            newObject.GetComponentInChildren<ChangeStateButton>().Change();
+
+            //运行起来后
+            newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().enabled = false;
+        }
+        //管理员
+        if (LoginInfo.Userinfo.type == 1)
+        {
+            newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().enabled = false;
+        }
+
+
 
     }
 
@@ -117,17 +145,13 @@ public class ListMsg : MonoBehaviour {
             string roomId = toggle.name;
             GetComponentInParent<ListView>().selectRoomId = roomId;
             string itemName = toggle.transform.Find("name").GetComponent<Text>().text;
-            if(GetComponentInParent<RootEditGameView>()!=null)
-            {
-                //GetComponentInParent<RootEditGameView>().gameEditView.ShowGrounpName(itemName);
-
-                //Room room = GetComponentInParent<RootEditGameView>().roomListView.FindRoomByKey(grounpId);
-                //if (room != null)
-                //{
-                //    GetComponentInParent<RootEditGameView>().gameEditView.ShowCheckCode(room.checkCode);
-                //}
-            }
             GetComponentInParent<RootBaseRoomView>().CallSearchSingleGrounpAction(roomId);
         }
+    }
+
+    public void Ready(Toggle toggle)
+    {
+
+        Debug.Log(toggle.name);
     }
 }

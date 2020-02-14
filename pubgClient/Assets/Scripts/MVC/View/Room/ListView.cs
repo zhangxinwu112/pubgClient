@@ -1,4 +1,5 @@
 ﻿using DataModel;
+using server.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -120,21 +121,7 @@ public class ListView : MonoBehaviour {
             bool isSeleced = false;
             if (i == 0)
             {
-
                 isSeleced = true;
-                
-                //selectGrounpId = item.id.ToString();
-                //if (GetComponentInParent<RootEditGameView>() != null)
-                //{
-                //    GetComponentInParent<RootEditGameView>().gameEditView.ShowEditData(item.name, item.pa);
-
-                //    Room room = FindRoomByKey(selectGrounpId);
-                //    if (room != null)
-                //    {
-                //        GetComponentInParent<RootEditGameView>().gameEditView.ShowCheckCode(room.checkCode);
-                //    }
-                //}
-            
             }
             
             GameObject newObject =  listMsg.Create(item.id.ToString(), item.name, isSeleced);
@@ -147,11 +134,6 @@ public class ListView : MonoBehaviour {
                 listMsg.SetGrountp(newObject, (item as Room).userCount, false, (item as Room).isCurrentUser);
             }
            
-
-           
-
-
-
             i++;
         });
 
@@ -171,19 +153,9 @@ public class ListView : MonoBehaviour {
             }
             else
             {
-
                 newObject = listMsg.Create(item.id.ToString(), item.name, false);
-
             }
-            if((item as RoomUser).runState==0)
-            {
-                listMsg.SetUser(true);
-            }
-            else
-            {
-                listMsg.SetUser(false);
-            }
-           
+            listMsg.SetUser(newObject, item as UserItem);
             i++;
         });
 

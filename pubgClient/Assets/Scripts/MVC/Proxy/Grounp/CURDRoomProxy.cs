@@ -42,7 +42,7 @@ public class CURDRoomProxy : Proxy
             return;
         }
         SocketService.instance.PostData("server.DAO.CURDRoomDao" + Constant.METHOD_SPLIT + "DeleteRoom", new string[] {
-            roomId }, (result) => {
+            roomId,LoginInfo.Userinfo.id.ToString() }, (result) => {
                 DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
                 SendNotification(RoomNotifications.DELETE_ROOM_RESULT, dataResult);
 

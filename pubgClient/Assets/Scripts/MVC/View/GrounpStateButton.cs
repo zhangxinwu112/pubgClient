@@ -25,7 +25,7 @@ public class GrounpStateButton : MonoBehaviour {
             GetComponent<Button>().onClick.AddListener(() => {
                 if (!isPlay)
                 {
-                    GrounpStateProxy.SaveState(grounpId, (result) => {
+                    RestFulProxy.SaveState(grounpId, (result) => {
 
                         result = result.Trim('"');
                         if (result.Equals("0"))

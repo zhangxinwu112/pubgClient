@@ -151,7 +151,22 @@ public class ListMsg : MonoBehaviour {
 
     public void Ready(Toggle toggle)
     {
+        RestFulProxy.SetUserState(LoginInfo.Userinfo.id, (result) => {
 
-        Debug.Log(toggle.name);
+            result = result.Trim('"');
+            if (result.Equals("0"))
+            {
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作成功");
+            }
+            if (result.Equals("-2"))
+            {
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，该对不能只有一个玩家");
+            }else
+            {
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作失败");
+            }
+
+        }, null);
+       // Debug.Log(toggle.name);
     }
 }

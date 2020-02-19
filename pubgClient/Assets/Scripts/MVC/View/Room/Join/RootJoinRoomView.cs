@@ -63,7 +63,7 @@ public class RootJoinRoomView : RootBaseRoomView
             }
             else
             {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("队列表为空，不能加入。");
+               errorMessage.ShowMessage("队列表为空，不能加入。");
             }
            
         });

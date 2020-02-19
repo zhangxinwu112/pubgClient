@@ -9,7 +9,7 @@ public class InputchangeKeySearch : MonoBehaviour {
 	void Start () {
 
         GetComponent<InputField>().onValueChanged.AddListener((a) => {
-            EventMgr.Instance.SendEvent(Constant.KEY_SEARCH, null);
+            EventMgr.Instance.SendEvent(EventName.KEY_SEARCH, null);
         });
     }
 	

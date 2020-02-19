@@ -18,7 +18,7 @@ public sealed class PubgSocket  {
     private int port = 9000;
 
     private EasyClient client = null;
-    private int mHeartBeatInterval = 1000 * 5;
+    private int mHeartBeatInterval = 1000 * 3;
     /// 心跳检查定时器
     private System.Threading.Timer tmrHeartBeat = null;
 
@@ -160,9 +160,10 @@ public sealed class PubgSocket  {
         {
             tmrReLogin.Change(Timeout.Infinite, Timeout.Infinite);
 
+            //已登录
             if(LoginInfo.Userinfo!=null)
             {
-                string sendData = command.CommandName.RequestLogin.ToString() + Constant.START_SPLIT + LoginInfo.Userinfo.telephone;
+                string sendData = command.CommandName.RequestLogin.ToString() + Constant.START_SPLIT + LoginInfo.Userinfo.id;
                 Send(sendData);
             }
             else

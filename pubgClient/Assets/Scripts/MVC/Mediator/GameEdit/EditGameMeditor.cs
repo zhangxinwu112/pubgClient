@@ -48,7 +48,8 @@ public class EditGameMeditor : Mediator,IEventListener
             SetFence();
         });
         SendRequestAllGrounp();
-        EventMgr.Instance.AddListener(this, Constant.KEY_SEARCH);
+        EventMgr.Instance.AddListener(this, EventName.KEY_SEARCH);
+        EventMgr.Instance.AddListener(this, EventName.UPDATE_PLAYER_STATE);
     }
 
     private void SetFence()
@@ -56,7 +57,7 @@ public class EditGameMeditor : Mediator,IEventListener
         string grounpId = root.GetComponentInChildren<ListView>().selectGameId;
        
         Grounp grounp = ListData.FindGrounpByKey(root.GetComponentInChildren<ListView>().selectGameId);
-        GrounpStateProxy.SearchState(grounpId, (result) =>
+        RestFulProxy.SearchState(grounpId, (result) =>
         {
             result = result.Trim('"');
             if (result.Equals("1"))
@@ -214,13 +215,18 @@ public class EditGameMeditor : Mediator,IEventListener
 
     public bool HandleEvent(string eventName, IDictionary<string, object> dictionary)
     {
-        SendRequestAllGrounp();
+        if(eventName.Equals(EventName.KEY_SEARCH) || eventName.Equals(EventName.UPDATE_PLAYER_STATE))
+        {
+            SendRequestAllGrounp();
+        }
+       
         return true;
         //throw new System.NotImplementedException();
     }
 
     public void RemoveEvent()
     {
-        EventMgr.Instance.RemoveListener(this, Constant.KEY_SEARCH);
+        EventMgr.Instance.RemoveListener(this, EventName.KEY_SEARCH);
+        EventMgr.Instance.RemoveListener(this, EventName.UPDATE_PLAYER_STATE);
     }
 }

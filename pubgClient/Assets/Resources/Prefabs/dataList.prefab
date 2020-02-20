@@ -1001,7 +1001,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1732243855354352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 208.26, y: 56.87506, z: 4}
+  m_LocalPosition: {x: 199, y: 56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224397609630256456}
@@ -2042,7 +2042,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e29e6ed99938b6148a7ec4d19bed7d49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4dd4bd478848db4f892aa9cc3efb146, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2782,7 +2782,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e29e6ed99938b6148a7ec4d19bed7d49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4dd4bd478848db4f892aa9cc3efb146, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2801,7 +2801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f696636fa1cf5b94a9fc367f824d4b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setConfig: {fileID: 21300000, guid: b6c74e35b9765ab4fae64c0e361aad73, type: 3}
+  setConfig: {fileID: 21300000, guid: 07455a80baeca6f4ca5a174f3eabb878, type: 3}
 --- !u!114 &114733774584503270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f696636fa1cf5b94a9fc367f824d4b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setConfig: {fileID: 21300000, guid: b6c74e35b9765ab4fae64c0e361aad73, type: 3}
+  setConfig: {fileID: 21300000, guid: 07455a80baeca6f4ca5a174f3eabb878, type: 3}
 --- !u!222 &222004319711174556
 CanvasRenderer:
   m_ObjectHideFlags: 1

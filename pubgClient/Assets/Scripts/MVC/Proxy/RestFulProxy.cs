@@ -29,6 +29,7 @@ public class RestFulProxy
     public static void SetUserState(int userId, System.Action<string> scuessCallBack, System.Action<string> failtureCallBack = null)
     {
         string url = "http://" + Config.parse("ServerIP") + ":8899/SetPlayerState/" + userId;
+       // NGUIDebug.Log(url);
         ResourceUtility.Instance.GetHttpText(url, scuessCallBack);
     }
 

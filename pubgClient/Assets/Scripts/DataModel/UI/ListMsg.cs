@@ -39,12 +39,12 @@ public class ListMsg : MonoBehaviour {
             //玩家或者非当前的管理员所属的游戏
             if(LoginInfo.Userinfo.type == 0 || (LoginInfo.Userinfo.type == 1 && index!=0))
             {
-                coloneItem.transform.Find("GrounpState").GetComponent<Button>().enabled = false;
+                coloneItem.transform.Find("GrounpState").GetComponent<Button>().interactable = false;
 
             }
             else
             {
-                coloneItem.transform.Find("GrounpState").GetComponent<Button>().enabled = true;
+                coloneItem.transform.Find("GrounpState").GetComponent<Button>().interactable = true;
             }
         }
         if (coloneItem.transform.Find("SetFence") != null)
@@ -66,7 +66,7 @@ public class ListMsg : MonoBehaviour {
                 coloneItem.transform.Find("count").GetComponent<Image>().color = new Color32(204, 51, 255, 255);
             }
             //只读
-            coloneItem.transform.Find("count").GetComponent<Button>().enabled = false;
+            coloneItem.transform.Find("count").GetComponent<Button>().interactable = false;
         }
         //只读
         if (coloneItem.transform.Find("ok") != null)
@@ -76,25 +76,38 @@ public class ListMsg : MonoBehaviour {
                 coloneItem.GetComponentInChildren<ChangeStateButton>().Change();
             }
            
-            coloneItem.transform.Find("ok").GetComponent<Button>().enabled = false;
+            coloneItem.transform.Find("ok").GetComponent<Button>().interactable = false;
         }
 
     }
 
     public void SetUser(GameObject newObject, UserItem userItem)
     {
-        if (userItem.runState == 0)
-        {
-            newObject.GetComponentInChildren<ChangeStateButton>().Change();
-
-            //运行起来后
-            newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().enabled = false;
-        }
+        //已经准备好
+       
         //管理员
         if (LoginInfo.Userinfo.type == 1)
         {
-            newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().enabled = false;
+            newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().interactable = false;
         }
+        else
+        {
+            if (userItem.runState == 0)
+            {
+                newObject.GetComponentInChildren<ChangeStateButton>().Change();
+
+                //运行起来后
+                newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                if(LoginInfo.Userinfo.id != userItem.id)
+                {
+                    newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().interactable = false;
+                }
+            }
+        }
+
 
 
 
@@ -151,19 +164,26 @@ public class ListMsg : MonoBehaviour {
 
     public void Ready(Toggle toggle)
     {
+        //if(!toggle.name.Equals(LoginInfo.Userinfo.id.ToString()))
+        //{
+        //    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("非法操作");
+        //    return;
+        //}
+       // NGUIDebug.Log(toggle.name);
         RestFulProxy.SetUserState(LoginInfo.Userinfo.id, (result) => {
 
+            //NGUIDebug.Log(result);
             result = result.Trim('"');
             if (result.Equals("0"))
             {
                 GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作成功");
             }
-            if (result.Equals("-2"))
+            else if (result.Equals("-2"))
             {
                 GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，该对不能只有一个玩家");
             }else
             {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作失败");
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，其他玩家未准备就绪");
             }
 
         }, null);

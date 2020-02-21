@@ -46,7 +46,7 @@ public class RootEditGameView : RootBaseRoomView
 
     public void SetButtonState(bool state)
     {
-        enterGameButton.interactable = state;
+       // enterGameButton.interactable = state;
         setFenceButton.interactable = state;
     }
 

@@ -33,5 +33,15 @@ public class RestFulProxy
         ResourceUtility.Instance.GetHttpText(url, scuessCallBack);
     }
 
+    public static void CheckEnterButton(System.Action<string> scuessCallBack, System.Action<string> failtureCallBack = null)
+    {
+
+        int userId = LoginInfo.Userinfo.id;
+        int userType = LoginInfo.Userinfo.type;
+        string url = "http://" + Config.parse("ServerIP") + ":8899/CheckEnterButton/" + userId+"|"+ userType;
+        // NGUIDebug.Log(url);
+        ResourceUtility.Instance.GetHttpText(url, scuessCallBack);
+    }
+
 
 }

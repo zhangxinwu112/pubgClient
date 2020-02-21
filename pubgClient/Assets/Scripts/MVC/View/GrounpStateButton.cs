@@ -30,7 +30,7 @@ public class GrounpStateButton : MonoBehaviour {
                         result = result.Trim('"');
                         if (result.Equals("0"))
                         {
-                            GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(grounpName + "，游戏已成功启动", 5.0f);
+                            GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("游戏已成功启动", 5.0f);
                             SwitchState();
                         }
                         else

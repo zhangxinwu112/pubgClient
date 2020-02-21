@@ -31,8 +31,7 @@ public class RootJoinRoomView : RootBaseRoomView
     void Start () {
 
         JoinRoomFade.GetInstance().StartUp(gameObject);
-        enterButton.interactable = false;
-        StartCoroutine(CheckEnterState());
+     
         KeyNameSearchField.text = "";
         enterInputField.text = "";
     }
@@ -82,24 +81,9 @@ public class RootJoinRoomView : RootBaseRoomView
 
     private UnityAction callBack;
 
-    public void ButtonStateCallBack(UnityAction callBack)
-    {
-        this.callBack = callBack;
-    }
+  
 
-    private IEnumerator CheckEnterState()
-    {
-        while(true)
-        {
-            if (callBack != null)
-            {
-                callBack.Invoke();
-            }
-
-            yield return new WaitForSeconds(2.0f);
-           
-        }
-    }
+  
 
     public void SetEnterButtonActive(bool isActive)
     {

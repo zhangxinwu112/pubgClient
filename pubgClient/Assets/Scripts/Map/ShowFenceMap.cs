@@ -80,21 +80,13 @@ public class ShowFenceMap : MonoBehaviour {
             //退出
             case "Back":
                 {
-                    SceneTools.instance.LoadScene("CreateRoom");
+                    SceneTools.instance.LoadScene("EditGame");
                     break;
                 };
         
         }
 
     }
-
-    //private void Update()
-    //{
-    //    if(Input.GetKeyUp(KeyCode.A))
-    //    {
-    //        SceneTools.instance.LoadScene("CreateRoom");
-    //    }
-    //}
 
     public void DeleteWebPage()
     {

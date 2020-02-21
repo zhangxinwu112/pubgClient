@@ -37,7 +37,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
         root.GetComponent<RootJoinRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootJoinRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
         //查询进入游戏按钮的状态
-        root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
+       // root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
         root.GetComponent<RootJoinRoomView>().EnterRoom(EnterButtonHandle);
         //增加修改房间
         root.GetComponent<RootJoinRoomView>().curdView.ClickSubmitHandleEvent(AddEditRoom);
@@ -93,10 +93,10 @@ public class JoinRoomMeditor : Mediator, IEventListener
         SendNotification(RoomNotifications.SINGLE_GROUNP, grounpId);
     }
 
-    private void SearchEnterButtonState()
-    {
-        SendNotification(RoomNotifications.SEARCH_BUTTON_STATE);
-    }
+    //private void SearchEnterButtonState()
+    //{
+    //    SendNotification(RoomNotifications.SEARCH_BUTTON_STATE);
+    //}
 
     public void AddEditRoom(string gamePassword,string roomId,string roomName,string roomPassword)
     {
@@ -182,11 +182,11 @@ public class JoinRoomMeditor : Mediator, IEventListener
 
             case RoomNotifications.JOIN_ROOM_RESULT:
 
-                ResultcallBack(notification, "成功加入房间");
+                ResultcallBack(notification, "成功加入队");
                 break;
             case RoomNotifications.EXIT_ROOM_RESULT:
 
-                ResultcallBack(notification, "成功退出房间");
+                ResultcallBack(notification, "成功退出队");
                 break;
             case RoomNotifications.CREATE_EDIT_ROOM_RESULT:
 

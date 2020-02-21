@@ -50,6 +50,7 @@ public class EditGameMeditor : Mediator,IEventListener
         SendRequestAllGrounp();
         EventMgr.Instance.AddListener(this, EventName.KEY_SEARCH);
         EventMgr.Instance.AddListener(this, EventName.UPDATE_PLAYER_STATE);
+        EventMgr.Instance.AddListener(this, EventName.SHOW_MESSAGE);
     }
 
     private void SetFence()
@@ -219,14 +220,19 @@ public class EditGameMeditor : Mediator,IEventListener
         {
             SendRequestAllGrounp();
         }
-       
+        else if(eventName.Equals(EventName.SHOW_MESSAGE))
+        {
+            string message = dictionary["message"].ToString();
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(message);
+        }
+        
         return true;
-        //throw new System.NotImplementedException();
     }
 
     public void RemoveEvent()
     {
         EventMgr.Instance.RemoveListener(this, EventName.KEY_SEARCH);
         EventMgr.Instance.RemoveListener(this, EventName.UPDATE_PLAYER_STATE);
+        EventMgr.Instance.RemoveListener(this, EventName.SHOW_MESSAGE);
     }
 }

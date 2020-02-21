@@ -23,7 +23,8 @@ public class RoomJoinProxy : Proxy
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT+ "JoinRoom", new string[] { checkCode, roomId, LoginInfo.Userinfo.id.ToString()}, (result) => {
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT+ "JoinRoom", new string[] { checkCode, roomId,
+            LoginInfo.Userinfo.id.ToString(),LoginInfo.Userinfo.name}, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             
             if(dataResult!=null)
@@ -41,7 +42,8 @@ public class RoomJoinProxy : Proxy
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "ExitRoom", new string[] { grounpId, LoginInfo.Userinfo.id.ToString() }, (result) => {
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT + "ExitRoom", new string[] { grounpId,
+            LoginInfo.Userinfo.id.ToString(),LoginInfo.Userinfo.name }, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             SendNotification(RoomNotifications.EXIT_ROOM_RESULT, dataResult);
 

@@ -47,6 +47,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
         
         EventMgr.Instance.AddListener(this, EventName.KEY_SEARCH);
         EventMgr.Instance.AddListener(this, EventName.UPDATE_PLAYER_STATE);
+        EventMgr.Instance.AddListener(this, EventName.SHOW_MESSAGE);
         SendRequestAllGrounp();
     }
 
@@ -229,7 +230,12 @@ public class JoinRoomMeditor : Mediator, IEventListener
         {
             SendRequestAllGrounp();
         }
-       
+        else if (eventName.Equals(EventName.SHOW_MESSAGE))
+        {
+            string message = dictionary["message"].ToString();
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(message);
+        }
+
         return true;
     }
 
@@ -237,5 +243,6 @@ public class JoinRoomMeditor : Mediator, IEventListener
     {
         EventMgr.Instance.RemoveListener(this, EventName.KEY_SEARCH);
         EventMgr.Instance.RemoveListener(this, EventName.UPDATE_PLAYER_STATE);
+        EventMgr.Instance.RemoveListener(this, EventName.SHOW_MESSAGE);
     }
 }

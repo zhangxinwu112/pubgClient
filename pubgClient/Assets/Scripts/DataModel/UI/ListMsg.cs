@@ -84,8 +84,11 @@ public class ListMsg : MonoBehaviour {
     public void SetUser(GameObject newObject, UserItem userItem)
     {
         //已经准备好
-       
-        //管理员
+        if (userItem.runState == 0)
+        {
+            newObject.GetComponentInChildren<ChangeStateButton>().Change();
+        }
+            //管理员
         if (LoginInfo.Userinfo.type == 1)
         {
             newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().interactable = false;
@@ -94,8 +97,6 @@ public class ListMsg : MonoBehaviour {
         {
             if (userItem.runState == 0)
             {
-                newObject.GetComponentInChildren<ChangeStateButton>().Change();
-
                 //运行起来后
                 newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().interactable = false;
             }

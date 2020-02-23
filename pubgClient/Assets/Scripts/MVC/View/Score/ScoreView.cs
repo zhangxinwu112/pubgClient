@@ -11,17 +11,24 @@ public class ScoreView : MonoBehaviour {
 
     public ToggleGroup leftGrounp;
 
+    //玩家排行
+    public Button playerOrderButton;
+
+    //玩家排行
+    public Button GrounpOrderButton;
+
+
+
     public GameObject item;
     void Start () {
-        RequstData();
+        RequstData(0);
 
     }
 	
 	
-
-    private void RequstData()
+    public void RequstData(int currentPlayer)
     {
-        RestFulProxy.SearchScore(0, (result) => {
+        RestFulProxy.SearchScore(currentPlayer, (result) => {
 
             result = result.Trim('"');
             result = result.Replace("\\", "");

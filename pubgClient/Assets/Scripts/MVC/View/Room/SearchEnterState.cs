@@ -31,6 +31,7 @@ public class SearchEnterState : MonoBehaviour {
                 if(result.Equals("0"))
                 {
                     GetComponent<Button>().interactable = true;
+                    SoundUtilty.PlayResouceSound("Sound/GameStart");
                     if(enterGameButton!=null)
                     {
                         enterGameButton.interactable = false;

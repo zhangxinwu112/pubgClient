@@ -1,10 +1,9 @@
 ﻿using command;
-using server.Model;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Tool;
 using UnityEngine;
-using DG.Tweening;
 
 public class ShowMapPoint : MonoBehaviour {
 
@@ -75,17 +74,22 @@ public class ShowMapPoint : MonoBehaviour {
 
     private void FunctionCallBack(UniWebView webView, UniWebViewMessage message)
     {
-        //NGUIDebug.Log(message.Path);
         switch (message.Path)
         {
-            //退出
-            case "Exit":
+            //
+            case "Back":
                 {
                     SceneTools.instance.BackScene();
                    
                     break;
                 };
-        
+            case "GameOver":
+                {
+                    SceneTools.instance.LoadScene("ScoreOrder");
+
+                    break;
+                };
+
         }
  
     }
@@ -124,6 +128,13 @@ public class ShowMapPoint : MonoBehaviour {
         //GrounpStateProxy.Debug(functionName, null);
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
         //GetComponent<UniWebView>().EvaluateJavaScript(functionName);
+    }
+
+    public void GameOver()
+    {
+        string functionName = "StartGameOver()";
+       
+        GetComponent<UniWebView>().EvaluateJavaScript(functionName);
     }
 
      private IEnumerator UpdatePostion()

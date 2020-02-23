@@ -25,11 +25,11 @@ public class MessageBox
     {
         Show(title, msg, Vector2.zero, MessageBoxButtonState.OK,buttonEvent);
     }
-    public static void Show(string title, string msg, MessageBoxButtonState state, MessageBoxDelegate buttonEvent)
+    public static void Show(string title, string msg, MessageBoxButtonState state, MessageBoxDelegate buttonEvent,bool isShowCancel)
     {
-        Show(title,msg, Vector2.zero,state,buttonEvent);
+        Show(title,msg, Vector2.zero,state,buttonEvent, isShowCancel);
     }
-    public static void Show(string title,string msg,Vector3 pos, MessageBoxButtonState state, MessageBoxDelegate buttonEvent)
+    public static void Show(string title,string msg,Vector3 pos, MessageBoxButtonState state, MessageBoxDelegate buttonEvent, bool isShowCancel =false)
     {
         if (messageBoxClone == null)
         {
@@ -37,7 +37,7 @@ public class MessageBox
             messageBoxClone = GameObject.Instantiate(messageObj) as GameObject;
             messageBoxClone.transform.SetParent(UIUtility.GetRootCanvas());
 
-            messageBoxClone.transform.localScale = new Vector3(1, 1, 1);
+            messageBoxClone.transform.localScale = new Vector3(2, 2, 2);
             messageBoxClone.transform.localRotation = Quaternion.Euler(0, 0, 0);
             messageBoxClone.GetComponent<RectTransform>().anchoredPosition3D = pos;
         }
@@ -45,7 +45,7 @@ public class MessageBox
 
         uiMessage.Open();
         uiMessage.Clear();
-        uiMessage.SetButtonState(state);
+        uiMessage.SetButtonState(state, isShowCancel);
         uiMessage.SetTitle(title);
         uiMessage.SetMessage(msg);
         uiMessage.SetButtonEvent(buttonEvent);

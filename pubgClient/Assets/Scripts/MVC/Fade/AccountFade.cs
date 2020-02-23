@@ -27,7 +27,7 @@ public class AccountFade : Facade, IFacade
     {
         base.InitializeModel();
 
-        
+      //  NGUIDebug.Log("注册");
         RegisterProxy(new RegisterProxy());
 
     }

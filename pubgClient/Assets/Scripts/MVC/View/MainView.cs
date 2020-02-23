@@ -27,14 +27,19 @@ public class MainView : MonoBehaviour {
     void Start () {
         quitButton.onClick.AddListener(()=> {
 
-            Application.Quit();
+            MessageBox.Show("信息提示", "确定要退出系统吗？", MessageBoxButtonState.OK, (ok) => {
+
+               Application.Quit();
+
+            },true);
+            
         });
 
         backButton.onClick.AddListener(() => {
 
             string currentScene = PlayerPrefs.GetString("currrentScene");
            
-            if(string.Compare(currentScene, "Game") ==0)
+            if(string.Compare(currentScene, "Game") ==0 || string.Compare(currentScene, "ScoreOrder")==0)
             {
                 SceneTools.instance.BackScene();
             }

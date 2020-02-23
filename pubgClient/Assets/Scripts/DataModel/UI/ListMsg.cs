@@ -163,31 +163,36 @@ public class ListMsg : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 玩家准备操作
+    /// </summary>
+    /// <param name="toggle"></param>
     public void Ready(Toggle toggle)
     {
-        //if(!toggle.name.Equals(LoginInfo.Userinfo.id.ToString()))
-        //{
-        //    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("非法操作");
-        //    return;
-        //}
-       // NGUIDebug.Log(toggle.name);
-        RestFulProxy.SetUserState(LoginInfo.Userinfo.id, (result) => {
+        
+        MessageBox.Show("信息提示", "确定游戏准备就绪操作吗？", MessageBoxButtonState.OK, (ok) => {
 
-            //NGUIDebug.Log(result);
-            result = result.Trim('"');
-            if (result.Equals("0"))
-            {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作成功");
-            }
-            else if (result.Equals("-2"))
-            {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，该对不能只有一个玩家");
-            }else
-            {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，其他玩家未准备就绪");
-            }
+            RestFulProxy.SetUserState(LoginInfo.Userinfo.id, (result) => {
 
-        }, null);
-       // Debug.Log(toggle.name);
+                //NGUIDebug.Log(result);
+                result = result.Trim('"');
+                if (result.Equals("0"))
+                {
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作成功");
+                }
+                else if (result.Equals("-2"))
+                {
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，该对不能只有一个玩家");
+                }
+                else
+                {
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，其他玩家未准备就绪");
+                }
+
+            }, null);
+
+        }, true);
+
+      
     }
 }

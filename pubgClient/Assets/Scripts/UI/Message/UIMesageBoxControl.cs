@@ -67,7 +67,7 @@ public class UIMesageBoxControl : MonoBehaviour {
     {
         if (onBtnEvent != null)
         {
-            onBtnEvent("cancel");
+          //  onBtnEvent("cancel");
         }
         Close();
     }
@@ -78,8 +78,10 @@ public class UIMesageBoxControl : MonoBehaviour {
     {
         TransparentMaskManager.Instance.Hide();
         TransparentMaskManager.Instance.Show();
-        TransparentMaskManager.Instance.SetTransparent(30);
+        TransparentMaskManager.Instance.SetTransparent(200);
         gameObject.SetActive(true);
+        transform.SetAsLastSibling();
+        
     }
 
     public void Close()
@@ -117,20 +119,22 @@ public class UIMesageBoxControl : MonoBehaviour {
         //}
     }
 
-    public void SetButtonState(MessageBoxButtonState state)
+    public void SetButtonState(MessageBoxButtonState state, bool isShowCancel)
     {
         if (state == MessageBoxButtonState.OK)
         {
             btn_ok.gameObject.SetActive(true);
-            btn_cancel.gameObject.SetActive(false);
+           
            // btn_ok.gameObject.GetComponent<RectTransform>().anchoredPosition = btn_ok_pos;
         }
-        else if (state == MessageBoxButtonState.OK_Cancel)
-        {
-            btn_ok.gameObject.SetActive(true);
-            btn_cancel.gameObject.SetActive(true);
-           // btn_ok.gameObject.GetComponent<RectTransform>().anchoredPosition = btn_ok_both_pos;
-        }
+        //else if (state == MessageBoxButtonState.OK_Cancel)
+        //{
+        //    btn_ok.gameObject.SetActive(true);
+        //    //btn_cancel.gameObject.SetActive(true);
+        //   // btn_ok.gameObject.GetComponent<RectTransform>().anchoredPosition = btn_ok_both_pos;
+        //}
+        btn_cancel.gameObject.SetActive(isShowCancel);
+
     }
 
     public void SetButtonEvent(MessageBoxDelegate boxDelegate)

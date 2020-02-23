@@ -14,7 +14,7 @@ public class TransparentMaskManager : MonoSingleton<TransparentMaskManager> {
     {
         
         mask = TransformControlUtility.CreateItem("Mask", UIUtility.GetRootCanvas());
-        mask.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+        mask.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
         if(isHideButton)
         {
             mask.GetComponentInChildren<Button>().gameObject.SetActive(false);
@@ -23,7 +23,7 @@ public class TransparentMaskManager : MonoSingleton<TransparentMaskManager> {
 
     public void SetTransparent(byte transparentValue)
     {
-        mask.GetComponent<Image>().color = new Color32(255, 255, 255, transparentValue);
+        mask.GetComponent<Image>().color = new Color32(0, 0, 0, transparentValue);
     }
  
     public void Hide()

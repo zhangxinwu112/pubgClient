@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98ea96880f86014b872a0c735e09cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enterGameButton: {fileID: 1443116903}
 --- !u!1 &186455313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,21 +1798,6 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224095710958750106, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224095710958750106, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224095710958750106, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224891455689285414, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -1823,21 +1809,6 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224891455689285414, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224206579077350146, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224206579077350146, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224206579077350146, guid: 38bc2d3d3d0e73b41b60902c93600ed0,
         type: 2}
       propertyPath: m_SizeDelta.x
       value: 0

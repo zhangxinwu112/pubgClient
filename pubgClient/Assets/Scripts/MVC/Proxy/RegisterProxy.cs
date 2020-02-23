@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class RegisterProxy : Proxy
 {
-    public new const string NAME = "MachineCodeProxy";
+    public new const string NAME = "RegisterProxy";
 
     public RegisterProxy() : base(NAME)
     {

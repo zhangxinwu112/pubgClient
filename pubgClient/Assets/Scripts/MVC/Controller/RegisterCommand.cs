@@ -17,6 +17,7 @@ public class RegisterCommand : SimpleCommand
         string checkCode = dic["checkCode"].ToString();
         string userType = dic["userType"].ToString();
 
+       // NGUIDebug.Log(LoginFade.GetInstance().RetrieveProxy(RegisterProxy.NAME));
         RegisterProxy registerProxy = (RegisterProxy)LoginFade.GetInstance().RetrieveProxy(RegisterProxy.NAME);
 
         registerProxy.Register(telephone, password, name, icon, checkCode, userType);

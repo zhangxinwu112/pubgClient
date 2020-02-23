@@ -5,9 +5,16 @@ using UnityEngine.UI;
 
 public class SearchEnterState : MonoBehaviour {
 
+    [SerializeField]
+    private Button enterGameButton;
 	// Use this for initialization
 	void Start () {
         GetComponent<Button>().interactable = false;
+        if(enterGameButton!=null)
+        {
+            enterGameButton.interactable = true;
+        }
+        
         StartCoroutine(CheckEnterState());
     }
 	
@@ -24,6 +31,12 @@ public class SearchEnterState : MonoBehaviour {
                 if(result.Equals("0"))
                 {
                     GetComponent<Button>().interactable = true;
+                    if(enterGameButton!=null)
+                    {
+                        enterGameButton.interactable = false;
+                    }
+                   
+
                     StopAllCoroutines();
                 }
 

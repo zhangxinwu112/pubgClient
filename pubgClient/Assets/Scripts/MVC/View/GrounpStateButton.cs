@@ -25,21 +25,28 @@ public class GrounpStateButton : MonoBehaviour {
             GetComponent<Button>().onClick.AddListener(() => {
                 if (!isPlay)
                 {
-                    RestFulProxy.SaveState(grounpId, (result) => {
+                    MessageBox.Show("信息提示", "确定启动游戏吗？", MessageBoxButtonState.OK, (ok) => {
 
-                        result = result.Trim('"');
-                        if (result.Equals("0"))
-                        {
-                            GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("游戏已成功启动", 5.0f);
-                            SwitchState();
-                        }
-                        else
-                        {
-                            GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(result,5.0f);
-                        }
-                       
+                        RestFulProxy.SaveState(grounpId, (result) => {
 
-                    });
+                            result = result.Trim('"');
+                            if (result.Equals("0"))
+                            {
+                                GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("游戏已成功启动", 5.0f);
+                                SwitchState();
+                            }
+                            else
+                            {
+                                GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(result, 5.0f);
+                            }
+
+
+                        });
+
+                    }, true);
+
+
+                   
                 }
                 else
                 {

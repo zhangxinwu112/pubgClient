@@ -61,14 +61,15 @@ public class RootJoinRoomView : RootBaseRoomView
         });
     }
     //加入按钮
-    public void ClickJoinHandleEvent(UnityAction<string> action)
+    public void ClickJoinHandleEvent(UnityAction<string,string> action)
     {
         joinButton.onClick.AddListener(()=> {
 
             string roomId = GetComponentInChildren<ListView>().selectRoomId;
-            if(!string.IsNullOrEmpty(roomId))
+            string gameId = GetComponentInChildren<ListView>().selectGameId;
+            if (!string.IsNullOrEmpty(roomId))
             {
-                action.Invoke(roomId);
+                action.Invoke(gameId,roomId);
             }
             else
             {

@@ -178,15 +178,15 @@ public class ListMsg : MonoBehaviour {
                 result = result.Trim('"');
                 if (result.Equals("0"))
                 {
-                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作成功");
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作成功！");
                 }
                 else if (result.Equals("-2"))
                 {
-                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，该对不能只有一个玩家");
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，该战队不能只有一个玩家。");
                 }
                 else
                 {
-                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，其他玩家未准备就绪");
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，其他玩家尚未准备就绪。");
                 }
 
             }, null);

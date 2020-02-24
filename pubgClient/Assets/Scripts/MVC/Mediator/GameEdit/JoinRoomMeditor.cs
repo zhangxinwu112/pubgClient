@@ -56,18 +56,19 @@ public class JoinRoomMeditor : Mediator, IEventListener
     /// <summary>
     /// 加入房间
     /// </summary>
-    private void JoinRoom(string roomId)
+    private void JoinRoom(string gameId,string roomId)
     {
         string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入队的密码不能为空。");
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入站队的密码不能为空。");
             return;
         }
 
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("checkCode", checkCode);
         dic.Add("roomId", roomId);
+        dic.Add("gameId", gameId);
 
         SendNotification(RoomNotifications.JOIN_ROOM, dic);
     }

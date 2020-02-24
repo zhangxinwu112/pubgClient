@@ -142,8 +142,7 @@ public sealed class PubgSocket  {
         try
         {
             tmrReConnection.Change(Timeout.Infinite, Timeout.Infinite);
-            if (client != null &&
-                client.IsConnected == false)
+            if ((client != null && client.IsConnected == false) || !isLogin)
             {
                 Init();
             }

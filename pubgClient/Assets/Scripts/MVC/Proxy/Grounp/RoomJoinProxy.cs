@@ -16,14 +16,15 @@ public class RoomJoinProxy : Proxy
 
     }
 
-    public void JoinRoom(string checkCode,string roomId)
+    public void JoinRoom(string checkCode,string gameId,string roomId)
     {
         if(SocketService.instance==null)
         {
             Debug.LogError("SocketService is null");
             return;
         }
-        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT+ "JoinRoom", new string[] { checkCode, roomId,
+        SocketService.instance.PostData("server.DAO.JoinRoomDao" + Constant.METHOD_SPLIT+ "JoinRoom", new string[] { checkCode, gameId,
+            roomId,
             LoginInfo.Userinfo.id.ToString(),LoginInfo.Userinfo.name}, (result) => {
             DataResult dataResult = Utils.CollectionsConvert.ToObject<DataResult>(result);
             

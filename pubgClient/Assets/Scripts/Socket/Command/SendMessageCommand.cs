@@ -23,7 +23,7 @@ namespace Socket.Command
         public object ExecuteCommand(string body, string[] parameter)
         {
             string content = body.ToString();
-            NGUIDebug.Log(content);
+            //NGUIDebug.Log(content);
             //GrounpStateProxy.Debug(content,null);
             ShowMapPoint.instacne.Show(Utils.CollectionsConvert.ToJSON(content));
             ShowMapPoint.instacne.ShowChatMesage(content);

@@ -50,7 +50,7 @@ public class TestSocket : MonoBehaviour
 
         if (connected)
         {
-            NGUIDebug.Log("connet success");
+          //  NGUIDebug.Log("connet success");
             Debug.Log("connet success");
             // Send data to the server
             client.Send(Encoding.ASCII.GetBytes("ADD*1#2 \r\n"));

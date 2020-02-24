@@ -22,7 +22,7 @@ public class ResourceUtility : MonoSingleton<ResourceUtility>
         if (www.error != null)
         {
             Debug.LogError("下载错误，请检查路径：" + url + "==原因：" + www.error);
-            NGUIDebug.Log("下载错误，请检查路径：" + url + "==原因：" + www.error);
+            //NGUIDebug.Log("下载错误，请检查路径：" + url + "==原因：" + www.error);
             action(www);
         }
            

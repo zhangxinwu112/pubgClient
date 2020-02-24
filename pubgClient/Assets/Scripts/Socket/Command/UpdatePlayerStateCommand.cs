@@ -24,7 +24,7 @@ namespace Socket.Command
         {
             string content = body.ToString();
 
-            NGUIDebug.Log("刷新");
+           // NGUIDebug.Log("刷新");
             EventMgr.Instance.SendEvent(EventName.UPDATE_PLAYER_STATE, null);
             
             return null;

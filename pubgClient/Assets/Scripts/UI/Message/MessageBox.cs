@@ -37,7 +37,7 @@ public class MessageBox
             messageBoxClone = GameObject.Instantiate(messageObj) as GameObject;
             messageBoxClone.transform.SetParent(UIUtility.GetRootCanvas());
 
-            messageBoxClone.transform.localScale = new Vector3(3, 3, 3);
+            messageBoxClone.transform.localScale = new Vector3(2, 2, 2);
             messageBoxClone.transform.localRotation = Quaternion.Euler(0, 0, 0);
             messageBoxClone.GetComponent<RectTransform>().anchoredPosition3D = pos;
         }

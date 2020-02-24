@@ -12,6 +12,7 @@ public class TestStr : MonoBehaviour {
         string[] strs = Regex.Split(aa, "\u0020");
         Debug.Log(strs[0]);
 
+        
 
 
     }

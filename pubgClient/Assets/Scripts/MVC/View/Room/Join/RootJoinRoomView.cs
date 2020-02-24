@@ -18,11 +18,6 @@ public class RootJoinRoomView : RootBaseRoomView
     public Button enterButton;
 
     [SerializeField]
-    private Button showScore;
-
-
-
-    [SerializeField]
     public InputField enterInputField;
 
     [SerializeField]
@@ -39,15 +34,9 @@ public class RootJoinRoomView : RootBaseRoomView
      
         KeyNameSearchField.text = "";
         enterInputField.text = "";
-
-        showScore.onClick.AddListener(() => {
-            SceneTools.instance.LoadScene("ScoreOrder");
-
-        });
     }
 
-    
-
+   
     public void EnterRoom(UnityAction action)
     {
         enterButton.onClick.AddListener(action);

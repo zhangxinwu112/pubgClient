@@ -35,7 +35,26 @@ public class ResourceUtility : MonoSingleton<ResourceUtility>
 
     public  void GetHttpText(string url, Action<string> action)
     {
-        GetHttpResource(url, www => action(www.text));
+        GetHttpResource(url, (wwww) => {
+
+            //对结果进行转义移除，和空处理
+            string result = FormatStr(wwww.text).Trim();
+            if (!string.IsNullOrEmpty(result) && !result.Equals("[]"))
+            {
+                action.Invoke(result);
+            }
+
+        }
+        
+        );
+    }
+
+    private string FormatStr(string result)
+    {
+        result = result.Trim('"');
+        result = result.Replace("\\", "");
+
+        return result;
     }
 
     public  void GetHttpTexture(string url, Action<Texture> action)

@@ -27,6 +27,7 @@ public class MainView : MonoBehaviour {
     void Start () {
         quitButton.onClick.AddListener(()=> {
 
+            SoundUtilty.PlayResouceSound("Sound/Tips");
             MessageBox.Show("信息提示", "确定要退出系统吗？", MessageBoxButtonState.OK, (ok) => {
 
                Application.Quit();

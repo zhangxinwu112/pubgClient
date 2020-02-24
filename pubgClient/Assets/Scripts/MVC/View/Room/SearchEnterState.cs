@@ -46,4 +46,9 @@ public class SearchEnterState : MonoBehaviour {
 
         }
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }

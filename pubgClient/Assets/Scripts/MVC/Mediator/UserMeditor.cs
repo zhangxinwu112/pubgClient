@@ -154,11 +154,6 @@ public class UserMeditor : Mediator
                 break;
         }
     }
-
-    
-
-  
-
  }
 
 public class DropDownDataItem : Dropdown.OptionData

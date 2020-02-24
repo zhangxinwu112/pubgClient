@@ -21,7 +21,12 @@ public class ScoreView : MonoBehaviour {
 
     public GameObject item;
     void Start () {
-        RequstData(0);
+
+        if(LoginInfo.Userinfo.type == 0)
+        {
+            RequstData(0);
+        }
+       
 
     }
 	
@@ -29,15 +34,14 @@ public class ScoreView : MonoBehaviour {
     public void RequstData(int currentPlayer)
     {
         RestFulProxy.SearchScore(currentPlayer, (result) => {
-
-            result = result.Trim('"');
-            result = result.Replace("\\", "");
             List<Score> list = Utils.CollectionsConvert.ToObject<List<Score>>(result);
             Create(list);
+           
+           
         });
     }
     List<GameObject> createLsit = new List<GameObject>();
-    private void Create(List<Score> list)
+    public void Create(List<Score> list)
     {
         DeleteCreateList();
         for (int  i =0;i< list.Count;i++)
@@ -54,7 +58,7 @@ public class ScoreView : MonoBehaviour {
     }
 
 
-    private void DeleteCreateList()
+    public void DeleteCreateList()
     {
         createLsit.ForEach((g) => {
             GameObject.Destroy(g);

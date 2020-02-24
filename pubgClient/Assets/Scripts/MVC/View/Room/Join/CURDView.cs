@@ -42,6 +42,9 @@ public class CURDView : MonoBehaviour {
     [SerializeField]
     private Button titleCloseButton;
 
+    [SerializeField]
+    private Text titleText;
+
     void Start () {
 
 
@@ -85,7 +88,19 @@ public class CURDView : MonoBehaviour {
     {
         DeleteButton.onClick.AddListener(()=> {
            string roomId = GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().selectRoomId;
-            action.Invoke(roomId);
+            RestFulProxy.IsEditRoom(int.Parse(roomId), (result) => {
+            if (result.Equals("0"))
+            {
+                action.Invoke(roomId);
+            }
+            else
+            {
+                GetComponentInParent<RootJoinRoomView>().errorMessage.ShowMessage("非法操作", SoundType.Error);
+            }
+
+         });
+
+            
         });
     }
 
@@ -98,22 +113,36 @@ public class CURDView : MonoBehaviour {
         roomCreatePasswordInput.text = "";
         ShowHideList(false);
         SetGrounpName();
+        SetTitle("创建战队");
     }
 
     private void EditRoom()
     {
-        transform.localScale = Vector3.one;
-        ShowHideList(false);
         roomId = GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().selectRoomId;
-        Room room = ListData.FindRoomByKey(roomId);
-        if(room!=null)
-        {
-            roomName.text = room.name.Trim();
-            gamePasswordInput.text = "";
-            roomCreatePasswordInput.text = room.checkCode.Trim();
-        }
+        RestFulProxy.IsEditRoom(int.Parse
+            (roomId),(result) => {
+                if(result.Equals("0"))
+                {
+                    transform.localScale = Vector3.one;
+                    ShowHideList(false);
+                    Room room = ListData.FindRoomByKey(roomId);
+                    if (room != null)
+                    {
+                        roomName.text = room.name.Trim();
+                        gamePasswordInput.text = "";
+                        roomCreatePasswordInput.text = room.checkCode.Trim();
+                    }
 
-        SetGrounpName();
+                    SetGrounpName();
+                    SetTitle("编辑战队");
+                }
+                else
+                {
+                    GetComponentInParent<RootJoinRoomView>().errorMessage.ShowMessage("非法操作", SoundType.Error);
+                }
+
+            });
+
     }
 
     private void CloseRoom()
@@ -147,9 +176,9 @@ public class CURDView : MonoBehaviour {
        
     }
 
-    public void SetTitle()
+    public void SetTitle(string context)
     {
-
+        titleText.text = context;
     }
 
 

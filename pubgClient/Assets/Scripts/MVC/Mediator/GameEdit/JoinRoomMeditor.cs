@@ -61,7 +61,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
         string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入站队的密码不能为空。");
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入站队的密码不能为空。", SoundType.Error);
             return;
         }
 
@@ -210,13 +210,13 @@ public class JoinRoomMeditor : Mediator, IEventListener
       
         if (dataResult.result == 0)
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(successMessage);
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(successMessage, SoundType.Success);
             SendRequestAllGrounp();
 
         }
         else
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(dataResult.resean);
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(dataResult.resean, SoundType.Error);
         }
     }
 
@@ -234,7 +234,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
         else if (eventName.Equals(EventName.SHOW_MESSAGE))
         {
             string message = dictionary["message"].ToString();
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(message);
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage(message, SoundType.Tips);
         }
 
         return true;

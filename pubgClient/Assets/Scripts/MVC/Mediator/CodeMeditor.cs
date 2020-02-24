@@ -56,7 +56,7 @@ public class CodeMeditor : Mediator
         }
         else
         {
-            root.GetComponent<CodeView>().ShowMessage("授权码不能为空。");
+            root.GetComponent<CodeView>().ShowMessage("授权码不能为空。",SoundType.Error);
         }
     }
     public override IList<string> ListNotificationInterests()
@@ -81,8 +81,9 @@ public class CodeMeditor : Mediator
             case LoginNotifications.QUERY_CODE_LOGIN_ERROR:
 
                 string errorMessage = notification.Body as string;
-                root.GetComponent<CodeView>().ShowMessage(errorMessage);
+                root.GetComponent<CodeView>().ShowMessage(errorMessage, SoundType.Error);
                 button.interactable = true;
+
                 break;
             default:
                 break;

@@ -23,6 +23,25 @@ public sealed class SoundUtilty  {
        );
     }
 
+    public static void PlaySuccessSound()
+    {
+        PlayResouceSound("Sound/Success",false);
+    }
+
+    public static void PlayErrorSound()
+    {
+        PlayResouceSound("Sound/Error", false);
+    }
+
+    public static void PlayTipsSound()
+    {
+        PlayResouceSound("Sound/Tips", false);
+    }
+
+ 
+
+
+
     private static AudioClip ac;
     public static void PlaySound(string soundPath, bool isLoop = false)
     {

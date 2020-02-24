@@ -362,6 +362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eadf0efd07fe024cb1e02ad2b9b1016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userText: {fileID: 0}
+  quitButton: {fileID: 0}
+  backButton: {fileID: 0}
 --- !u!114 &114982828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,7 +2473,7 @@ GameObject:
   - component: {fileID: 2127316906}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -40,13 +40,17 @@ public class CodeView : MonoBehaviour {
         return "";
     }
 
-    public void ShowMessage(string errrorMessage)
+    public void ShowMessage(string errrorMessage,SoundType soundType)
     {
         CodeField.text = "";
         message.text = errrorMessage;
         DOVirtual.DelayedCall(3.0f, () => {
             message.text = "";
         });
+        if (soundType != SoundType.None)
+        {
+            SoundUtilty.PlayResouceSound("Sound/" + soundType.ToString());
+        }
     }
 
 }

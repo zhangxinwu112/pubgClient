@@ -22,7 +22,7 @@ public class LoginView : MonoBehaviour
         LoginerrorMessage.text = "";
     }
 
-    public void ShowLoginError(string error)
+    public void ShowLoginError(string error, SoundType soundType)
     {
         userName.text = "";
         passwrod.text = "";
@@ -32,6 +32,13 @@ public class LoginView : MonoBehaviour
             LoginerrorMessage.text = "";
         });
         LoginButton.interactable = true;
+
+        if (soundType != SoundType.None)
+        {
+            SoundUtilty.PlayResouceSound("Sound/" + soundType.ToString());
+        }
+
+
     }
 
   

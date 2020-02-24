@@ -43,15 +43,15 @@ public class LoginMediator : Mediator
 
         if(!SocketService.instance.pubgSocket.IsLogin)
         {
-            root.GetComponent<LoginView>().ShowLoginError("服务器连接出错，请检查后重试！");
+            root.GetComponent<LoginView>().ShowLoginError("服务器连接出错，请检查后重试！", SoundType.Error);
             return;
         }
         if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
         {
-            root.GetComponent<LoginView>().ShowLoginError("账号和密码不能为空。");
+            root.GetComponent<LoginView>().ShowLoginError("账号和密码不能为空。", SoundType.Error);
             return;
         }
-      //  root.GetComponent<LoginView>().EnableLoginButton(false);
+    
        if(button!=null)
         {
             button.interactable = false;
@@ -82,7 +82,7 @@ public class LoginMediator : Mediator
             //登录成成功
             case LoginNotifications.QUERY_LOGIN_SUCCESS:
 
-               
+                root.GetComponent<LoginView>().ShowLoginError("", SoundType.Success);
                 SceneTools.instance.LoadScene("MachineCode");
                 break;
 
@@ -90,13 +90,9 @@ public class LoginMediator : Mediator
             case LoginNotifications.QUERY_LOGIN_ERROR:
 
                 string errorMessage = notification.Body as string;
-                root.GetComponent<LoginView>().ShowLoginError(errorMessage);
-               
-
+                root.GetComponent<LoginView>().ShowLoginError(errorMessage, SoundType.Error);
                 break;
 
-        
-            
             default:
                 break;
         }

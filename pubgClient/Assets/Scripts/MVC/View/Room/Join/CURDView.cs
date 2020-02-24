@@ -57,20 +57,20 @@ public class CURDView : MonoBehaviour {
         SubmitButton.onClick.AddListener(()=> {
             if (string.IsNullOrEmpty(roomName.text.Trim()))
             {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("队名称不能为空。");
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("队名称不能为空。", SoundType.Error);
                 return;
             }
 
             if (string.IsNullOrEmpty(gamePasswordInput.text.Trim()))
             {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("游戏密码不能为空。");
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("游戏密码不能为空。", SoundType.Error);
                 return;
             }
 
 
             if (string.IsNullOrEmpty(roomCreatePasswordInput.text.Trim()))
             {
-                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("创建房间的密码不能为空。");
+                GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("创建房间的密码不能为空。", SoundType.Error);
                 return;
             }
 

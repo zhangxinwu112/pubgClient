@@ -76,7 +76,8 @@ public class EditGameMeditor : Mediator,IEventListener
             }
             else
             {
-                root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(grounp.name + "游戏已启动，无法再次进行编辑器电子围栏");
+                root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(
+                    grounp.name + "游戏已启动，无法再次进行编辑器电子围栏", SoundType.Error);
             }
 
         });
@@ -87,30 +88,30 @@ public class EditGameMeditor : Mediator,IEventListener
     {
         if (string.IsNullOrEmpty(grounpName))
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏名称不能为空。");
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏名称不能为空。", SoundType.Error);
             return;
         }
 
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏密码不能为空。");
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏密码不能为空。", SoundType.Error);
             return;
         }
 
         if (string.IsNullOrEmpty(playerTime))
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏时间不能为空。");
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏时间不能为空。", SoundType.Error);
             return;
         }
 
         if (string.IsNullOrEmpty(playerTime))
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏时长不能为空。");
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏时长不能为空。", SoundType.Error);
             return;
         }
         if (int.Parse(playerTime)<=5)
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏时长输入不正确");
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage("游戏时长输入不正确", SoundType.Error);
             return;
         }
 
@@ -199,13 +200,13 @@ public class EditGameMeditor : Mediator,IEventListener
         DataResult dataResult = notification.Body as DataResult;
         if (dataResult.result == 0)
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(successMessage);
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(successMessage, SoundType.Success);
             //root.GetComponent<RootEditGameView>().gameEditView.ClearAll();
             SendRequestAllGrounp();
         }
         else
         {
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(dataResult.resean);
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(dataResult.resean, SoundType.Error);
         }
     }
 
@@ -223,7 +224,7 @@ public class EditGameMeditor : Mediator,IEventListener
         else if(eventName.Equals(EventName.SHOW_MESSAGE))
         {
             string message = dictionary["message"].ToString();
-            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(message);
+            root.GetComponent<RootEditGameView>().errorMessage.ShowMessage(message, SoundType.Tips);
         }
         
         return true;

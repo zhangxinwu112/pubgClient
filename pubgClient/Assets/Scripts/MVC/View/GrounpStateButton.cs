@@ -32,12 +32,12 @@ public class GrounpStateButton : MonoBehaviour {
                             result = result.Trim('"');
                             if (result.Equals("0"))
                             {
-                                GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("游戏已成功启动", 5.0f);
+                                GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("游戏已成功启动", SoundType.None, 5.0f);
                                 SwitchState();
                             }
                             else
                             {
-                                GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(result, 5.0f);
+                                GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(result, SoundType.Error, 5.0f);
                             }
 
 
@@ -50,7 +50,7 @@ public class GrounpStateButton : MonoBehaviour {
                 }
                 else
                 {
-                    GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(grounpName + "，游戏已处于运行状态");
+                    GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage(grounpName + "，游戏已处于运行状态", SoundType.Error);
                 }
 
 

@@ -15,5 +15,7 @@ public  class Life
     public int lifeValue;
 
     public int fightScore;
+
+    public string userName;
 }
 

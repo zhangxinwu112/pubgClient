@@ -23,9 +23,6 @@ namespace Socket.Command
         public object ExecuteCommand(string body, string[] parameter)
         {
             string content = body.ToString();
-
-            //NGUIDebug.Log("game over");
-            //EventMgr.Instance.SendEvent(EventName.UPDATE_PLAYER_STATE, null);
             if(ShowMapPoint.instacne!=null)
             {
                 ShowMapPoint.instacne.GameOver();

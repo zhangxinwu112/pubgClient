@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.13656995, g: 0.6473739, b: 0.9339623, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.83413947, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18039216, g: 0.70980394, b: 0.85882354, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3727,6 +3727,21 @@ Prefab:
       propertyPath: m_FontData.m_FontSize
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 114933611079950472, guid: c1ae6b38ee88a374c9e380bb6082ea0d,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.18039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 114933611079950472, guid: c1ae6b38ee88a374c9e380bb6082ea0d,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 114933611079950472, guid: c1ae6b38ee88a374c9e380bb6082ea0d,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.85882354
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1ae6b38ee88a374c9e380bb6082ea0d, type: 2}
   m_IsPrefabAsset: 0
@@ -4862,7 +4877,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.13656995, g: 0.6473739, b: 0.9339623, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.7206769, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -4895,7 +4910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18039216, g: 0.70980394, b: 0.85882354, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -76,7 +76,6 @@ public class ShowMapPoint : MonoBehaviour {
     {
         switch (message.Path)
         {
-            //
             case "Back":
                 {
                     SceneTools.instance.BackScene();
@@ -89,9 +88,53 @@ public class ShowMapPoint : MonoBehaviour {
 
                     break;
                 };
+            //管理员获取管理的数据
+            case "GetRoomList":
+                {
 
+                    ReqestData(message, "GetRoomUserTreeData", (result) => {
+
+                        CallWebPageFunction("ShowRoomList",result);
+                    });
+                   
+
+
+                    break;
+                }
+            //玩家之间共享信息
+            case "ShowPlayInfo":
+                {
+                    ReqestData(message, "GetRoomLifeInfoByUser", (result) => {
+
+                        CallWebPageFunction("GetRoomLifeInfoByUser",result);
+                    });
+
+
+                  
+                    break;
+                }
+            //管理员查看用户详细信息
+            case "ShowPlayerDetailInfoList":
+                {
+                    ReqestData(message, "GetPlayerInfoByUser", (result) => {
+
+                        CallWebPageFunction("ShowPlayerDetailInfo",result);
+                    });
+                    break;
+
+                }
         }
  
+    }
+
+    private  void ReqestData(UniWebViewMessage message,string method,System.Action<string > callBack)
+    {
+        string userId = message.Args["userId"].ToString();
+        string url = "http://" + Config.parse("ServerIP") + ":8899/"+ method+ "/ " + userId;
+
+        ResourceUtility.Instance.GetHttpText(url, (result) => {
+            callBack.Invoke(result);
+        });
     }
 
     public void DeleteWebPage()
@@ -124,10 +167,7 @@ public class ShowMapPoint : MonoBehaviour {
     public void ShowChatMesage(string content)
     {
         string functionName = "ChatMessage" + "(" + content + ")";
-      //  NGUIDebug.Log(functionName);
-        //GrounpStateProxy.Debug(functionName, null);
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
-        //GetComponent<UniWebView>().EvaluateJavaScript(functionName);
     }
 
     public void GameOver()
@@ -136,8 +176,19 @@ public class ShowMapPoint : MonoBehaviour {
        
         GetComponent<UniWebView>().EvaluateJavaScript(functionName);
     }
+    /// <summary>
+    /// 调用网页的js函数
+    /// </summary>
+    /// <param name="jsFunction"></param>
+    /// <param name="para"></param>
+    public void CallWebPageFunction(string jsFunction, string para)
+    {
+        string functionName = jsFunction + "(" + para + ")";
+        GetComponent<UniWebView>().EvaluateJavaScript(functionName);
+    }
 
-     private IEnumerator UpdatePostion()
+
+    private IEnumerator UpdatePostion()
     {
         while(true)
         {

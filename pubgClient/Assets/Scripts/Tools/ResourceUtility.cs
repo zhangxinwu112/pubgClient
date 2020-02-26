@@ -43,7 +43,6 @@ public class ResourceUtility : MonoSingleton<ResourceUtility>
             {
                 action.Invoke(result);
             }
-
         }
         
         );

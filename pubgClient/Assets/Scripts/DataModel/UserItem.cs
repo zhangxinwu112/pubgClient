@@ -17,5 +17,8 @@ namespace server.Model
         public int type;
 
         public int runState = -1;
+
+        public bool isLeader = false;
+
     }
 }

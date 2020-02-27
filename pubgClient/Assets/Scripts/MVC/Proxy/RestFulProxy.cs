@@ -70,6 +70,13 @@ public class RestFulProxy
         ResourceUtility.Instance.GetHttpText(url, successCallBack);
     }
 
+    public static void GetLeaderAuthority(System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
+    {
+        string url = "http://" + Config.parse("ServerIP") + ":8899/GetLeaderAuthority/"+ LoginInfo.Userinfo.id;
+        ResourceUtility.Instance.GetHttpText(url, successCallBack);
+    }
+
+
 
 
 }

@@ -87,10 +87,12 @@ public class CURDView : MonoBehaviour {
     public void DeleteRoom(UnityAction<string> action)
     {
         DeleteButton.onClick.AddListener(()=> {
+            //检查是否有权限
            string roomId = GetComponentInParent<RootJoinRoomView>().GetComponentInChildren<ListView>().selectRoomId;
             RestFulProxy.IsEditRoom(int.Parse(roomId), (result) => {
             if (result.Equals("0"))
             {
+
                 action.Invoke(roomId);
             }
             else

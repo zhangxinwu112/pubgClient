@@ -37,7 +37,6 @@ public class JoinRoomMeditor : Mediator, IEventListener
         root.GetComponent<RootJoinRoomView>().SearchSingleRoomAction(SearchSingleRoom);
         root.GetComponent<RootJoinRoomView>().SearchSingleGrounpAction(SearchSingleGrounp);
         //查询进入游戏按钮的状态
-       // root.GetComponent<RootJoinRoomView>().ButtonStateCallBack(SearchEnterButtonState);
         root.GetComponent<RootJoinRoomView>().EnterRoom(EnterButtonHandle);
         //增加修改房间
         root.GetComponent<RootJoinRoomView>().curdView.ClickSubmitHandleEvent(AddEditRoom);
@@ -61,7 +60,7 @@ public class JoinRoomMeditor : Mediator, IEventListener
         string checkCode = root.GetComponent<RootJoinRoomView>().enterInputField.text.Trim();
         if (string.IsNullOrEmpty(checkCode))
         {
-            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入站队的密码不能为空。", SoundType.Error);
+            root.GetComponent<RootBaseRoomView>().errorMessage.ShowMessage("加入战队的密码不能为空。", SoundType.Error);
             return;
         }
 
@@ -150,20 +149,20 @@ public class JoinRoomMeditor : Mediator, IEventListener
         switch (notification.Name)
         {
 
-            //返回room列表
+            //返回grounp列表
             case RoomNotifications.ALL_GROUNP_SUCCESS:
 
                 List<Grounp> rooms = notification.Body as List<Grounp>;
                 root.GetComponent<RootJoinRoomView>().roomListView.CreateList(rooms,0);
 
                 break;
-            //通过room查询gourp
+            //通过gourp查询room
             case RoomNotifications.SINGLE_ROOM_SUCCESS:
 
                 List<Room> grounps = notification.Body as List<Room>;
                 root.GetComponent<RootJoinRoomView>().roomListView.CreateList(grounps,1);
                 break;
-            //通过grounp查询userList
+            //通过room查询userList
             case RoomNotifications.SINGLE_GROUNP_SUCCESS:
 
                 List<UserItem> UserItems = notification.Body as List<UserItem>;
@@ -183,18 +182,18 @@ public class JoinRoomMeditor : Mediator, IEventListener
 
             case RoomNotifications.JOIN_ROOM_RESULT:
 
-                ResultcallBack(notification, "成功加入队");
+                ResultcallBack(notification, "成功加入战队");
                 break;
             case RoomNotifications.EXIT_ROOM_RESULT:
 
-                ResultcallBack(notification, "成功退出队");
+                ResultcallBack(notification, "成功退出战队");
                 break;
             case RoomNotifications.CREATE_EDIT_ROOM_RESULT:
-
+                JoinExitRoomButton.instance.UpdateButonState();
                 ResultcallBack(notification, "操作成功");
                 break;
             case RoomNotifications.DELETE_ROOM_RESULT:
-
+                JoinExitRoomButton.instance.UpdateButonState();
                 ResultcallBack(notification, "操作成功");
                 break;
 

@@ -71,7 +71,16 @@ public class MainView : MonoBehaviour {
     {
         if(_user.type ==0)
         {
-            userText.text = "欢迎您："+ _user.name;
+            if(!_user.isLeader)
+            {
+                userText.text = "欢迎您玩家：" + _user.name;
+            }
+            else
+            {
+                userText.text = "欢迎您队长：" + _user.name;
+            }
+           
+
         }else if(_user.type == 1)
         {
             userText.text = "欢迎您管理员：" + _user.name;

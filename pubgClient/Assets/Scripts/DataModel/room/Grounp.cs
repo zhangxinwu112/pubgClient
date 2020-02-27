@@ -31,6 +31,7 @@ namespace DataModel
 
         public int roomCount;
 
+        public int remainTime;
 
     }
 }

@@ -60,6 +60,7 @@ public class ShowMapPoint : MonoBehaviour {
         {
             view.Show();
             SendFirstData();
+            ShowRemianTime();
 
         };
 
@@ -70,6 +71,15 @@ public class ShowMapPoint : MonoBehaviour {
             return true;
         };
       
+    }
+
+    private void ShowRemianTime()
+    {
+        string url = "http://" + Config.parse("ServerIP") + ":8899/GetRemainTime/" + LoginInfo.Userinfo.id + "/ " + LoginInfo.Userinfo.type;
+
+        ResourceUtility.Instance.GetHttpText(url, (result) => {
+            CallWebPageFunction("RemianTime", result);
+        });
     }
 
     private void FunctionCallBack(UniWebView webView, UniWebViewMessage message)

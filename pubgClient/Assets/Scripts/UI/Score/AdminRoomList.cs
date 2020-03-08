@@ -10,7 +10,8 @@ public class AdminRoomList : MonoBehaviour {
     // Use this for initialization
     private Dropdown dropList;
 	void Start () {
-
+        transform.localScale = Vector3.zero;
+        return;
         dropList = GetComponentInChildren<Dropdown>();
         //玩家
         if (LoginInfo.Userinfo.type == 0)
@@ -66,22 +67,22 @@ public class AdminRoomList : MonoBehaviour {
         return -1;
     }
 
-    public void ChangeSelected()
-    {
-        GetComponentInParent<ScoreView>().DeleteCreateList();
-        string selectName = transform.parent.Find("upButton").GetComponent<ScoreToggle>().selectName;
-        if (dropList.value!=0 && selectName.Equals("0") && roomList!=null && roomList.Count>0)
-        {
-            int roomId = roomList[dropList.value-1].id;
-            RestFulProxy.SearchScoreByRoom(roomId, (result) => {
+    //public void ChangeSelected()
+    //{
+    //    GetComponentInParent<ScoreView>().DeleteCreateList();
+    //    string selectName = transform.parent.Find("upButton").GetComponent<ScoreToggle>().selectName;
+    //    if (dropList.value!=0 && selectName.Equals("0") && roomList!=null && roomList.Count>0)
+    //    {
+    //        int roomId = roomList[dropList.value-1].id;
+    //        RestFulProxy.SearchScoreByRoom(roomId, (result) => {
                
-                List<Score> list = Utils.CollectionsConvert.ToObject<List<Score>>(result);
+    //            List<Score> list = Utils.CollectionsConvert.ToObject<List<Score>>(result);
 
-                GetComponentInParent<ScoreView>().Create(list);
+    //            GetComponentInParent<ScoreView>().Create(list);
 
-            });
-        }
-    }
+    //        });
+    //    }
+    //}
 	
     public void ClearData()
     {

@@ -15,34 +15,35 @@ public class ScoreToggle : MonoBehaviour {
             selectName = toggle.name;
             GetComponentInParent<ScoreView>().DeleteCreateList();
             //玩家
-            if (LoginInfo.Userinfo.type == 0)
-            {
-                GetComponentInParent<ScoreView>().RequstData(int.Parse(toggle.name));
-            }
-            else if(LoginInfo.Userinfo.type == 1)
-            {
+            //if (LoginInfo.Userinfo.type == 0)
+            //{
+            GetComponentInParent<ScoreView>().RequstData(int.Parse(toggle.name));
+            //}
+            ////管理员
+            //else if(LoginInfo.Userinfo.type == 1)
+            //{
                
-                if(selectName.Equals("0"))
-                {
-                    AdminRoomList ar = transform.parent.GetComponentInChildren<AdminRoomList>();
-                    if (ar.GetIndex() != 0)
-                    {
-                        int roomId = ar.GetRoomId();
-                        RestFulProxy.SearchScoreByRoom(roomId, (result) => {
+            //    if(selectName.Equals("0"))
+            //    {
+            //        AdminRoomList ar = transform.parent.GetComponentInChildren<AdminRoomList>();
+            //        if (ar.GetIndex() != 0)
+            //        {
+            //            int roomId = ar.GetRoomId();
+            //            RestFulProxy.SearchScoreByRoom(roomId, (result) => {
               
-                            List<Score> list = Utils.CollectionsConvert.ToObject<List<Score>>(result);
+            //                List<Score> list = Utils.CollectionsConvert.ToObject<List<Score>>(result);
 
-                            GetComponentInParent<ScoreView>().Create(list);
+            //                GetComponentInParent<ScoreView>().Create(list);
 
-                        });
-                    }
-                }
-                else
-                {
-                    GetComponentInParent<ScoreView>().RequstData(int.Parse(toggle.name));
-                }
+            //            });
+            //        }
+            //    }
+            //    else
+            //    {
+            //        GetComponentInParent<ScoreView>().RequstData(int.Parse(toggle.name));
+            //    }
                
-            }
+           // }
         }
     }
 

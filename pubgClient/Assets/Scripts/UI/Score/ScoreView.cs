@@ -22,12 +22,11 @@ public class ScoreView : MonoBehaviour {
     public GameObject item;
     void Start () {
 
-        if(LoginInfo.Userinfo.type == 0)
-        {
+        //if(LoginInfo.Userinfo.type == 0)
+        //{
             RequstData(0);
-        }
-       
-
+       // }
+      
     }
 	
 	

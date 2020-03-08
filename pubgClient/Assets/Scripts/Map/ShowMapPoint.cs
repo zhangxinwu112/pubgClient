@@ -133,6 +133,20 @@ public class ShowMapPoint : MonoBehaviour {
                     break;
 
                 }
+            //管理员查看用户详细信息
+            case "AddPlayerLife":
+                {
+                    string userId = message.Args["userId"].ToString();
+                    string addLifeValue = message.Args["addLifeValue"].ToString();
+                    string currentUser = message.Args["currentUser"].ToString();
+                    string url = "http://" + Config.parse("ServerIP") + ":8899/AddPlayerLife/"  + userId + "/"+ addLifeValue + "/"+ currentUser;
+
+                    ResourceUtility.Instance.GetHttpText(url, (result) => {
+                        CallWebPageFunction("AddPlayerLifeMessageShow", result);
+                    });
+                    break;
+
+                }
         }
  
     }

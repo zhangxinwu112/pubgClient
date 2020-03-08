@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RestFulProxy
 {
-
-	
     public static void  SaveState(string grounpid,System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
     {
         string url = "http://"+ Config.parse("ServerIP")+ ":8899/UpdateGrounpState/" + grounpid;
@@ -19,12 +17,12 @@ public class RestFulProxy
         ResourceUtility.Instance.GetHttpText(url, successCallBack);
     }
 
-    public static void Debug(string content, System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
-    {
-        return;
-        //string url = "http://" + Config.parse("ServerIP") + ":8899/Deubg/" + content;
-        //ResourceUtility.Instance.GetHttpText(url, scuessCallBack);
-    }
+    //public static void Debug(string content, System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
+    //{
+    //    return;
+    //    //string url = "http://" + Config.parse("ServerIP") + ":8899/Deubg/" + content;
+    //    //ResourceUtility.Instance.GetHttpText(url, scuessCallBack);
+    //}
 
     public static void SetUserState(int userId, System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
     {
@@ -73,6 +71,12 @@ public class RestFulProxy
     public static void GetLeaderAuthority(System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
     {
         string url = "http://" + Config.parse("ServerIP") + ":8899/GetLeaderAuthority/"+ LoginInfo.Userinfo.id;
+        ResourceUtility.Instance.GetHttpText(url, successCallBack);
+    }
+
+    public static void AddLife(string lifeValue,string userId, System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
+    {
+        string url = "http://" + Config.parse("ServerIP") + ":8899/AddLife/" + lifeValue+"|"+ userId;
         ResourceUtility.Instance.GetHttpText(url, successCallBack);
     }
 

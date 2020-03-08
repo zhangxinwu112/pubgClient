@@ -82,9 +82,6 @@ public class RootJoinRoomView : RootBaseRoomView
     private UnityAction callBack;
 
   
-
-  
-
     public void SetEnterButtonActive(bool isActive)
     {
         enterButton.interactable = isActive;

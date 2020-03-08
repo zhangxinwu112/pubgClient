@@ -59,6 +59,27 @@ namespace DataModel
             return null;
         }
 
+        /// <summary>
+        /// 获取选择的game对象索引
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <returns></returns>
+        public static int GetIndexGameSelect(string gameId)
+        {
+            if(grounpList!=null)
+            {
+                for(int i=0;i< grounpList.Count;i++)
+                {
+                    if(grounpList[i].id.ToString().Equals( gameId))
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
       
 
        

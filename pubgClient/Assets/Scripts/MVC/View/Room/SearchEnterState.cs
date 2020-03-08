@@ -9,6 +9,10 @@ public class SearchEnterState : MonoBehaviour {
     private Button enterGameButton;
 	// Use this for initialization
 	void Start () {
+        if(enterGameButton==null)
+        {
+            enterGameButton = GetComponent<Button>();
+        }
         GetComponent<Button>().interactable = false;
         if(enterGameButton!=null)
         {
@@ -32,12 +36,7 @@ public class SearchEnterState : MonoBehaviour {
                 {
                     GetComponent<Button>().interactable = true;
                     SoundUtilty.PlayResouceSound("Sound/GameStart");
-                    if(enterGameButton!=null)
-                    {
-                        enterGameButton.interactable = false;
-                    }
-                   
-
+                    //SetAddLifeButton();
                     StopAllCoroutines();
                 }
 
@@ -45,6 +44,15 @@ public class SearchEnterState : MonoBehaviour {
             yield return new WaitForSeconds(4.0f);
 
         }
+    }
+
+    private void SetAddLifeButton()
+    {
+        //GameObject[] gs = GameObject.FindGameObjectsWithTag("Life");
+        //for(int i=0;i< gs.Length;i++)
+        //{
+        //    gs[i].SetActive(false);
+        //}
     }
 
     private void OnDestroy()

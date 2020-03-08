@@ -11,4 +11,7 @@ public class EventName  {
     public const string KEY_SEARCH = "key_search";
 
     public const string SHOW_MESSAGE = "ShowMessage";
+
+
+    public const string CHECK_ENTER_BUTTON = "check_enter_button";
 }

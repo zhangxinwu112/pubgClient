@@ -88,13 +88,28 @@ public class ListMsg : MonoBehaviour {
         {
             newObject.GetComponentInChildren<ChangeStateButton>().Change();
         }
+        GameObject life = newObject.transform.Find("life").gameObject;
             //管理员
         if (LoginInfo.Userinfo.type == 1)
         {
             newObject.GetComponentInChildren<ChangeStateButton>().GetComponent<Button>().interactable = false;
+            int selectIndex = ListData.GetIndexGameSelect(GetComponentInParent<ListView>().selectGameId);
+            if (life!=null&& selectIndex==0)
+            {
+                life.gameObject.SetActive(true);
+            }
+            else
+            {
+                life.gameObject.SetActive(false);
+            }
         }
+        //玩家
         else
         {
+            if (life != null)
+            {
+                life.gameObject.SetActive(false);
+            }
             if (userItem.runState == 0)
             {
                 //运行起来后
@@ -108,10 +123,6 @@ public class ListMsg : MonoBehaviour {
                 }
             }
         }
-
-
-
-
     }
 
     private readonly string ItemName = "item";
@@ -196,5 +207,36 @@ public class ListMsg : MonoBehaviour {
         }, true);
 
       
+    }
+
+    public void AddLifeValue(Toggle toogle)
+    {
+        string userId = toogle.name;
+        string _url = "http://" + Config.parse("ServerIP") + ":8899/";
+        if (!string.IsNullOrEmpty(userId))
+        {
+            RestFulProxy.CheckEnterButton((checkResult) => {
+
+                checkResult = checkResult.Trim('"');
+                if (!checkResult.Equals("0"))
+                {
+                    string url = _url + "GetPlayerLifeInfoByUser/" + userId;
+                    ResourceUtility.Instance.GetHttpText(url, (result) => {
+                        Life life = Utils.CollectionsConvert.ToObject<Life>(result);
+                        if (life != null)
+                        {
+                            AddLife.instance.ShowOrHide(true);
+                            AddLife.instance.ShowFormData(life);
+                        }
+                    });
+                }
+                else
+                {
+                    GetComponentInParent<RootBaseRoomView>().errorMessage.ShowMessage("操作错误，游戏已处于运行状态。"
+                      , SoundType.Error);
+                }
+            });
+           
+        }
     }
 }

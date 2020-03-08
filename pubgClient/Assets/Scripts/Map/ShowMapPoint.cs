@@ -126,7 +126,7 @@ public class ShowMapPoint : MonoBehaviour {
             //管理员查看用户详细信息
             case "ShowPlayerDetailInfoList":
                 {
-                    ReqestData(message, "GetPlayerInfoByUser", (result) => {
+                    ReqestData(message, "GetPlayerLifeInfoByUser", (result) => {
 
                         CallWebPageFunction("ShowPlayerDetailInfo",result);
                     });

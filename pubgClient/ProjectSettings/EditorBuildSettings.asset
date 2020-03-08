@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 5a18dc3f72c2ecd419abebc221692663
   - enabled: 1
-    path: Assets/Scenes/CreateRoom.unity
+    path: Assets/Scenes/EditGame.unity
     guid: 984913efee5aef94683b187a0af5b261
   - enabled: 1
     path: Assets/Scenes/JoinRoom.unity
@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fence.unity
     guid: ddc3f761361d2bc4896c2d2cf4bbb0ec
+  - enabled: 1
+    path: Assets/Scenes/ScoreOrder.unity
+    guid: ecd4297d74d1929438cf2dc2019efe2a
   m_configObjects: {}

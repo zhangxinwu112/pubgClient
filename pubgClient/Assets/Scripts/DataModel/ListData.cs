@@ -70,7 +70,7 @@ namespace DataModel
             {
                 for(int i=0;i< grounpList.Count;i++)
                 {
-                    if(grounpList[i].id.ToString().Equals( gameId))
+                    if(grounpList[i].id.ToString().Equals(gameId))
                     {
                         return i;
                     }

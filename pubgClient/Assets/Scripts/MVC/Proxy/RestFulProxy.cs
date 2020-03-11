@@ -74,9 +74,9 @@ public class RestFulProxy
         ResourceUtility.Instance.GetHttpText(url, successCallBack);
     }
 
-    public static void AddLife(string lifeValue,string userId, System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
+    public static void AddLife(string lifeValue, string bulletCountValue, string userId, System.Action<string> successCallBack, System.Action<string> failtureCallBack = null)
     {
-        string url = "http://" + Config.parse("ServerIP") + ":8899/AddLife/" + lifeValue+"|"+ userId;
+        string url = "http://" + Config.parse("ServerIP") + ":8899/SetLife/" + lifeValue + "|"+ bulletCountValue +"|"+ userId;
         ResourceUtility.Instance.GetHttpText(url, successCallBack);
     }
 

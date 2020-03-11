@@ -16,8 +16,8 @@ public class AddLife : MonoBehaviour {
     private InputField playerBulletCountInput;
 
 
-    [SerializeField]
-    private InputField AddPlayerLifeName;
+    //////[SerializeField]
+    //////private InputField AddPlayerLifeName;
 
     [SerializeField]
     private Button okButton;
@@ -53,15 +53,34 @@ public class AddLife : MonoBehaviour {
 	
 	public void AddLifeClick()
     {
-        if(!string.IsNullOrEmpty(AddPlayerLifeName.text) && userId!=-1)
+        
+        string lifeValue = playerCurrentLifeName.text.Trim();
+        if (string.IsNullOrEmpty(lifeValue))
         {
-            RestFulProxy.AddLife(AddPlayerLifeName.text, userId.ToString(), (result) => {
+            GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("设定的命值不能为空！", SoundType.Error);
+
+            return;
+        }
+
+        string bulletCountValue = playerBulletCountInput.text.Trim();
+
+        if (string.IsNullOrEmpty(bulletCountValue))
+        {
+            GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("设定的弹量不能为空！", SoundType.Error);
+
+            return;
+        }
+
+
+
+        
+        RestFulProxy.AddLife(lifeValue, bulletCountValue, userId.ToString(), (result) => {
 
             });
 
             GetComponentInParent<RootEditGameView>().errorMessage.ShowMessage("操作成功",SoundType.Success);
             ShowOrHide(false);
-        }
+        
     }
 
     public void ShowOrHide(bool isShow)
